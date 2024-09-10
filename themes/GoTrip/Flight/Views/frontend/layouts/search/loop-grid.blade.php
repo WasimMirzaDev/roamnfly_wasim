@@ -1,7 +1,21 @@
+{{-- <style>
+    @media (min-width:990px) and (max-width: 1200px){
+        .dives-wrapper{
+flex-direction: column !important;
+}
+}
+   
+</style> --}}
+
+
+
+
+
+
 <div class="py-30 px-30 bg-white rounded-4 base-tr mt-30 {{$wrap_class ?? ''}}" data-x="flight-item-{{ $row['sI'][0]['id'] ?? '' }}" data-x-toggle="shadow-{{ $row['sI'][0]['id'] ?? '' }}">
     <div class="row justify-content-between">
         <div class="col-8">
-            <div class="row y-gap-10 items-center" style="gap: 35px;">
+            <div class="row y-gap-10 items-center dives-wrapper" style="gap: 35px;">
                 <div class="col-sm-auto col-3 d-flex align-items-center">
                     <div class="has-skeleton">
                         @php

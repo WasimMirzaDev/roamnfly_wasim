@@ -274,7 +274,13 @@
                 display: block !important;
             }
         }
-
+@media (min-width:990px) and (max-width: 1200px){
+.has-skeleton{
+    .btn-flight-content{
+        flex-direction: column;
+    }
+}
+}
     </style>
 
     <script>
@@ -287,11 +293,11 @@
     </script>
 
 
+@php $attr = "travel-type";
+     $inputName = "travel_type";
+@endphp
     {{-- <div class="w-100" id="multiCityDivContainer">
         <div class="col-md-12">
-                @php $attr = "travel-type";
-                     $inputName = "travel_type";
-                @endphp
             @if (!empty($attr) and !empty(($attr = \Modules\Core\Models\Attributes::where('slug', $attr)->first())))
             <div class="searchMenu-loc js-form-dd js-liverSearch item"> --}}
     {{-- <span class="clear-loc absolute bottom-0 text-12"><i class="icon-close"></i></span>
@@ -358,9 +364,9 @@
                     </style>
 
 
-                    @php$attr = 'travel-type';
+                    {{-- @php$attr = 'travel-type';
                         $inputName = 'travel_type';
-                    @endphp
+                    @endphp --}}
                     <div class="col-lg-2 align-self-center px-10 lg:py-5 lg:px-0 ">
                         @if (!empty($attr) and !empty(($attr = \Modules\Core\Models\Attributes::where('slug', $attr)->first())))
                             <div class="searchMenu-loc js-form-dd js-liverSearch item">
