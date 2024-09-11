@@ -461,6 +461,7 @@ $infants = $request->input('infants');
     {
 
         $gateways = get_payment_gateways();
+        // dd($gateways);
         if (empty($gateways[$gateway]) or !class_exists($gateways[$gateway])) {
             return $this->sendError(__("Payment gateway not found"));
         }

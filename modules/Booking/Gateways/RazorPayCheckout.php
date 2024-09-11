@@ -83,10 +83,12 @@ class RazorPayCheckout extends BaseGateway
         $payment->status = 'draft';
         $payment->amount = (float) $booking->pay_now;
 
+        // dd($payment->amount);
+
         $razorpayOrder = $this->api->order->create([
             'receipt'         => $booking->code,
             'amount'          => (float) $booking->pay_now * 100, // amount in the smallest currency unit
-            'currency'        => setting_item('currency_main'),
+            'currency'        => "INR",
             'payment_capture' => 1 // auto-capture
         ]);
 
@@ -102,20 +104,30 @@ class RazorPayCheckout extends BaseGateway
         } catch (\Swift_TransportException $e) {
             Log::warning($e->getMessage());
         }
+        $adults = $request->input('adults'); // Retrieve the 'adults' input array
+        $UserData = []; // Initialize an empty associative array
+        
+        // Assign values to the array using the square bracket notation
+        $UserData['name'] = $adults[0]['first_name'] . ' ' . $adults[0]['last_name'];
+        $UserData['email'] = $request->input('email');
+        $UserData['phone'] = $request->input('phone');
+        $UserData = json_encode($UserData);
 
         $booking->addMeta('razorpay_order_id', $razorpayOrder['id']);
 
-        return response()->json(['order_id' => $razorpayOrder['id'], 'key' => $this->getOption('razorpay_key_id')])->send();
+        return response()->json(['order_id' => $razorpayOrder['id'], 'key' => $this->getOption('razorpay_key_id') , 'amount' => (float) $booking->pay_now ,'booking_code' => $booking->code ,'UserData' => $UserData])->send();
     }
 
     public function confirmPayment(Request $request)
     {
         $c = $request->query('c');
         $booking = Booking::where('code', $c)->first();
+        
         $this->setupRazorpay();
-
+        
         if (!empty($booking) && in_array($booking->status, [$booking::UNPAID])) {
             $payment_id = $request->input('razorpay_payment_id');
+            // dd($payment_id);
             $order_id = $booking->getMeta('razorpay_order_id');
 
             try {

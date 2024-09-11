@@ -40,7 +40,7 @@
 
             <div class="p-4 mb-3" style="background-color: rgba(245, 245, 245, 0.685)">
                 <center>
-                    <h3>Passengers</h3>
+                    <h3>{{$booking->object_model == 'flight' ? 'Passengers' : 'Guests'}}</h3>
                 </center>
                 @php
                     if ($booking->adults != 0 && $booking->adults != null) {

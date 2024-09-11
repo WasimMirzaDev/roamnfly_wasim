@@ -223,14 +223,16 @@
     @break
 @endswitch
 <script>
-window.addEventListener('scroll', function() {
-    var header = document.querySelector('.bravo_header');
-    if (window.scrollY > window.innerHeight) {
-        header.style.background = '#0000008';
-        header.style.cssText += ';background-color: #00000082 !important;';
-    } else {
-        header.style.background = 'transparent';
-        header.style.cssText += ';background-color:transparent !important;';
-    }
-});
-    </script>
+if (window.location.pathname === '/') {
+    window.addEventListener('scroll', function() {
+        var header = document.querySelector('.bravo_header');
+        if (window.scrollY > window.innerHeight) {
+            header.style.background = '#0000008';
+            header.style.cssText += ';background-color: #00000082 !important;';
+        } else {
+            header.style.background = 'transparent';
+            header.style.cssText += ';background-color:transparent !important;';
+        }
+    });
+}
+</script>

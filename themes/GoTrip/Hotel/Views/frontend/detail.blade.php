@@ -101,12 +101,12 @@
             @endif
         })
     </script>
+        {{-- load_dates_url:'{{route('space.vendor.availability.loadDates')}}', --}}
     <script>
         var bravo_booking_data = {!! json_encode($booking_data) !!}
         var bravo_booking_i18n = {
 			no_date_select:'{{__('Please select Start and End date')}}',
             no_guest_select:'{{__('Please select at least one guest')}}',
-            load_dates_url:'{{route('space.vendor.availability.loadDates')}}',
             name_required:'{{ __("Name is Required") }}',
             email_required:'{{ __("Email is Required") }}',
         };
