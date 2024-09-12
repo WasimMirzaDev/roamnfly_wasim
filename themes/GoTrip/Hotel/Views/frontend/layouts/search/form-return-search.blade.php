@@ -94,8 +94,7 @@
             font-size: 15px !important;
         }
     }
-    </Style>
-    <style>
+ 
     
         .col-lg-2{
             & button{
