@@ -138,7 +138,14 @@
             padding: 20px !important;
             margin-top: 10px
         }
+        @media (max-width: 991px) {
 
+.gotrip_form_search {
+    height: 390px !important;
+}
+
+
+}
         @media (max-width: 769px) {
 
             .gotrip_form_search {
