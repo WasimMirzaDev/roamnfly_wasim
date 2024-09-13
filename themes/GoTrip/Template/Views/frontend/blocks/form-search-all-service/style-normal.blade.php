@@ -90,11 +90,11 @@
 
     @media (max-width: 769px) {
         .go-tabs {
-            left: 39% !important;
+            /* left: 39% !important; */
             background: white !important;
             width: 150px !important;
             padding: 10px 13px !important;
-            top: -45px !important;
+            /* top: -45px !important; */
         }
 
         .gotrip_form_search {
@@ -103,26 +103,28 @@
     }
 
     @media (max-width:426px){
-        .go-tabs {
+        /* .go-tabs {
             left: 32% !important;
            
-        }
+        } */
     }
  
     @media (max-width:376px){
-        .go-tabs {
+        /* .go-tabs {
             left: 29% !important;
            
-        }
+        } */
     }
     @media (max-width:321px){
-        .go-tabs {
+        /* .go-tabs {
             left: 25% !important;
            
-        }
+        } */
     }
     .search-header-wrapper{
         width: 100% !important;
+        position: absolute;
+        z-index: 21 !important;
     }
 </style>
 <section data-anim-wrap class="form-search-all-service masthead -type-1 z-5">
@@ -142,8 +144,9 @@
                 @if (empty($hide_form_search))
                     <div data-anim-child="slide-up delay-6" class="tabs -underline mt-60 js-tabs">
                         <center>
-                            <div class="search-header-wrapper">
-                                <div style=" gap: 25px;  position: fixed;  left: 35%; top: -50px; z-index: 25;  padding: 10px 0px;   box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);  width: 290px;    padding: 20px 34"
+                            <div class="search-header-wrapper" style="z-index: 33px !important">
+
+                                <div style=" gap: 25px;    padding: 10px 0px;   box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);  width: 290px;  "
                                     class="go-tabs bg-white tabs__controls d-flex justify-center sm:justify-start js-tabs-controls">
                                     @if ($service_types)
                                         @php
@@ -230,10 +233,11 @@
                                         </button>
                                     </div> --}}
                                 </div>
+                                
                             </div>
 
                         </center>
-                        <div class="tabs__content mt-30 md:mt-20 js-tabs-content">
+                        <div class="tabs__content   js-tabs-content">
                             @if ($service_types)
                                 @php $number = 0; @endphp
                                 @foreach ($service_types as $k => $service_type)

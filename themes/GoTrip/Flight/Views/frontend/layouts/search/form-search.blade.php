@@ -210,7 +210,7 @@
             }
         }
 
-        @media (max-width: 321px) {
+        @media (max-width: 992px) {
             .check-boxes {
 
                 margin-left: 0 !important;

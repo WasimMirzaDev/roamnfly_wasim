@@ -43,6 +43,9 @@
         padding: 3rem 0 !important;
 display: block !important;
 height: auto !important;
+position: relative;
+    top: 54px;
+    /* z-index: -1; */
     }
 .hotel-heading{
     text-align: center;
@@ -130,6 +133,9 @@ height: auto !important;
     left: 28% !important;
 }
         }
+
+
+      
 </Style>
 
 
