@@ -69,7 +69,7 @@
     }
 
     .modal-content {
-        background: transparent !important;
+        background: transparent ;
     }
 
     .carousel-inner,
@@ -190,7 +190,7 @@
         <div class="modal-content relative d-flex justify-content-center ">
             <div class="row">
 
-                <div class="col-6 p-0 ">
+                <div class="col-lg-6 col-xl-6 col-md-12 p-0 ">
                     <div class="slider-wrapper ">
                         <div class="carousel ">
                             <div class="carousel-inner ">
@@ -316,7 +316,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6 p-0">
+                <div class="col-lg-6 col-xl-6 col-md-12 p-0">
                     <div class="content h-100">
                         <div class="modal-header border-dashed">
                             <h4 class="modal-title">{{__('Log In')}}</h4>
@@ -348,7 +348,7 @@
                 <div class="col-1">
 
                 </div>
-                <div class="col-5 p-0 ">
+                <div class="col-lg-5 col-xl-5 col-md-12 p-0 ">
                     <div class="slider-wrapper slider-wrapper-one">
                         <div class="carousel-one ">
                             <div class="carousel-inner-one ">
@@ -473,7 +473,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-5 p-0">
+                <div class="col-lg-5 col-xl-5 col-md-12 p-0">
                     <div class="content h-100">
                         <div class="modal-header">
                             <h4 class="modal-title">{{__('Sign Up')}}</h4>

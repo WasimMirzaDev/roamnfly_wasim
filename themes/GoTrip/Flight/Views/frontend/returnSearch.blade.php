@@ -14,7 +14,7 @@
 @section('content')
     <div class="bravo_search_flight">
         <div class="container">
-            <div class=" pt-20 pb-15">
+            <div class="  pb-15">
                 <div class=" d-none text-center">
                     <h1 class="text-30 fw-600">
                         {{setting_item_with_lang("flight_page_search_title")}}

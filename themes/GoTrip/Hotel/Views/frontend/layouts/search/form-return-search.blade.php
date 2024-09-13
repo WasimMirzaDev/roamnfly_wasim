@@ -136,9 +136,7 @@
     .field-items{
         padding-top: 10px !important;
         .row{
-            /* background: hsla(0, 0%, 100%, .1) !important;  */
             color: white;
-            /* gap: 10px !important; */
             .col-lg-2,
             .col-lg-3,
             .col-lg-1,
@@ -149,9 +147,7 @@
         }
     }
     
-    /* .bravo_search_flight{
-        background-color:  #041422 !important;
-    } */
+ 
     #search-title{
         display: none;
     }

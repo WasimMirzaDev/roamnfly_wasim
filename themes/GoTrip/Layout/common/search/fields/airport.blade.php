@@ -95,32 +95,32 @@ $(document).ready(function () {
     });
 
 });
-$(document).ready(function () {
-    // When searchMenu-loc is clicked, add the no-scroll class to the body
-    $('.clicked-class').on('click', function (e) {
-        e.stopPropagation(); // Prevent event bubbling
-        $('body').addClass('no-scroll');
-    });
+// $(document).ready(function () {
+//     // When searchMenu-loc is clicked, add the no-scroll class to the body
+//     $('.clicked-class').on('click', function (e) {
+//         e.stopPropagation(); // Prevent event bubbling
+//         $('body').addClass('no-scroll');
+//     });
 
-    // When remove-scroll is clicked, remove the no-scroll class from the body
-    $('.remove-scroll').on('click', function (e) {
-        e.stopPropagation();
-        $('body').removeClass('no-scroll');
-    });
+//     // When remove-scroll is clicked, remove the no-scroll class from the body
+//     $('.remove-scroll').on('click', function (e) {
+//         e.stopPropagation();
+//         $('body').removeClass('no-scroll');
+//     });
 
-    // Click outside to close the menu and re-enable scrolling
-    $(document).on('mousedown', function (e) {
-        // Check if the clicked element is not within .searchMenu-loc or .js-popup-window
-        if (!$(e.target).closest('.clicked-class, .js-popup-window').length) {
-            $('body').removeClass('no-scroll'); // Remove no-scroll class from body
-        }
-    });
+//     // Click outside to close the menu and re-enable scrolling
+//     $(document).on('mousedown', function (e) {
+//         // Check if the clicked element is not within .searchMenu-loc or .js-popup-window
+//         if (!$(e.target).closest('.clicked-class, .js-popup-window').length) {
+//             $('body').removeClass('no-scroll'); // Remove no-scroll class from body
+//         }
+//     });
 
-    // // Prevent propagation within the pop-up window
-    // $('.js-popup-window').on('click', function (e) {
-    //     e.stopPropagation(); // Prevent closing when clicking inside the pop-up
-    // });
-});
+//     // // Prevent propagation within the pop-up window
+//     // $('.js-popup-window').on('click', function (e) {
+//     //     e.stopPropagation(); // Prevent closing when clicking inside the pop-up
+//     // });
+// });
 
 
 </script>

@@ -6,9 +6,7 @@ body{
 .bravo_wrap .gotrip_form_search .field-items > .row > div:not(:last-child) {
     border-right: 0;
 }
-.bravo_wrap .gotrip_form_search .field-items > .row > div:not(:first-child) {
-    border-right: 1px solid var(--color-border);
-}
+
 .searchMenu-loc__field,
 .searchMenu-guests__field{
     left: auto;

@@ -18,7 +18,7 @@
 @section('content')
     <div class="bravo_search_flight">
         <div class="container">
-            <div class=" pt-20 pb-15">
+            <div class="  pb-15">
                 <div class="d-none text-center">
                     <h1 class="text-30 fw-600">
                         {{setting_item_with_lang("flight_page_search_title")}}
@@ -37,7 +37,7 @@
                 position: absolute;
                 top: 0;
                 left: 0;
-                min-height: 368px;
+                min-height: 468px !important;
                 z-index: -1; 
                 background-size: cover; 
                 background-position: center; 

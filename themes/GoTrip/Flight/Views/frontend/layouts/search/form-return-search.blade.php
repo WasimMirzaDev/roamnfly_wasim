@@ -51,21 +51,15 @@ $inputName = "travel_type";
     <script>
         // Define initialData variable globally
         window.initialData = {
-            adults: {
-                {
+            adults: {{
                     Request::query('seat_type')['adults'] ?? 0
-                }
-            },
-            children: {
-                {
+                }},
+            children: {{
                     Request::query('seat_type')['children'] ?? 0
-                }
-            },
-            infants: {
-                {
+                }},
+            infants: {{
                     Request::query('seat_type')['infants'] ?? 0
-                }
-            },
+                }},
             flight_seat: []
         };
         console.log(window.initialData);
@@ -104,8 +98,8 @@ $inputName = "travel_type";
             color: #dfdfdf !important;
         }
 
-        .bravo_wrap .gotrip_form_search .field-items>.row>div {
-            padding: 8px 9px 0 !important;
+        .bravo_wrap .gotrip_form_search .field-items>.row>div:not(:nth-last-child()) {
+            padding: 5px 9px 0 !important;
 
         }
 
@@ -143,9 +137,7 @@ $inputName = "travel_type";
             }
         }
 
-        /* .bravo_wrap .gotrip_form_search .field-items:nth-child(1){
-        padding: 65px 20px 20px;
-    } */
+    
         .bravo_wrap .bravo_search_flight .bravo_form_search {
             display: flex;
             justify-content: space-between;
@@ -177,10 +169,9 @@ $inputName = "travel_type";
         }
 
         .field-items {
-            padding-top: 10px !important;
-
+padding: 0 !important;
+margin: 7px 0 !important;
             .row {
-                /* background: hsla(0, 0%, 100%, .1) !important;  */
                 color: white;
                 gap: 10px !important;
 
@@ -192,10 +183,6 @@ $inputName = "travel_type";
                 }
             }
         }
-
-        /* .bravo_search_flight{
-    background-color:  #041422 !important;
-} */
         #search-title {
             display: none;
         }
@@ -209,6 +196,7 @@ $inputName = "travel_type";
                 background: hsl(0deg 0.84% 30.33% / 45%) !important;
                 border-right: none !important;
                 border-radius: 4px;
+                padding: 5px 9px 0 !important;
             }
         }
 
@@ -273,7 +261,8 @@ $inputName = "travel_type";
             .col-lg-2,
             .col-lg-3 {
 
-                padding: 10px 10px 0 !important
+                padding: 10px 10px 0 !important;
+              
             }
 
             .button-no-two {
@@ -285,9 +274,7 @@ $inputName = "travel_type";
                 padding: 0 !important;
             }
 
-            .field-items {
-                padding: 15px !important;
-            }
+    
 
             .btn-non {
                 display: block !important;
@@ -315,15 +302,11 @@ $inputName = "travel_type";
             }
 .bravo_search_flight{
     .mainSearch__submit{
-        .icon-search:before{
-            font-size: 17px;
-        } 
+       
         .text-search{
             font-size: 13px;
         }
-        .icon-search{
-            margin-right: 2px !important;
-        }
+     
     }
 }
 
@@ -333,7 +316,12 @@ $inputName = "travel_type";
 
 
         }
-
+        .icon-search:before{
+            font-size: 17px;
+        } 
+        .icon-search{
+            margin-right: 3px !important;
+        }
         @media (max-width: 450px) {
             .two-dives-wrapper {
 .div-wrapper-1,
@@ -366,7 +354,16 @@ justify-content: space-between;
 }
 }
     }
-   
+.button-city-add{
+    padding: 22px 20px !important;
+}
+
+
+
+
+
+
+
     </style>
 
     <script>
@@ -374,7 +371,7 @@ justify-content: space-between;
             document.styleSheets[0].addRule('.bravo_wrap .bravo_search_flight .bravo_form_search',
                 'margin-top: 10px !important;');
             document.styleSheets[0].addRule('.bravo_wrap .gotrip_form_search .field-items:nth-child(1)',
-                'padding: 20px 20px 20px !important');
+                'padding: 0px 0px 0px !important');
         }
     </script>
 
@@ -435,10 +432,10 @@ justify-content: space-between;
         <label for="multi-city" style="white-space: nowrap;">Multi City</label>
     </div>
 </div> --}}
-    {{-- <div class="w-100" id="multiCityDivContainer"> --}}
+    {{-- < class="w-100" id="multiCityDivContainer"> --}}
     {{-- <div class="col-md-12"> --}}
-    <div class="row field-items" style="margin: 0px auto;">
-        <div class="col-lg-11">
+    <div class="row field-items " style="margin: 0px auto;">
+        <div class="col-lg-11 p-0">
             @if (!empty($flight_search_fields))
             <div class="row w-100 m-0 adjust-border header-row" style="color: var(--color-dark-1);; ">
                 <style>
@@ -543,7 +540,8 @@ justify-content: space-between;
     {{-- </div> --}}
 
     <!-- Repeat for multiCityDiv1 -->
-    <div class="col-md-12 mt-2 d-none" id="multiCityDiv1"
+
+     <div class="col-md-12 mt-2 d-none" id="multiCityDiv1"
         style="border: 1px solid #e7e7e7; border-radius:10px; margin:0px 31px; width:auto !important;">
         {{-- <hr style="color: var(--color-dark-1);;"> --}}
         <div class="field-items d-block" style="padding: 0px; margin:0px !important;">
@@ -592,7 +590,7 @@ justify-content: space-between;
     <div class="col-md-12 mt-2 d-none" id="multiCityDiv2"
         style="    border: 1px solid #e7e7e7; border-radius:10px; margin:0px 31px; width:auto !important;">
         {{-- <hr style="color: var(--color-dark-1);;"> --}}
-        <div class="field-items d-block" style="padding: 0px; margin:0px !important;">
+        <div class="field-items d-block" style="padding: 0px; margin-bottom:8px !important;">
             @if (!empty($flight_search_fields))
             <div class="row w-100 m-0" style="color: var(--color-dark-1);">
                 <div class="col-lg-2 align-self-center px-10 lg:py-5 lg:px-0 trip-heading">
@@ -636,7 +634,7 @@ justify-content: space-between;
     <div class="col-md-12 mt-2 d-none" id="multiCityDiv3"
         style="    border: 1px solid #e7e7e7; border-radius:10px; margin:0px 31px; width:auto !important;">
         {{-- <hr style="color: var(--color-dark-1);;"> --}}
-        <div class="field-items d-block" style="padding: 0px; margin:0px !important;">
+        <div class="field-items d-block" style="padding: 0px; margin-bottom:8px !important;">
             @if (!empty($flight_search_fields))
             <div class="row w-100 m-0" style="color: var(--color-dark-1);">
                 <div class="col-lg-2 align-self-center px-10 lg:py-5 lg:px-0 trip-heading">
@@ -680,7 +678,7 @@ justify-content: space-between;
     <div class="col-md-12 mt-2 d-none" id="multiCityDiv4"
         style="    border: 1px solid #e7e7e7; border-radius:10px; margin:0px 31px; width:auto !important;">
         {{-- <hr style="color: var(--color-dark-1);;"> --}}
-        <div class="field-items d-block" style="padding: 0px; margin:0px !important;">
+        <div class="field-items d-block" style="padding: 0px; margin-bottom:8px !important;">
             @if (!empty($flight_search_fields))
             <div class="row w-100 m-0" style="color: var(--color-dark-1);;">
                 <div class="col-lg-2 align-self-center px-10 lg:py-5 lg:px-0 trip-heading">
@@ -724,7 +722,7 @@ justify-content: space-between;
     <div class="col-md-12 mt-2 d-none" id="multiCityDiv5"
         style="    border: 1px solid #e7e7e7; border-radius:10px; margin:0px 31px; width:auto !important;">
         {{-- <hr style="color: var(--color-dark-1);;"> --}}
-        <div class="field-items d-block" style="padding: 0px; margin:0px !important;">
+        <div class="field-items d-block" style="padding: 0px; margin-bottom:8px !important;">
             @if (!empty($flight_search_fields))
             <div class="row w-100 m-0" style="color: var(--color-dark-1);;">
                 <div class="col-lg-2 align-self-center px-10 lg:py-5 lg:px-0 trip-heading">
@@ -765,6 +763,8 @@ justify-content: space-between;
             @endif
         </div>
     </div>
+     
+  
     <div class="col-lg-1 p-0">
 
         <div class="button-item button-item-one btn-non">

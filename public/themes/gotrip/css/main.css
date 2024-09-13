@@ -2003,15 +2003,15 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 991px) {
   .masthead.-type-1 {
-    padding-top: 260px;
+    /* padding-top: 260px; */
     padding-bottom: 180px;
   }
 }
 
 @media (max-width: 575px) {
   .masthead.-type-1 {
-    padding-top: 160px;
-    padding-bottom: 20px;
+    /* padding-top: 160px; */
+    padding-bottom: 80px;
   }
 }
 

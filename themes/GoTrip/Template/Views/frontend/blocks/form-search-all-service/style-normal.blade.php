@@ -87,7 +87,16 @@
         max-width: 235px !important;
     }
 
+    .top-margin-div{
+        margin-top: 50px;
+    }
 
+    @media (max-width:992px){
+       
+    .top-margin-div{
+        margin-top: 0px !important;
+    }
+    }
     @media (max-width: 769px) {
         .go-tabs {
             /* left: 39% !important; */
@@ -126,6 +135,7 @@
         position: absolute;
         z-index: 21 !important;
     }
+ 
 </style>
 <section data-anim-wrap class="form-search-all-service masthead -type-1 z-5">
     <div data-anim-child="fade" class="masthead__bg">
@@ -142,7 +152,7 @@
                 </div>
 
                 @if (empty($hide_form_search))
-                    <div data-anim-child="slide-up delay-6" class="tabs -underline mt-60 js-tabs">
+                    <div data-anim-child="slide-up delay-6" class="tabs -underline  js-tabs top-margin-div">
                         <center>
                             <div class="search-header-wrapper" style="z-index: 33px !important">
 

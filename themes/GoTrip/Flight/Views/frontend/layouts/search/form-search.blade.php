@@ -171,7 +171,7 @@
 
             .field-items {
                 height: 75px !important;
-                padding: 0 20px !important;
+                /* padding: 0 20px !important; */
                 margin: 0 !important;
             }
 
