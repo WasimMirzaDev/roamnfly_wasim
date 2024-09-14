@@ -9,11 +9,19 @@
         .bravo_header{
             background:transparent !important; 
         }
+        @media (max-width: 992px) {
+    .bravo-search-container {
+        max-height: 385px !important;
+        height: 100% !important;
+        overflow-y: scroll !important;
+        margin-bottom: 20px;
+    }
+}
     </style>
 @endpush
 @section('content')
     <div class="bravo_search_flight">
-        <div class="container">
+        <div class="container bravo-search-container">
             <div class=" pt-lg-20 pb-15">
                 <div class="text-center d-none">
                     <h1 class="text-30 fw-600">
@@ -33,7 +41,7 @@
                     position: absolute;
                     top: 0;
                     left: 0;
-                    min-height: 468px !important;
+                    min-height: 485px !important;
                     z-index: -1; 
                     background-size: cover; 
                     background-position: center; 

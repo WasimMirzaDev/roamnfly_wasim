@@ -249,7 +249,7 @@ margin: 7px 0 !important;
             }
 
             .bgGradient {
-                min-height: 458px !important;
+                min-height: 485px !important;
             }
 
             .button-item-one {
@@ -281,6 +281,7 @@ margin: 7px 0 !important;
             }
         }
 
+   
         .card-item-two {
             display: none;
 
