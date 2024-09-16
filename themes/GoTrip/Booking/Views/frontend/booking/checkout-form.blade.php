@@ -169,7 +169,7 @@
                                         <input type="text" class="form-control" value="{{ $user->first_name ?? '' }}"
                                             name="adults[{{ $index }}][first_name]">
                                         <label class="lh-1 text-16 text-light-1">{{ __('First Name') }} <span
-                                                class="required">*</span></label>
+                                                class="required" style="color: rgb(190, 0, 0);" >*</span></label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -177,12 +177,13 @@
                                         <input type="text" class="form-control" value="{{ $user->last_name ?? '' }}"
                                             name="adults[{{ $index }}][last_name]">
                                         <label class="lh-1 text-16 text-light-1">{{ __('Last Name') }} <span
-                                                class="required">*</span></label>
+                                                class="required" style="color: rgb(190, 0, 0);">*</span></label>
                                     </div>
                                 </div>
 <div class="col-md-12 field-Expire-line-1">
     <div class="form-group">
-        <label>{{ __('Date of Birth') }} </label>
+        <label>{{ __('Date of Birth') }} <span
+            class="required" style="color: rgb(190, 0, 0);">*</span></label>
         <input type="date" placeholder="{{ __('Date of Birth') }}"
             class="form-control" 
             max="{{ now()->subYears(12)->format('Y-m-d') }}"
@@ -193,9 +194,8 @@
                                 <div class="col-md-6">
                                     <div class="form-input ">
                                         <input type="text" class="form-control" value="{{ $user->pan ?? '' }}"
-                                            name="adults[{{ $index }}][pan]">
-                                        <label class="lh-1 text-16 text-light-1">{{ __('PAN') }} <span
-                                                class="required">*</span></label>
+                                            name="adults[{{ $index }}][pan]" placeholder="i.e (AAAAA9999A)">
+                                        <label class="lh-1 text-16 text-light-1">{{ __('PAN ') }} </label>
 
                                     </div>
                                 </div>
@@ -204,7 +204,7 @@
                                         <input type="text" class="form-control" value="{{ $user->passport ?? '' }}"
                                             name="adults[{{ $index }}][passport]">
                                         <label class="lh-1 text-16 text-light-1">{{ __('Passport') }} <span
-                                                class="required">*</span></label>
+                                            class="required" style="color: rgb(190, 0, 0);">*</span></label>
                                     </div>
                                 </div>
 
@@ -245,7 +245,7 @@
                                             value="{{ $user->first_name ?? '' }}"
                                             name="children[{{ $index }}][first_name]">
                                         <label class="lh-1 text-16 text-light-1">{{ __('First Name') }} <span
-                                                class="required">*</span></label>
+                                            class="required" style="color: rgb(190, 0, 0);">*</span></label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -254,12 +254,13 @@
                                             value="{{ $user->last_name ?? '' }}"
                                             name="children[{{ $index }}][last_name]">
                                         <label class="lh-1 text-16 text-light-1">{{ __('Last Name') }} <span
-                                                class="required">*</span></label>
+                                            class="required" style="color: rgb(190, 0, 0);">*</span></label>
                                     </div>
                                 </div>
                                 <div class="col-md-12 field-Expire-line-1">
                                     <div class="form-group">
-                                        <label>{{ __('Date of Birth') }} </label>
+                                        <label>{{ __('Date of Birth') }} <span
+                                            class="required" style="color: rgb(190, 0, 0);">*</span></label>
                                         <input type="date" placeholder="{{ __('Date of Birth') }}"
                                             class="form-control" value="{{ $user->dob ?? '' }}"
                                             name="children[{{ $index }}][dob]">
@@ -269,8 +270,7 @@
                                     <div class="form-input ">
                                         <input type="text" class="form-control" value="{{ $user->pan ?? '' }}"
                                             name="children[{{ $index }}][pan]">
-                                        <label class="lh-1 text-16 text-light-1">{{ __('PAN') }} <span
-                                                class="required">*</span></label>
+                                        <label class="lh-1 text-16 text-light-1">{{ __('PAN') }} </label>
 
                                     </div>
                                 </div>
@@ -280,19 +280,16 @@
                                             value="{{ $user->passport ?? '' }}"
                                             name="children[{{ $index }}][passport]">
                                         <label class="lh-1 text-16 text-light-1">{{ __('Passport') }} <span
-                                                class="required">*</span></label>
+                                            class="required" style="color: rgb(190, 0, 0);">*</span></label>
                                     </div>
                                 </div>
 
-<div class="col-md-12 field-Expire-line-1">
+<div class="col-md-6 field-Expire-line-1">
     <div class="form-group">
-        <label>{{ __('Date of Birth') }} </label>
-        <input type="date" placeholder="{{ __('Date of Birth') }}"
-            class="form-control" 
-            min="{{ now()->subYears(12)->format('Y-m-d') }}"
-            max="{{ now()->subYears(2)->format('Y-m-d') }}"
-            value="{{ $user->dob ?? '' }}"
-            name="children[{{ $index }}][dob]">
+        <label>{{ __('Issue Date') }} </label>
+        <input type="date" placeholder="{{ __('Passport Issue Date') }}"
+            class="form-control" value="{{ $user->pid ?? '' }}"
+            name="children[{{ $index }}][pid]">
     </div>
 </div>
                                 <div class="col-md-6 field-Expire-line-2">
@@ -324,7 +321,7 @@
                                             value="{{ $user->first_name ?? '' }}"
                                             name="infants[{{ $index }}][first_name]">
                                         <label class="lh-1 text-16 text-light-1">{{ __('First Name') }} <span
-                                                class="required">*</span></label>
+                                            class="required" style="color: rgb(190, 0, 0);">*</span></label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -333,12 +330,13 @@
                                             value="{{ $user->last_name ?? '' }}"
                                             name="infants[{{ $index }}][last_name]">
                                         <label class="lh-1 text-16 text-light-1">{{ __('Last Name') }} <span
-                                                class="required">*</span></label>
+                                            class="required" style="color: rgb(190, 0, 0);">*</span></label>
                                     </div>
                                 </div>
 <div class="col-md-12 field-Expire-line-1">
     <div class="form-group">
-        <label>{{ __('Date of Birth') }} </label>
+        <label>{{ __('Date of Birth') }} <span
+            class="required" style="color: rgb(190, 0, 0);">*</span></label>
         <input type="date" placeholder="{{ __('Date of Birth') }}"
             class="form-control" 
             max="{{ now()->subYears(2)->format('Y-m-d') }}"
@@ -358,7 +356,7 @@
                 <div class="form-input ">
                     <input type="email" class="form-control" value="{{ $user->email ?? '' }}" name="email">
                     <label class="lh-1 text-16 text-light-1">{{ __('Email') }} <span
-                            class="required">*</span></label>
+                        class="required" style="color: rgb(190, 0, 0);">*</span></label>
 
                 </div>
             </div>
@@ -366,7 +364,7 @@
                 <div class="form-input ">
                     <input type="text" class="form-control" value="{{ $user->phone ?? '' }}" name="phone">
                     <label class="lh-1 text-16 text-light-1">{{ __('Phone') }} <span
-                            class="required">*</span></label>
+                        class="required" style="color: rgb(190, 0, 0);">*</span></label>
                 </div>
             </div>
             <div class="col-md-6 field-address-line-1">
@@ -414,7 +412,7 @@
                                 {{ $name }}</option>
                         @endforeach
                     </select>
-                    <label class="lh-1 text-16 text-light-1">{{ __('Country') }} <span class="required">*</span>
+                    <label class="lh-1 text-16 text-light-1">{{ __('Country') }} 
                     </label>
                 </div>
             </div>

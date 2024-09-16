@@ -1,7 +1,7 @@
 <style>
 	.flight-info-box{
 		z-index: 1000 !important;
-		overflow-y: auto !important; 
+		/* overflow-y: auto !important;  */
 	}
 </style>
 

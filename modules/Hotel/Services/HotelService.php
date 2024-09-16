@@ -74,7 +74,7 @@ class HotelService extends BaseService
                             'currency' => 'INR'
                         ],
                         'searchPreferences' => [
-                            'ratings' => $searchParams['star_rate'] ?? [3, 4, 5],
+                            'ratings' => $searchParams['star_rate'] ?? [1, 2 , 3, 4, 5],
                             'fsc' => true
                         ]
                     ],
@@ -507,7 +507,8 @@ class HotelService extends BaseService
     {
         // $res = $this->addToCartValidate($request);
         // if($res !== true) return $res;
-
+        
+        // dd($request);
         // Add Booking
 
         $total_guests = $request->input('adults') + $request->input('children');
@@ -539,7 +540,6 @@ class HotelService extends BaseService
             }
         }
 
-        // dd($bookingIDS);
 
         $duration_in_hour = max(1,ceil(($end_date->getTimestamp() - $start_date->getTimestamp()) / HOUR_IN_SECONDS ) );
         // if ($this->enable_extra_price and !empty($this->extra_price)) {
@@ -587,6 +587,18 @@ class HotelService extends BaseService
         $booking->object_id = $request->input('service_id');
         $booking->object_model = $request->input('service_type');
         $booking->vendor_id = 0;
+        // Add Room Booking
+$bookedRooms = [];
+        if (!empty($request->rooms)) {
+            foreach ($request->rooms as $room) {
+                if (isset($room['id'])) {
+                    if($room['number_selected'] > 0){
+                        $bookedRooms[] = $room;
+                    }
+                }
+            }
+        }
+        $booking->hotelData = json_encode($bookedRooms);
         $booking->customer_id = Auth::id();
         $booking->total = $total;
         $booking->api_id = $request->service_id;

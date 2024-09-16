@@ -258,7 +258,7 @@ class FlightController extends Controller
             return $this->sendError(__("Please try other flight."));
         }else{
             $data = $this->flightService->formatApiData($row);
-            // dd($data);
+            
             return $this->sendSuccess(['data' => $data],'founded');
         }
     }

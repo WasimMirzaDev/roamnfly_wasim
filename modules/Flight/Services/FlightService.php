@@ -834,7 +834,7 @@ class FlightService extends BaseService
 
     public function addToCart(Request $request)
     {
-        // Add Booking
+        // dd($request);
         $total_guests = 0;
         $total = 0;
 
@@ -867,6 +867,7 @@ class FlightService extends BaseService
         $booking->vendor_id = 0;
         $booking->customer_id = Auth::id();
         $booking->total = $total;
+        $booking->flightData = json_encode($request->flight);
 
         $booking->api_id = $request->flight['booking_id'];
         $booking->is_gst = $request->flight['is_gst'];
@@ -970,6 +971,7 @@ class FlightService extends BaseService
         $total = $request->input('total_price');
         $total_before_fees = $total;
         $booking->total = $total;
+        $booking->flightData = json_encode($request->flight);
         
         $this->clearFlightCache();
         Cache::put('flights', $request->flight);
@@ -1062,6 +1064,7 @@ class FlightService extends BaseService
         $booking->adults = $request->input('adults');
         $booking->children = $request->input('children');
         $booking->infants = $request->input('infants');
+        $booking->flightData = json_encode($request->flight);
         $total = $request->input('total_price');
         $total_before_fees = $total;
         $booking->total = $total;

@@ -53,10 +53,10 @@
 </script>
             <div class="container" style="">
                 <div class="row" >
-                    <div class="col-xl-3 col-lg-4">
+                    {{-- <div class="col-xl-3 col-lg-4">
                         @include('Flight::frontend.layouts.search.filter-search')
-                    </div>
-                    <div class="col-xl-9 col-lg-8">
+                    </div> --}}
+                    <div class="col-xl-12 col-lg-12">
                         @include('Flight::frontend.layouts.search.list-item')
                         
                     </div>
@@ -64,7 +64,14 @@
             </div>
         {{-- </div> --}}
     </div>
+    @if(Request::query('travel_type') == "Multicity")
+    @include('Flight::frontend.layouts.return.search.multi-modal-form-book')
+    @include('Flight::frontend.layouts.return.search.flightFormSelectModalMulti')
+    @elseif (Request::query('travel_type') == "Round Trip")
+    @include('Flight::frontend.layouts.return.search.modal-form-book')
+    @elseif (Request::query('travel_type') == "One Way")
     @include('Flight::frontend.layouts.search.modal-form-book')
+    @endif
 @endsection
 
 @push('js')
