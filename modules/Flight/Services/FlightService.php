@@ -873,8 +873,22 @@ class FlightService extends BaseService
         $booking->is_gst = $request->flight['is_gst'];
         $booking->title = $request->flight['title'];
         $booking->total_guests = $total_guests;
-        $booking->start_date = Carbon::parse($request->flight['departure_date_html'])->format('Y-m-d H:i');
-        $booking->end_date = Carbon::parse($request->flight['arrival_date_html'])->format('Y-m-d H:i');
+
+// Combine departure date and time
+$departureDate = Carbon::parse($request->flight['departure_date_html']); 
+$departureTime = Carbon::parse($request->flight['departure_time_html']);
+$departureDateTime = $departureDate->setTimeFromTimeString($departureTime->format('H:i:s')); 
+
+// Store the full departure datetime in the booking
+$booking->start_date = $departureDateTime;
+
+// Combine arrival date and time
+$arrivalDate = Carbon::parse($request->flight['arrival_date_html']); 
+$arrivalTime = Carbon::parse($request->flight['arrival_time_html']);
+$arrivalDateTime = $arrivalDate->setTimeFromTimeString($arrivalTime->format('H:i:s'));
+
+// Store the full arrival datetime in the booking
+$booking->end_date = $arrivalDateTime;
 
         $booking->vendor_service_fee_amount = $total_service_fee ?? '';
         $booking->vendor_service_fee = $list_service_fee ?? '';
@@ -979,10 +993,10 @@ class FlightService extends BaseService
         $api_ids = [];
         $is_gsts = [];
         $titles = [];
-        $start_dates = [];
-        $end_dates = [];
         $return_end_dates = [];
         $flight_seats = [];
+        $start_date = null;
+$end_date = null;
 
         // Loop through the flights and populate the arrays
         foreach ($request->flight as $index => $flight) {
@@ -991,10 +1005,25 @@ class FlightService extends BaseService
             $api_ids[] = $flight['booking_id'];
             $is_gsts[] = $flight['is_gst'];
             $titles[] = $flight['title'];
-            $start_date = Carbon::createFromFormat('D, d M y', $flight['departure_date_html']);
-            $end_date = Carbon::createFromFormat('D, d M y', $flight['arrival_date_html']);
-            $start_dates[] = $start_date->format('Y-m-d H:i:s'); // Adjust the format as needed
-            $end_dates[] = $end_date->format('Y-m-d H:i:s');     // Adjust the format as needed
+            
+    // Parse departure date and time
+    $departureDate = Carbon::parse($flight['departure_date_html']); 
+    $departureTime = Carbon::parse($flight['departure_time_html']);
+    $departureDateTime = $departureDate->setTimeFromTimeString($departureTime->format('H:i:s')); 
+
+    // Parse arrival date and time
+    $arrivalDate = Carbon::parse($flight['arrival_date_html']); 
+    $arrivalTime = Carbon::parse($flight['arrival_time_html']);
+    $arrivalDateTime = $arrivalDate->setTimeFromTimeString($arrivalTime->format('H:i:s'));
+
+    // Determine the earliest start date and latest end date
+    if ($start_date === null || $departureDateTime < $start_date) {
+        $start_date = $departureDateTime;
+    }
+
+    if ($end_date === null || $arrivalDateTime > $end_date) {
+        $end_date = $arrivalDateTime;
+    }
 
 
             if (isset($flight['id'])) {
@@ -1010,8 +1039,8 @@ class FlightService extends BaseService
         $booking->api_id = json_encode($api_ids);
         $booking->is_gst = json_encode($is_gsts);
         $booking->title = json_encode($titles);
-        $booking->start_date = json_encode($start_dates);
-        $booking->end_date = json_encode($end_dates);
+        $booking->start_date = $start_date;
+        $booking->end_date = $end_date;
 
         $booking->vendor_service_fee_amount = $total_service_fee ?? '';
         $booking->vendor_service_fee = $list_service_fee ?? '';
@@ -1072,11 +1101,39 @@ class FlightService extends BaseService
         $booking->is_gst = $request->flight[0]['is_gst'];
         $booking->title = $request->flight[0]['title'] . ' - ' . $request->flight[1]['title'];
         $booking->total_guests = $total_guests;
-        $booking->start_date = Carbon::parse($request->flight[0]['departure_date_html'])->format('Y-m-d H:i');
-        $booking->end_date = Carbon::parse($request->flight[0]['arrival_date_html'])->format('Y-m-d H:i');
+       $departureDate = Carbon::parse($request->flight[0]['departure_date_html']); 
+$departureTime = Carbon::parse($request->flight[0]['departure_time_html']);
+$departureDateTime = $departureDate->setTimeFromTimeString($departureTime->format('H:i:s')); 
+
+// Store the full departure datetime in the booking
+$booking->start_date = $departureDateTime;
+
+// Combine arrival date and time
+$arrivalDate = Carbon::parse($request->flight[0]['arrival_date_html']); 
+$arrivalTime = Carbon::parse($request->flight[0]['arrival_time_html']);
+$arrivalDateTime = $arrivalDate->setTimeFromTimeString($arrivalTime->format('H:i:s'));
+
+// Store the full arrival datetime in the booking
+$booking->end_date = $arrivalDateTime;
+
         $booking->return_id = $request->flight[1]['id'];
-        $booking->return_start_date = Carbon::parse($request->flight[1]['departure_date_html'])->format('Y-m-d H:i');
-        $booking->return_end_date = Carbon::parse($request->flight[1]['arrival_date_html'])->format('Y-m-d H:i');
+
+        $departureDate = Carbon::parse($request->flight[1]['departure_date_html']); 
+$departureTime = Carbon::parse($request->flight[1]['departure_time_html']);
+$departureDateTime = $departureDate->setTimeFromTimeString($departureTime->format('H:i:s')); 
+
+// Store the full departure datetime in the booking
+$booking->return_start_date = $departureDateTime;
+
+// Combine arrival date and time
+$arrivalDate = Carbon::parse($request->flight[1]['arrival_date_html']); 
+$arrivalTime = Carbon::parse($request->flight[1]['arrival_time_html']);
+$arrivalDateTime = $arrivalDate->setTimeFromTimeString($arrivalTime->format('H:i:s'));
+
+// Store the full arrival datetime in the booking
+$booking->return_end_date = $arrivalDateTime;
+        // $booking->return_start_date = Carbon::parse($request->flight[1]['departure_date_html'])->format('Y-m-d H:i');
+        // $booking->return_end_date = Carbon::parse($request->flight[1]['arrival_date_html'])->format('Y-m-d H:i');
 
         $booking->vendor_service_fee_amount = $total_service_fee ?? '';
         $booking->vendor_service_fee = $list_service_fee ?? '';
