@@ -104,7 +104,7 @@
                     "key": key, // Enter the Key ID generated from the Dashboard
                     "amount": convertedAmount, // Amount is in currency subunits (e.g., paisa for INR)
                     "currency": "INR",
-                    "name": "Roamnfly",
+                    "name": "Goflyhabibi",
                     "description": "Booking Payment",
                     "order_id": orderId,
                     "handler": function (response) {

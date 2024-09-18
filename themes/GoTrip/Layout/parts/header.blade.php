@@ -82,7 +82,7 @@
                         @if($logoDark)
                             <img class="logo-dark" src="{{get_file_url($logoDark,'full')}}" alt="{{setting_item("site_title")}}">
                         @endif --}}
-                        RoamNFly
+                        Goflyhabibi
                     </a>
                 </div>
             @endif
