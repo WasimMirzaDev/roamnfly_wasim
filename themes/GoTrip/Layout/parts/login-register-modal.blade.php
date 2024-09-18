@@ -190,8 +190,9 @@ font-size: 7px !important;
     }
     
   @media (min-width:991px){
-    .sin-up-content{
-    height: 80vh !important;
+    .sign-up-content,
+    .log-in-content{
+    height: 92vh !important;
     overflow-y: scroll !important;
     }
     .carousel-control-prev,
@@ -363,7 +364,7 @@ border-radius: 0 15px 15px 0 ;
                     </div>
                 </div>
                 <div class="col-lg-5 col-xl-5 col-md-12 p-0">
-                    <div class="content login-sing-up-content h-100 ">
+                    <div class="content login-sing-up-content h-100 log-in-content">
                         <div class="modal-header border-dashed">
                             <h4 class="modal-title">{{__('Log In')}}</h4>
                             <span class="c-pointer" data-bs-dismiss="modal" aria-label="Close">
@@ -521,7 +522,7 @@ border-radius: 0 15px 15px 0 ;
                     </div>
                 </div>
                 <div class="col-lg-5 col-xl-5 col-md-12 p-0">
-                    <div class="content login-sing-up-content h-100 sin-up-content">
+                    <div class="content login-sing-up-content h-100 sign-up-content">
                         <div class="modal-header">
                             <h4 class="modal-title">{{__('Sign Up')}}</h4>
                             <span class="c-pointer" data-bs-dismiss="modal" aria-label="Close">
