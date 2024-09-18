@@ -8,6 +8,7 @@
         max-width: 800px;
         overflow: hidden;
         position: relative;
+        margin: 0 auto;
     }
 
     .carousel-item img,
@@ -62,6 +63,7 @@
     .carousel-two {
         height: 100%;
         width: 100%;
+        border-radius: 15px 0 0 15px;
     }
 
     .content {
@@ -89,6 +91,7 @@
         .container {
             max-width: 90%;
             margin: 0 auto;
+            padding: 0 !important;
         }
     }
 
@@ -112,14 +115,14 @@
     }
 
     .text-icons-main-wrapper {
-        margin: 2rem 0 0 2rem !important;
+        margin: 2rem 0 0 1rem !important;
     }
 
     .main-wrapper {
         margin: 1rem 0 !important;
 
         .heading {
-            font-size: 35px !important;
+            font-size: 28px !important;
         }
     }
 
@@ -138,7 +141,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgb(0 0 0 / 45%);
+        background: rgb(81 80 80 / 45%);
         /* Adjust the opacity and color here */
         z-index: 1;
     }
@@ -180,8 +183,49 @@
         line-height: 20px;
     }
 }
-        
+.carousel-control-prev,
+     .carousel-control-next{
+font-size: 7px !important;
     }
+    }
+    
+  @media (min-width:991px){
+    .sin-up-content{
+    height: 80vh !important;
+    overflow-y: scroll !important;
+    }
+    .carousel-control-prev,
+     .carousel-control-next{
+        top: 78% !important;
+        background-color: transparent !important;
+     }
+     .carousel-control-next {
+    right: 100px !important;
+}
+.carousel-control-prev {
+    left: 100px !important;
+}
+.login-sing-up-content{
+border-radius: 0 15px 15px 0 ;
+    }
+  }
+  @media (max-width:991px){
+.modal-body-sing-up,
+.modal-body-login{
+    padding: 0px 40px ;
+}
+.gotrip-login-modal .modal-header, 
+.gotrip-register-modal .modal-header{
+    padding: 20px 40px ;
+}
+.carousel,
+    .carousel-one,
+    .carousel-two {
+       
+        border-radius: 10px 10px 0 0 !important;
+    }
+  }
+
 </style>
 
 <div class="modal fade login gotrip-login-modal" id="login" tabindex="-1" role="dialog" aria-hidden="true">
@@ -189,8 +233,10 @@
 
         <div class="modal-content relative d-flex justify-content-center ">
             <div class="row">
+<div class="col-2 ">
 
-                <div class="col-lg-6 col-xl-6 col-md-12 p-0 ">
+</div>
+                <div class="col-lg-3 col-xl-3 col-md-12 p-0 ">
                     <div class="slider-wrapper ">
                         <div class="carousel ">
                             <div class="carousel-inner ">
@@ -210,7 +256,7 @@
                                                         <i class="fa-solid fa-plane-departure"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Lock Flight Prices & Pay Later
+                                                    Lock cheapest flight
                                                     </div>
                                                 </div>
                                                 <div class="text-icon-wrapper d-flex justify-content-start align-items-start g-3">
@@ -218,7 +264,7 @@
                                                         <i class="fa-solid fa-hotel"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Book Hotels @&0
+                                                    Book Best Hotel @ Cheapest Price
                                                     </div>
                                                 </div>
                                                 <div class="text-icon-wrapper d-flex justify-content-start align-items-start g-3">
@@ -226,7 +272,7 @@
                                                         <i class="fa-solid fa-train"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Get 3X refuned, if your waitlishted train does not confirmed
+                                                        Get Real-time updates on your every bookings 
                                                     </div>
                                                 </div>
                                             </div>
@@ -249,7 +295,7 @@
                                                         <i class="fa-solid fa-plane-departure"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Lock Flight Prices & Pay Later
+                                                        Lock Cheapest Flight
                                                     </div>
                                                 </div>
                                                 <div class="text-icon-wrapper d-flex justify-content-start align-items-start g-3">
@@ -257,7 +303,7 @@
                                                         <i class="fa-solid fa-hotel"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Book Hotels @&0
+                                                    Book Best Hotel @ Cheapest Price
                                                     </div>
                                                 </div>
                                                 <div class="text-icon-wrapper d-flex justify-content-start align-items-start g-3">
@@ -265,7 +311,7 @@
                                                         <i class="fa-solid fa-train"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Get 3X refuned, if your waitlishted train does not confirmed
+                                                    Get Real-time Updates On Your Every Bookings 
                                                     </div>
                                                 </div>
                                             </div>
@@ -287,7 +333,7 @@
                                                         <i class="fa-solid fa-plane-departure"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Lock Flight Prices & Pay Later
+                                                    Lock Cheapest Flight
                                                     </div>
                                                 </div>
                                                 <div class="text-icon-wrapper d-flex justify-content-start align-items-start g-3">
@@ -295,7 +341,7 @@
                                                         <i class="fa-solid fa-hotel"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Book Hotels @&0
+                                                    Book Best Hotel @ Cheapest Price
                                                     </div>
                                                 </div>
                                                 <div class="text-icon-wrapper d-flex justify-content-start align-items-start g-3">
@@ -303,7 +349,7 @@
                                                         <i class="fa-solid fa-train"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Get 3X refuned, if your waitlishted train does not confirmed
+                                                    Get Real-time Updates On Your Every Bookings 
                                                     </div>
                                                 </div>
                                             </div>
@@ -316,8 +362,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-xl-6 col-md-12 p-0">
-                    <div class="content h-100">
+                <div class="col-lg-5 col-xl-5 col-md-12 p-0">
+                    <div class="content login-sing-up-content h-100 ">
                         <div class="modal-header border-dashed">
                             <h4 class="modal-title">{{__('Log In')}}</h4>
                             <span class="c-pointer" data-bs-dismiss="modal" aria-label="Close">
@@ -326,13 +372,15 @@
                                 </i>
                             </span>
                         </div>
-                        <div class="modal-body relative">
+                        <div class="modal-body relative modal-body-sing-up">
                             @include('Layout::auth/login-form')
                         </div>
                     </div>
                 </div>
 
+                <div class="col-2">
 
+</div>
             </div>
 
 
@@ -345,10 +393,9 @@
         <div class="modal-content relative">
 
             <div class="row">
-                <div class="col-1">
-
+                <div class="col-lg-2">
                 </div>
-                <div class="col-lg-5 col-xl-5 col-md-12 p-0 ">
+                <div class="col-lg-3 col-xl-3 col-md-12 p-0 ">
                     <div class="slider-wrapper slider-wrapper-one">
                         <div class="carousel-one ">
                             <div class="carousel-inner-one ">
@@ -367,7 +414,7 @@
                                                         <i class="fa-solid fa-plane-departure"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Lock Flight Prices & Pay Later
+                                                    Lock cheapest flight
                                                     </div>
                                                 </div>
                                                 <div class="text-icon-wrapper d-flex justify-content-start align-items-start g-3">
@@ -375,7 +422,7 @@
                                                         <i class="fa-solid fa-hotel"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Book Hotels @&0
+                                                    Book Best Hotel @ Cheapest Price
                                                     </div>
                                                 </div>
                                                 <div class="text-icon-wrapper d-flex justify-content-start align-items-start g-3">
@@ -383,7 +430,7 @@
                                                         <i class="fa-solid fa-train"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Get 3X refuned, if your waitlishted train does not confirmed
+                                                    Get Real-time Updates On Your Every Bookings 
                                                     </div>
                                                 </div>
                                             </div>
@@ -406,7 +453,7 @@
                                                         <i class="fa-solid fa-plane-departure"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Lock Flight Prices & Pay Later
+                                                    Lock cheapest flight
                                                     </div>
                                                 </div>
                                                 <div class="text-icon-wrapper d-flex justify-content-start align-items-start g-3">
@@ -414,7 +461,7 @@
                                                         <i class="fa-solid fa-hotel"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Book Hotels @&0
+                                                    Book Best Hotel @ Cheapest Price
                                                     </div>
                                                 </div>
                                                 <div class="text-icon-wrapper d-flex justify-content-start align-items-start g-3">
@@ -422,7 +469,7 @@
                                                         <i class="fa-solid fa-train"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Get 3X refuned, if your waitlishted train does not confirmed
+                                                    Get Real-time Updates On Your Every Bookings 
                                                     </div>
                                                 </div>
                                             </div>
@@ -444,7 +491,7 @@
                                                         <i class="fa-solid fa-plane-departure"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Lock Flight Prices & Pay Later
+                                                    Lock cheapest flight
                                                     </div>
                                                 </div>
                                                 <div class="text-icon-wrapper d-flex justify-content-start align-items-start g-3">
@@ -452,7 +499,7 @@
                                                         <i class="fa-solid fa-hotel"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Book Hotels @&0
+                                                    Book Best Hotel @ Cheapest Price
                                                     </div>
                                                 </div>
                                                 <div class="text-icon-wrapper d-flex justify-content-start align-items-start g-3">
@@ -460,7 +507,7 @@
                                                         <i class="fa-solid fa-train"></i>
                                                     </div>
                                                     <div class="text-wrapper">
-                                                        Get 3X refuned, if your waitlishted train does not confirmed
+                                                    Get Real-time Updates On Your Every Bookings 
                                                     </div>
                                                 </div>
                                             </div>
@@ -474,7 +521,7 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-xl-5 col-md-12 p-0">
-                    <div class="content h-100">
+                    <div class="content login-sing-up-content h-100 sin-up-content">
                         <div class="modal-header">
                             <h4 class="modal-title">{{__('Sign Up')}}</h4>
                             <span class="c-pointer" data-bs-dismiss="modal" aria-label="Close">
@@ -483,12 +530,12 @@
                                 </i>
                             </span>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body modal-body-login">
                             @include('Layout::auth/register-form')
                         </div>
                     </div>
                 </div>
-                <div class="col-1">
+                <div class="col-lg-2">
 
                 </div>
 
