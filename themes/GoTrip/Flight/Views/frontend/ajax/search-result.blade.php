@@ -1,4 +1,7 @@
-<div class="row">
+
+
+
+<div class="row  weqdwe">
     @if($rows->total() > 0)
         @foreach($rows as $row)
             <div class="col-lg-12">
