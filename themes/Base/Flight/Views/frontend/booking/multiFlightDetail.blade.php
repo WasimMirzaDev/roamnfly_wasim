@@ -14,28 +14,32 @@
                         @php
                             $logo =\Modules\Flight\Services\FlightService::getAirLineLogo($row['code'], true);
                         @endphp
-                        <div class="row">
-                            <div class="col-md-6">
-                                <img src="{{ asset('uploads/'.$logo) }}" class="img-responsive" alt="{!! clean($row['title']) !!}">
-                            </div>
-                            <div class="col-md-6">
+                    
+                            
+                        
                                 <h2 class="service-name">Flight {{$index + 1}}</h2>
-                            </div>
-                        </div>
+                       
                     </div>
-                    <div class="mt-2">
-                        <h3 class="service-name">{!! clean($row['title']) !!}</h3>
+                    <div class="profile-wrapper d-flex justify-content-start">
+                    <img src="{{ asset('images/a.png') }}" style="width: 53px !important; height: 53px; margin-right: 15px"  class="img-responsive" alt="{!! clean($row['title']) !!}">
+                    <div class="inner-wrapper">
+                    <div class="mt-2 d-flex">
+                        <h3 class="service-name me-3">{!! clean($row['title']) !!}</h3>
+                        {{__(":duration hrs",['duration'=>(number_format($row['duration']/60,2))])}}
+
                     </div>
                     <div class="font-weight-medium  mb-3">
                         <p class="mb-1">
                             {{__(':from to :to',['from'=>$row['airport_from'],'to'=>$row['airport_to']])}}
                         </p>
-                        {{__(":duration hrs",['duration'=>(number_format($row['duration']/60,2))])}}
                     </div>
+                    </div>
+                    </div>
+                
 
-                    <div class="flex-self-start justify-content-between">
-                        <div class="flex-self-start">
-                            <div class="mr-2">
+                    <div class="flex-self-start justify-content-between d-flex justify-content-between">
+                        <div class="flex-self-start d-flex justify-content-start align-items-center">
+                            <div class="me-3 ">
                                 <i class="icofont-airplane font-size-30 text-primary"></i>
                             </div>
                             <div class="text-lh-sm ml-1">
@@ -48,8 +52,8 @@
                                 <h6 class="font-size-14 font-weight-bold text-gray-5 mb-0">{{__(":duration hrs",['duration'=>(number_format($row['duration']/60,2))])}}</h6>
                             </div>
                         </div>
-                        <div class="flex-self-start">
-                            <div class="mr-2">
+                        <div class="flex-self-start d-flex justify-content-start align-items-center">
+                            <div class="me-3 ">
                                 <i class="d-block rotate-90 icofont-airplane-alt font-size-30 text-primary"></i>
                             </div>
                             <div class="text-lh-sm ml-1">

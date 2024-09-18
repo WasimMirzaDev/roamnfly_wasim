@@ -70,7 +70,7 @@
         background: white;
     }
 
-    .modal-content {
+    .modal-content-for-slider {
         background: transparent ;
     }
 
@@ -232,7 +232,7 @@ border-radius: 0 15px 15px 0 ;
 <div class="modal fade login gotrip-login-modal" id="login" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
 
-        <div class="modal-content relative d-flex justify-content-center ">
+        <div class="modal-content relative d-flex justify-content-center modal-content-for-slider">
             <div class="row">
 <div class="col-2 ">
 
@@ -391,7 +391,7 @@ border-radius: 0 15px 15px 0 ;
 
 <div class="modal fade login gotrip-register-modal" id="register" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content relative">
+        <div class="modal-content relative modal-content-for-slider">
 
             <div class="row">
                 <div class="col-lg-2">

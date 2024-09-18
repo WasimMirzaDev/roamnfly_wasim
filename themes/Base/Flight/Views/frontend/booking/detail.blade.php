@@ -5,26 +5,33 @@
     <div class="booking-review-content">
         <div class="review-section">
             <div class="service-info">
+                <div class="profile-wrapper d-flex justify-content-start">
                 <div>
                     @php
                         // dd($booking->total);
                         $logo = \Modules\Flight\Services\FlightService::getAirLineLogo($service['sI'][0]['fD']['aI']['code'] ?? '', true);
                     @endphp
-                    <img src="{{ asset('uploads/' . $logo) }}" class="img-responsive" alt="{{ clean($service['sI'][0]['fD']['aI']['name'] ?? '') }}">
+                    <img src="{{ asset('images/a.png') }}" class="img-responsive" style="width: 53px !important; margin-right: 20px;" alt="{{ clean($service['sI'][0]['fD']['aI']['name'] ?? '') }}">
                 </div>
-                <div class="mt-2">
-                    <h3 class="service-name">{{ clean($service['sI'][0]['fD']['aI']['name'] ?? '') }}</h3>
+                <div class="inner-content">
+                <div class="mt-2 d-flex align-items-center ">
+                    <h3 class="service-name me-3">{{ clean($service['sI'][0]['fD']['aI']['name'] ?? '') }}</h3>
+                    {{ __(":duration hrs", ['duration' => number_format(($service['sI'][0]['duration'] ?? 0) / 60, 2)]) }}
+
                 </div>
                 <div class="font-weight-medium mb-3">
                     <p class="mb-1">
                         {{ __(":from to :to", ['from' => $service['sI'][0]['da']['name'] ?? '', 'to' => $service['sI'][0]['aa']['name'] ?? '']) }}
                     </p>
-                    {{ __(":duration hrs", ['duration' => number_format(($service['sI'][0]['duration'] ?? 0) / 60, 2)]) }}
                 </div>
+                </div>
+             
+                </div>
+               
 
-                <div class="flex-self-start justify-content-between">
-                    <div class="flex-self-start">
-                        <div class="mr-2">
+                <div class="flex-self-start justify-content-between d-flex">
+                    <div class="flex-self-start d-flex align-items-center"> 
+                        <div class="me-3">
                             <i class="icofont-airplane font-size-30 text-primary"></i>
                         </div>
                         <div class="text-lh-sm ml-1">
@@ -37,8 +44,8 @@
                             <h6 class="font-size-14 font-weight-bold text-gray-5 mb-0">{{ __(":duration hrs", ['duration' => number_format(($service['sI'][0]['duration'] ?? 0) / 60, 2)]) }}</h6>
                         </div>
                     </div>
-                    <div class="flex-self-start">
-                        <div class="mr-2">
+                    <div class="flex-self-start d-flex align-items-center">
+                        <div class="me-3">
                             <i class="d-block rotate-90 icofont-airplane-alt font-size-30 text-primary"></i>
                         </div>
                         <div class="text-lh-sm ml-1">
@@ -51,16 +58,16 @@
             </div>
         </div>
         <div class="review-section">
-            <ul class="review-list">
+            <ul class="review-list d-flex justify-content-between">
                 @if($booking->start_date)
                     <li>
-                        <div class="label">{{ __("Start Date") }}</div>
+                        <div class="label me-3">{{ __("Start Date") }}</div>
                         <div class="val">
                             {{ display_date($booking->start_date) }}
                         </div>
                     </li>
                     <li>
-                        <div class="label">{{ __("Duration") }}</div>
+                        <div class="label me-3">{{ __("Duration") }}</div>
                         <div class="val">{{ human_time_diff(\Carbon\Carbon::parse($service['sI'][0]['at'] ?? now())->format('Y-m-d H:i:s'), \Carbon\Carbon::parse($service['sI'][0]['dt'] ?? now())->format('Y-m-d H:i:s')) }}</div>
                     </li>
                 @endif

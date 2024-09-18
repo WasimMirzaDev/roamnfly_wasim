@@ -5,34 +5,42 @@
         
         @foreach ($service as $row)
 
-            <div class="review-section">
+            <div class="review-section" style="padding: 15px 30px !important; ">
                 <div class="service-info">
                     <div>
                         @php
                             $logo =\Modules\Flight\Services\FlightService::getAirLineLogo($row['sI'][0]['fD']['aI']['code'], true);
                         @endphp
                         <div class="row">
-                            <div class="col-md-6">
-                                <img src="{{ asset('uploads/'.$logo) }}" class="img-responsive" alt="{!! clean($row['sI'][0]['fD']['aI']['name']) !!}">
-                            </div>
-                            <div class="col-md-6">
+                        
                                 <h2 class="service-name">{{ $loop->iteration > 1 ? 'Return': 'Depart' }}</h2>
-                            </div>
+                            
+                           
                         </div>
                     </div>
-                    <div class="mt-2">
-                        <h3 class="service-name">{!! clean($row['sI'][0]['fD']['aI']['name']) !!}</h3>
+                   
+
+                    <div class="profile-wrapper d-flex justify-content-start mt-3 me-3">
+                                <img src="{{ asset('images/a.png') }}"  style="width: 53px !important; height: 53px; margin-right: 15px" class="img-responsive" alt="{!! clean($row['sI'][0]['fD']['aI']['name']) !!}">
+                            <div class="inner-wrapper">
+                            <div class="mt-2 d-flex justify-content-start">
+                        <h3 class="service-name me-3">{!! clean($row['sI'][0]['fD']['aI']['name']) !!}</h3>
+                        {{__(":duration hrs",['duration'=>(number_format($row['sI'][0]['duration']/60,2))])}}
+
                     </div>
                     <div class="font-weight-medium  mb-3">
                         <p class="mb-1">
                             {{__(':from to :to',['from'=>$row['sI'][0]['da']['name'],'to'=>$row['sI'][0]['aa']['name']])}}
                         </p>
-                        {{__(":duration hrs",['duration'=>(number_format($row['sI'][0]['duration']/60,2))])}}
                     </div>
+                            </div>
 
-                    <div class="flex-self-start justify-content-between">
-                        <div class="flex-self-start">
-                            <div class="mr-2">
+                    </div>
+                   
+
+                    <div class="flex-self-start justify-content-between d-flex justify-content-between">
+                        <div class="flex-self-start d-flex align-items-center">
+                            <div class="mr-2 me-3">
                                 <i class="icofont-airplane font-size-30 text-primary"></i>
                             </div>
                             <div class="text-lh-sm ml-1">
@@ -45,8 +53,8 @@
                                 <h6 class="font-size-14 font-weight-bold text-gray-5 mb-0">{{__(":duration hrs",['duration'=>(number_format($row['sI'][0]['duration']/60,2))])}}</h6>
                             </div>
                         </div>
-                        <div class="flex-self-start">
-                            <div class="mr-2">
+                        <div class="flex-self-start d-flex  align-items-center">
+                            <div class="mr-2 me-3">
                                 <i class="d-block rotate-90 icofont-airplane-alt font-size-30 text-primary"></i>
                             </div>
                             <div class="text-lh-sm ml-1">
