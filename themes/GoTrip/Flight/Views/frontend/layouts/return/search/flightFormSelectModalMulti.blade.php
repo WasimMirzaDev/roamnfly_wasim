@@ -9,7 +9,7 @@
         margin: 0 auto;
         width: 100%;
         /* max-height: 300px; */
-        overflow-y: hidden;
+        /* overflow-y: hidden; */
         /* overflow-x: hidden; */
         /* background-color: #333; */
         color: white;
@@ -35,7 +35,7 @@
     }
     
     .three-way-select {
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
     overflow-x: auto;
     scrollbar-width: thin; /* For Firefox */
     scrollbar-color:  rgb(255, 145, 0) #f1f1f1; /* For Firefox */
@@ -62,9 +62,15 @@
 
 <div id="flightFormSelectModalMulti" class="fade"> 
     
+
+    <style>
+
+    </style>
     <d class="flight-info-box d-flex justify-content-between" style="  background: #f8f8f8; color:rgb(0, 0, 0); box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3); ">
     
-        
+            <div id="container" class="" style="position: absolute; top: -315%; left: 50%;">
+        <i v-show="onSubmit" class="fa fa-spinner fa-spin" style="font-size: 92px; color:orange; z-index:9999999999;"></i>
+    </div>
 
          <div class="three-way-select d-flex justify-content-start align-itmes-start">
             <div class="flight-info mt-2" v-for="(ONEflight, index) in flights" :key="index" style="   height: 70px; font-size: 13px; background-color: #eeeeee;">

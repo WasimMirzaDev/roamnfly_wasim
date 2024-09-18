@@ -1,5 +1,4 @@
 <div class="card-item-one">
-    
 
  <div class="py-30 px-30 bg-white rounded-4 base-tr mt-30 {{$wrap_class ?? ''}}" data-x="flight-item-{{ $row['sI'][0]['id'] ?? '' }}" data-x-toggle="shadow-{{ $row['sI'][0]['id'] ?? '' }}">
     <div class="row justify-content-between">
@@ -48,15 +47,15 @@
                             <div class="has-skeleton">
                                 @php 
                                 $startDate = \Carbon\Carbon::parse($row['sI'][0]['dt']);
-$endDate = \Carbon\Carbon::parse($row['sI'][0]['at']);
-
-// Calculate the number of days between the dates
-$daysDifference = $startDate->diffInDays($endDate, false); // false to allow negative results
-
-// // If the difference is less than 1 day but more than 0, count as 1 day
-// if ($daysDifference < 1 && $startDate->diffInHours($endDate) > 0) {
-//     $daysDifference = 1;
-// }
+                                 $endDate = \Carbon\Carbon::parse($row['sI'][0]['at']);
+                                 
+                                 // Calculate the number of days between the dates
+                                 $daysDifference = $startDate->diffInDays($endDate, false); // false to allow negative results
+                                 
+                                 // // If the difference is less than 1 day but more than 0, count as 1 day
+                                 // if ($daysDifference < 1 && $startDate->diffInHours($endDate) > 0) {
+                                 //     $daysDifference = 1;
+                                 // }
                                 @endphp
                                 <div class="timePlusDays d-flex">
                                     <div class="lh-15 fw-500">{{ isset($row['sI'][0]['at']) ? \Carbon\Carbon::parse($row['sI'][0]['at'])->format('h:i A') : '09:00 PM' }}</div><div class="days " style="width: 5px;

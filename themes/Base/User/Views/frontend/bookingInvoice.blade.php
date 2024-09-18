@@ -80,6 +80,46 @@
                     {{__('Invoice #: :number',['number'=>$booking->id])}}
                     <br>
                     {{__('Created: :date',['date'=>display_date($booking->created_at)])}}
+                    <br>
+                    {{('Amount Paid: ' . format_money($booking->paid))}}<br>
+        @if($booking->object_model == 'flight')
+            @if($booking->travel_type == 'Multicity')
+                    <?php
+                    $adultsString = $booking->adults;
+                    $childrenString = $booking->children;
+                    $infantsString = $booking->infants;
+        
+                    $Booking_id_array = json_decode($booking->api_id, true) ?? [];
+        $adultsForarray = json_decode($adultsString, true) ?? [];
+        $title_array = json_decode($booking->title, true) ?? [];
+        $childrenForarray = json_decode($childrenString, true) ?? [];
+        $infantsForarray = json_decode($infantsString, true) ?? [];
+        
+                    ?>
+                    {{-- {{('Booking ID: ' . $booking->api_id)}}<br> --}}
+                    {{'Booking ID: '}}                @foreach ($Booking_id_array as $item)
+                    {{$item}}
+                    @endforeach<br>
+                    {{('Status: ' . $booking->status)}}<br>
+                    {{('Service: ' . $booking->object_model)}}<br>
+                    {{('Travel Type: ' . $booking->travel_type)}}<br>
+                    @else
+
+                    {{('Booking ID: ' . $booking->api_id)}}<br>
+                    {{('Status: ' . $booking->status)}}<br>
+                    {{('Service: ' . $booking->object_model)}}<br>
+                    {{('Travel Type: ' . $booking->travel_type)}}<br>
+                    @endif
+                    {{-- Booking Status : {{$booking->status}} --}}
+                    {{-- Type : <span>{{$booking->object_model}}</span><br>
+                    Code : <span>{{$booking->code}}</span><br>
+                    Travel Type : <span>{{$booking->travel_type}}</span><br>
+                    Booking ID : <span>{{$booking->api_id}}</span><br> --}}
+                    @else
+                    {{('Booking ID: ' . $booking->api_id)}}<br>
+                    {{('Status: ' . $booking->status)}}<br>
+                    {{('Service: ' . $booking->object_model)}}<br>
+                    @endif
                 </th>
             </tr>
             <tr>
@@ -96,6 +136,151 @@
             </tr>
             </thead>
         </table>
+        <hr>
+        @if($booking->object_model == 'flight')
+        @if($booking->travel_type == 'Multicity')
+        <div>
+            {{-- Type : <span>{{$booking->object_model}}</span><br>
+            Code : <span>{{$booking->code}}</span><br>
+            Travel Type : <span>{{$booking->travel_type}}</span><br> --}}
+            <?php
+            $adultsString = $booking->adults;
+            $childrenString = $booking->children;
+            $infantsString = $booking->infants;
+
+            $Booking_id_array = json_decode($booking->api_id, true) ?? [];
+            $adultsForarray = json_decode($adultsString, true) ?? [];
+            $title_array = json_decode($booking->title, true) ?? [];
+            $childrenForarray = json_decode($childrenString, true) ?? [];
+            $infantsForarray = json_decode($infantsString, true) ?? [];
+            ?>
+        <h4>Flight Information </h4>
+        <br>
+        <?php $flightDatas = json_decode($booking->flightData, true) ?? []; ?>
+        @foreach($flightDatas as $index => $flightData )
+            <strong>Flight {{$index + 1}}</strong><br>
+            {{-- <span>{{ dd($flightData);}}</span><br> --}}
+            Title : <span>{{$flightData['title']}}</span><br>
+            Departure Time : <span>{{$flightData['departure_time_html']}}</span><br>
+            Departure Date : <span>{{$flightData['departure_date_html']}}</span><br>
+            Airport From : <span>{{$flightData['airport_from']}}</span><br>
+            Duration : <span>{{$flightData['duration'] . 'h'}}</span><br>
+            Arrival Time : <span>{{$flightData['arrival_time_html']}}</span><br>
+            Arrival Date : <span>{{$flightData['arrival_date_html']}}</span><br>
+            Airport To : <span>{{$flightData['airport_to']}}</span><br>
+            <br>
+            @endforeach
+
+            Adults : <span>                
+                @foreach ($adultsForarray as $item)
+                {{$item}}
+                @endforeach</span><br>
+            Children : <span>                
+                @foreach ($childrenForarray as $item)
+                {{$item}}
+                @endforeach</span><br>
+            Infants : <span>                
+                @foreach ($infantsForarray as $item)
+                {{$item}}
+                @endforeach</span><br>
+
+        </div>
+        @elseif($booking->travel_type == 'Round Trip')
+        <h4>Flight Information </h4>
+        <br>
+        <strong>Depart : </strong><br>
+        <?php $flightData = json_decode($booking->flightData, true) ?? []; ?>
+        {{-- <span>{{ dd($flightData);}}</span><br> --}}
+            Title : <span>{{$flightData[0]['title']}}</span><br>
+            Departure Time : <span>{{$flightData[0]['departure_time_html']}}</span><br>
+            Departure Date : <span>{{$flightData[0]['departure_date_html']}}</span><br>
+            Airport From : <span>{{$flightData[0]['airport_from']}}</span><br>
+            Duration : <span>{{$flightData[0]['duration'] . 'h'}}</span><br>
+            Arrival Time : <span>{{$flightData[0]['arrival_time_html']}}</span><br>
+            Arrival Date : <span>{{$flightData[0]['arrival_date_html']}}</span><br>
+            Airport To : <span>{{$flightData[0]['airport_to']}}</span><br>
+            <br>
+            <br>
+            <strong>Return : </strong><br>
+            <?php $flightData = json_decode($booking->flightData, true) ?? []; ?>
+            {{-- <span>{{ dd($flightData);}}</span><br> --}}
+                Title : <span>{{$flightData[1]['title']}}</span><br>
+                Departure Time : <span>{{$flightData[1]['departure_time_html']}}</span><br>
+                Departure Date : <span>{{$flightData[1]['departure_date_html']}}</span><br>
+                Airport From : <span>{{$flightData[1]['airport_from']}}</span><br>
+                Duration : <span>{{$flightData[1]['duration'] . 'h'}}</span><br>
+                Arrival Time : <span>{{$flightData[1]['arrival_time_html']}}</span><br>
+                Arrival Date : <span>{{$flightData[1]['arrival_date_html']}}</span><br>
+                Airport To : <span>{{$flightData[1]['airport_to']}}</span><br>
+                <br>
+                <br>
+                <?php
+                $adultsString = $booking->adults;
+                $childrenString = $booking->children;
+                $infantsString = $booking->infants;
+    
+                $Booking_id_array = json_decode($booking->api_id, true) ?? [];
+                $adultsForarray = json_decode($adultsString, true) ?? [];
+                $title_array = json_decode($booking->title, true) ?? [];
+                $childrenForarray = json_decode($childrenString, true) ?? [];
+                $infantsForarray = json_decode($infantsString, true) ?? [];
+                ?>
+            Adults : <span>                
+                @foreach ($adultsForarray as $item)
+                {{$item}}
+                @endforeach</span><br>
+            Children : <span>                
+                @foreach ($childrenForarray as $item)
+                {{$item}}
+                @endforeach</span><br>
+            Infants : <span>                
+                @foreach ($infantsForarray as $item)
+                {{$item}}
+                @endforeach</span><br>
+
+        @else
+        <h4>Flight Information </h4>
+        <br>
+            <strong>Flight One</strong><br>
+            <?php $flightData = json_decode($booking->flightData, true) ?? []; ?>
+            {{-- <span>{{ dd($flightData);}}</span><br> --}}
+            Title : <span>{{$flightData['title']}}</span><br>
+            Departure Time : <span>{{$flightData['departure_time_html']}}</span><br>
+            Departure Date : <span>{{$flightData['departure_date_html']}}</span><br>
+            Airport From : <span>{{$flightData['airport_from']}}</span><br>
+            Duration : <span>{{$flightData['duration'] . 'h'}}</span><br>
+            Arrival Time : <span>{{$flightData['arrival_time_html']}}</span><br>
+            Arrival Date : <span>{{$flightData['arrival_date_html']}}</span><br>
+            Airport To : <span>{{$flightData['airport_to']}}</span><br>
+            <br>
+            Children : <span>{{$booking->adults}}</span><br>
+            Children : <span>{{$booking->children}}</span><br>
+            Infants : <span>{{$booking->infants}}</span><br>
+        @endif
+        @else
+        <div>
+            <h4>Room Information</h4>
+            
+            <?php $hotelDatas = json_decode($booking->hotelData, true) ?? []; ?>
+            @foreach($hotelDatas as $index => $hotelData)
+            <br>
+            <strong>Room {{$index + 1}}</strong> 
+            <br>
+            Title : <span>{{$hotelData['title']}}</span><br>
+            Night Stay : <span>{{$hotelData['number_selected']}}</span><br>
+            Adults : <span>{{$hotelData['adults_html']}}</span><br>
+            Children : <span>{{$hotelData['children_html']}}</span><br>
+            price : <span>{{$hotelData['price_text']}}</span><br>
+            Ipr : <span>{{$hotelData['ipr']}}</span><br>
+            <br>
+            <strong>Features</strong>
+            @foreach ($hotelData['desc'] as $item)
+            <br>{{$item}}
+            @endforeach
+            @endforeach
+        </div>
+        @endif
+
         <hr>
         <div class="customer-info">
             <h5><strong>{{__('Billing to:')}}</strong></h5>

@@ -1194,15 +1194,17 @@
         },
         methods: {
             openSelectModalBook(flightId, index) {
+                this.onSubmit = true;
                 console.log("Opening modal for flight ID:", flightId);
                 console.log(index);
+
                 $.ajax({
                     url: bookingCore.module.flight + '/getData/' + flightId,
                     data: this.form,
                     dataType: 'json',
                     method: 'post',
                     success: (json) => {
-                        console.log('API Response:', json.data); // Debugging
+                        console.log('API Response:', json.data);
                         if (json.status) {
                             console.log('Success');
                             
@@ -1211,10 +1213,8 @@
                             } else {
                                 this.$set(this.flights, index, json.data[0]); // Use $set to ensure reactivity
                             }
-        
-                            // Force Vue to update
-                            this.$forceUpdate();
 
+                            this.$forceUpdate();
 
 
                             if (!Array.isArray(this.id)) {
@@ -1229,13 +1229,14 @@
                             }
             
                             console.log("Updated flights:", this.flights);
-            
+                            this.onSubmit = false;
                             this.$nextTick(() => {
                                 this.$forceUpdate();  // Ensure Vue re-renders the component
                             });
                         }
                     },
                     error: (e) => {
+                        this.onSubmit = false;
                         console.error('API Error:', e); // Debugging
                     }
                 });

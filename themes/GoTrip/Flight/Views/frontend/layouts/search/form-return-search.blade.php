@@ -25,12 +25,18 @@ $classes = ' w-100';
 $button_classes = ' -dark-1 py-15 col-12 bg-blue-1 h-60 text-white w-100 rounded-4';
 }
 @endphp
+
+
+
 <?php
 $attr = "travel-type";
 $inputName = "travel_type";
 ?>
-<form action="{{ route('flight.search') }}"
-    class="gotrip_form_search bravo_form_search bravo_form form {{ $classes }}" method="get">
+    <div id="loader" class="" style="display:none; position:absolute; top:50%; left:50%;">
+        <i class="fa fa-spinner fa-spin" style="font-size: 70px;"></i>
+    </div>
+    {{-- bravo_form_search --}}
+<form action="{{ route('flight.search') }}" class="gotrip_form_search  bravo_form form {{ $classes }}" method="get">
     {{-- @php dd($field) @endphp --}}
     @php
     $flight_search_fields = setting_item_array('flight_search_fields');
@@ -498,7 +504,9 @@ justify-content: space-between;
 
                     @switch($field['field'])
                     @case ('date')
-                    @include('Layout::common.search.fields.date')
+                    @include('Layout::common.search.fields.date' ,[
+                        'index' => 0
+                    ])
                     @break
 
                     @case ('seat_type')
@@ -510,14 +518,14 @@ justify-content: space-between;
                     @case ('from_where')
                     @include('Layout::common.search.fields.airport', [
                     'inputName' => 'from_where',
-                    'fromWhere' => $fromWhere,
+                    'fromWhere' => 0,
                     ])
                     @break
 
                     @case ('to_where')
                     @include('Layout::common.search.fields.airport', [
                     'inputName' => 'to_where',
-                    'toWhere' => $toWhere,
+                    'fromWhere' => 0,
                     ])
                     @break
                     @endswitch
@@ -531,18 +539,24 @@ justify-content: space-between;
 
             <div class="button-item">
                 <button class="mainSearch__submit button button-no-one{{ $button_classes }}" id="flightSearch"
-                    type="submit">
+                    type="submit" onclick="showLoader()">
                     <i class="icon-search text-20 mr-10"></i>
                     <span class="text-search">{{ __('SEARCH') }}</span>
                 </button>
             </div>
+
+            <script>
+                function showLoader() {
+                    document.getElementById('loader').style.display = 'block';
+                }
+            </script>
         </div>
     </div>
     {{-- </div> --}}
 
     <!-- Repeat for multiCityDiv1 -->
 
-     <div class="col-md-12 mt-2 d-none" id="multiCityDiv1"
+     <div class="col-md-12 mt-2 {{Request::query('from_where')[1] ?? 'd-none'}}" id="multiCityDiv1"
         style="border: 1px solid #e7e7e7; border-radius:10px; margin:0px 31px; width:auto !important;">
         {{-- <hr style="color: var(--color-dark-1);;"> --}}
         <div class="field-items d-block" style="padding: 0px; margin:0px !important;">
@@ -558,20 +572,22 @@ justify-content: space-between;
                     @php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" @endphp
                     @switch($field['field'])
                     @case ('date')
-                    @include('Layout::common.search.fields.date')
+                    @include('Layout::common.search.fields.date' ,[
+                        'index' => 1
+                    ])
                     @break
 
                     @case ('from_where')
                     @include('Layout::common.search.fields.airport', [
                     'inputName' => 'from_where',
-                    'fromWhere' => $fromWhere,
+                    'fromWhere' => 1,
                     ])
                     @break
 
                     @case ('to_where')
                     @include('Layout::common.search.fields.airport', [
                     'inputName' => 'to_where',
-                    'toWhere' => $toWhere,
+                    'fromWhere' => 1,
                     ])
                     @break
                     @endswitch
@@ -588,7 +604,7 @@ justify-content: space-between;
             @endif
         </div>
     </div>
-    <div class="col-md-12 mt-2 d-none" id="multiCityDiv2"
+    <div class="col-md-12 mt-2 {{Request::query('from_where')[2] ?? 'd-none'}}" id="multiCityDiv2"
         style="    border: 1px solid #e7e7e7; border-radius:10px; margin:0px 31px; width:auto !important;">
         {{-- <hr style="color: var(--color-dark-1);;"> --}}
         <div class="field-items d-block" style="padding: 0px; margin-bottom:8px !important;">
@@ -604,18 +620,22 @@ justify-content: space-between;
                     @php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" @endphp
                     @switch($field['field'])
                     @case ('date')
-                    @include('Layout::common.search.fields.date')
+                    @include('Layout::common.search.fields.date' ,[
+                        'index' => 2
+                    ])
                     @break
 
                     @case ('from_where')
                     @include('Layout::common.search.fields.airport', [
                     'inputName' => 'from_where',
+                    'fromWhere' => 2,
                     ])
                     @break
 
                     @case ('to_where')
                     @include('Layout::common.search.fields.airport', [
                     'inputName' => 'to_where',
+                    'fromWhere' => 2,
                     ])
                     @break
                     @endswitch
@@ -632,7 +652,7 @@ justify-content: space-between;
             @endif
         </div>
     </div>
-    <div class="col-md-12 mt-2 d-none" id="multiCityDiv3"
+    <div class="col-md-12 mt-2 {{Request::query('from_where')[3] ?? 'd-none'}}" id="multiCityDiv3"
         style="    border: 1px solid #e7e7e7; border-radius:10px; margin:0px 31px; width:auto !important;">
         {{-- <hr style="color: var(--color-dark-1);;"> --}}
         <div class="field-items d-block" style="padding: 0px; margin-bottom:8px !important;">
@@ -648,18 +668,22 @@ justify-content: space-between;
                     @php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" @endphp
                     @switch($field['field'])
                     @case ('date')
-                    @include('Layout::common.search.fields.date')
+                    @include('Layout::common.search.fields.date' ,[
+                        'index' => 3
+                    ])
                     @break
 
                     @case ('from_where')
                     @include('Layout::common.search.fields.airport', [
                     'inputName' => 'from_where',
+                    'fromWhere' => 3,
                     ])
                     @break
 
                     @case ('to_where')
                     @include('Layout::common.search.fields.airport', [
                     'inputName' => 'to_where',
+                    'fromWhere' => 3,
                     ])
                     @break
                     @endswitch
@@ -676,7 +700,7 @@ justify-content: space-between;
             @endif
         </div>
     </div>
-    <div class="col-md-12 mt-2 d-none" id="multiCityDiv4"
+    <div class="col-md-12 mt-2 {{Request::query('from_where')[3] ?? 'd-none'}}" id="multiCityDiv4"
         style="    border: 1px solid #e7e7e7; border-radius:10px; margin:0px 31px; width:auto !important;">
         {{-- <hr style="color: var(--color-dark-1);;"> --}}
         <div class="field-items d-block" style="padding: 0px; margin-bottom:8px !important;">
@@ -692,18 +716,22 @@ justify-content: space-between;
                     @php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" @endphp
                     @switch($field['field'])
                     @case ('date')
-                    @include('Layout::common.search.fields.date')
+                    @include('Layout::common.search.fields.date' ,[
+                        'index' => 3
+                    ])
                     @break
 
                     @case ('from_where')
                     @include('Layout::common.search.fields.airport', [
                     'inputName' => 'from_where',
+                    'fromWhere' => 3,
                     ])
                     @break
 
                     @case ('to_where')
                     @include('Layout::common.search.fields.airport', [
                     'inputName' => 'to_where',
+                    'fromWhere' => 3,
                     ])
                     @break
                     @endswitch
@@ -720,7 +748,7 @@ justify-content: space-between;
             @endif
         </div>
     </div>
-    <div class="col-md-12 mt-2 d-none" id="multiCityDiv5"
+    <div class="col-md-12 mt-2 {{Request::query('from_where')[4] ?? 'd-none'}}" id="multiCityDiv5"
         style="    border: 1px solid #e7e7e7; border-radius:10px; margin:0px 31px; width:auto !important;">
         {{-- <hr style="color: var(--color-dark-1);;"> --}}
         <div class="field-items d-block" style="padding: 0px; margin-bottom:8px !important;">
@@ -736,18 +764,22 @@ justify-content: space-between;
                     @php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" @endphp
                     @switch($field['field'])
                     @case ('date')
-                    @include('Layout::common.search.fields.date')
+                    @include('Layout::common.search.fields.date' ,[
+                        'index' => 4
+                    ])
                     @break
 
                     @case ('from_where')
                     @include('Layout::common.search.fields.airport', [
                     'inputName' => 'from_where',
+                    'fromWhere' => 4,
                     ])
                     @break
 
                     @case ('to_where')
                     @include('Layout::common.search.fields.airport', [
                     'inputName' => 'to_where',
+                    'fromWhere' => 4,
                     ])
                     @break
                     @endswitch

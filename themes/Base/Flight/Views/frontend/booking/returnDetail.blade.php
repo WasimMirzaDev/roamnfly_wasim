@@ -244,7 +244,7 @@
                     @endif
                     @endif
 
-                @includeIf('Coupon::frontend/booking/checkout-coupon')
+                {{-- @includeIf('Coupon::frontend/booking/checkout-coupon') --}}
                 <li class="final-total d-block">
                     <div class="d-flex justify-content-between">
                         <div class="label">{{__("Total:")}}</div>

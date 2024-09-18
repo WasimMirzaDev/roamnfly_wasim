@@ -169,7 +169,7 @@
                                         <input type="text" class="form-control" value="{{ $user->first_name ?? '' }}"
                                             name="adults[{{ $index }}][first_name]">
                                         <label class="lh-1 text-16 text-light-1">{{ __('First Name') }} <span
-                                                class="required">*</span></label>
+                                                class="required" >*</span></label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -193,8 +193,8 @@
                                 <div class="col-md-6">
                                     <div class="form-input ">
                                         <input type="text" class="form-control" value="{{ $user->pan ?? '' }}"
-                                            name="adults[{{ $index }}][pan]">
-                                        <label class="lh-1 text-16 text-light-1">{{ __('PAN') }} <span
+                                            name="adults[{{ $index }}][pan]" placeholder="i.e (AAAAA9999A)">
+                                        <label class="lh-1 text-16 text-light-1">{{ __('PAN (AAAAA9999A)') }} <span
                                                 class="required">*</span></label>
 
                                     </div>
@@ -269,7 +269,7 @@
                                     <div class="form-input ">
                                         <input type="text" class="form-control" value="{{ $user->pan ?? '' }}"
                                             name="children[{{ $index }}][pan]">
-                                        <label class="lh-1 text-16 text-light-1">{{ __('PAN') }} <span
+                                        <label class="lh-1 text-16 text-light-1">{{ __('PAN (AAAAA9999A)') }} <span
                                                 class="required">*</span></label>
 
                                     </div>

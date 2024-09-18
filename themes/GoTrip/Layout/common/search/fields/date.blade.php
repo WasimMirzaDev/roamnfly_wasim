@@ -4,9 +4,10 @@ $defaultStartDate = date("Y-m-d");
 $defaultEndDate = date("Y-m-d", strtotime("+1 day"));
 
 // Get dates from URL or use default values
-$startDate = Request::query('start[0]', $defaultStartDate);
-$endDate = Request::query('end[0]', $defaultEndDate);
-$dateRange = Request::query('date', "{$defaultStartDate} - {$defaultEndDate}");
+$startDate = Request::query('start')[$index] ?? $defaultStartDate;
+$endDate = Request::query('end')[$index] ?? $defaultEndDate;
+
+$dateRange = Request::query('date', "{$startDate} - {$endDate}");
 ?>
 <div class="searchMenu-date form-date-search-hotel position-relative item">
     <div class="date-wrapper" data-x-dd-click="searchMenu-date">
@@ -28,3 +29,11 @@ $dateRange = Request::query('date', "{$defaultStartDate} - {$defaultEndDate}");
     <!-- Invisible text input for date range -->
     <input type="text" class="check-in-out absolute invisible" name="date" value="{{ $dateRange }}">
 </div>
+
+<style>
+    @media (max-width: 767px) {
+        body .daterangepicker {
+            padding: 0px !important;
+        }
+    }
+</style>

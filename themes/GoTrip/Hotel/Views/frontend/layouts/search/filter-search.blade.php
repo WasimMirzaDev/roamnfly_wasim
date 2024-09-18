@@ -84,7 +84,7 @@
                     @endfor
                 </div>
             </div>
-            <div class="g-filter-item sidebar__item">
+            {{-- <div class="g-filter-item sidebar__item">
                 <div class="item-title">
                     <h5 class="text-18 fw-500 mb-10">{{__("Review Score")}}</h5>
                 </div>
@@ -110,7 +110,7 @@
                         </div>
                     @endfor
                 </div>
-            </div>
+            </div> --}}
             @include('Layout::global.search.filters.attrs')
 
             <div class="bravo-clear-filter hidden-lg-up" style="display: none;">

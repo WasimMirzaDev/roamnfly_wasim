@@ -249,7 +249,7 @@
                     @endif
                     @endif
 
-                @includeIf('Coupon::frontend/booking/checkout-coupon')
+                {{-- @includeIf('Coupon::frontend/booking/checkout-coupon') --}}
                 @if(!empty($booking->each_flight_price) && $booking->each_flight_price != null)
                 @php
                     $each_flight_price = json_decode($booking->each_flight_price, true);

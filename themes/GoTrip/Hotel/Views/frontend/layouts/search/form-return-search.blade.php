@@ -226,7 +226,9 @@
                         @switch($field['field'])
                             @case ('service_name') @include('Layout::common.search.fields.service_name') @break
                             @case ('location') @include('Layout::common.search.fields.location') @break
-                            @case ('date') @include('Layout::common.search.fields.date') @break
+                            @case ('date')                     @include('Layout::common.search.fields.date' ,[
+                                'index' => 0
+                            ]) @break
                             @case ('attr') @include('Layout::common.search.fields.attr') @break
                             @case ('guests') @include('Layout::common.search.fields.guests') @break
                         @endswitch

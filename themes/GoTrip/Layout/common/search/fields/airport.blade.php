@@ -32,10 +32,11 @@
     <div data-x-dd-click="searchMenu-loc">
         <h4 class="text-15 fw-500 ls-2 lh-16">{{ __(ucwords(str_replace('_', ' ', $inputName))) }}</h4>
         <div class="text-15 text-light-1 ls-2 lh-16 smart-search">
-            <input type="hidden" name="{{ $inputName }}[]" class="js-search-get-id" value="{{ Request::query($inputName)[0] ?? '' }}">
+
+            <input type="hidden" name="{{ $inputName }}[]" class="js-search-get-id" value="{{ Request::query($inputName)[$fromWhere] ?? '' }}">
             <input type="text" autocomplete="off" readonly class="smart-search-location parent_text js-search js-dd-focus" 
                 placeholder="{{ __('Select ' . ucwords(str_replace('_', ' ', $inputName))) }}" 
-                value="{{ $airports->where('code', Request::query($inputName)[0] ?? '')->first()->name ?? '' }}">
+                value="{{ $airports->where('code', Request::query($inputName)[$fromWhere] ?? '')->first()->address ?? '' }}">
         </div>
     </div>
     <div class="searchMenu-loc__field asdsads shadow-2 js-popup-window" data-x-dd="searchMenu-loc" data-x-dd-toggle="-is-active">
