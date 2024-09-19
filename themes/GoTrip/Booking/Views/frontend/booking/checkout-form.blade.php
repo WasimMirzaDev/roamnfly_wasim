@@ -191,22 +191,36 @@
             name="adults[{{ $index }}][dob]">
     </div>
 </div>
-                                <div class="col-md-6">
-                                    <div class="form-input ">
-                                        <input type="text" class="form-control" value="{{ $user->pan ?? '' }}"
-                                            name="adults[{{ $index }}][pan]" placeholder="i.e (AAAAA9999A)">
-                                        <label class="lh-1 text-16 text-light-1">{{ __('PAN ') }} </label>
 
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-input ">
-                                        <input type="text" class="form-control" value="{{ $user->passport ?? '' }}"
-                                            name="adults[{{ $index }}][passport]">
-                                        <label class="lh-1 text-16 text-light-1">{{ __('Passport') }} <span
-                                            class="required" style="color: rgb(190, 0, 0);">*</span></label>
-                                    </div>
-                                </div>
+
+@if($booking->object_model == 'flight')
+<div class="col-md-12">
+    <div class="form-input ">
+        <input type="text" class="form-control" value="{{ $user->passport ?? '' }}"
+            name="adults[{{ $index }}][passport]">
+        <label class="lh-1 text-16 text-light-1">{{ __('Passport') }} <span
+            class="required" style="color: rgb(190, 0, 0);">*</span></label>
+    </div>
+</div>
+@else
+<div class="col-md-6">
+    <div class="form-input ">
+        <input type="text" class="form-control" value="{{ $user->pan ?? '' }}"
+            name="adults[{{ $index }}][pan]" placeholder="i.e (AAAAA9999A)">
+        <label class="lh-1 text-16 text-light-1">{{ __('PAN ') }} <span
+            class="required" style="color: rgb(190, 0, 0);">*</span></label>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="form-input ">
+        <input type="text" class="form-control" value="{{ $user->passport ?? '' }}"
+            name="adults[{{ $index }}][passport]">
+        <label class="lh-1 text-16 text-light-1">{{ __('Passport') }} <span
+            class="required" style="color: rgb(190, 0, 0);">*</span></label>
+    </div>
+</div>
+@endif
+
 
                                 <div class="col-md-6 field-Expire-line-1">
                                     <div class="form-group">
@@ -266,12 +280,20 @@
                                             name="children[{{ $index }}][dob]">
                                     </div>
                                 </div>
+                                @if($booking->object_model == 'flight')
+                                <div class="col-md-12">
+                                    <div class="form-input ">
+                                        <input type="text" class="form-control" value="{{ $user->pan ?? '' }}"
+                                            name="children[{{ $index }}][pan]">
+                                        <label class="lh-1 text-16 text-light-1">{{ __('PAN') }} </label>
+                                    </div>
+                                </div>
+                                @else
                                 <div class="col-md-6">
                                     <div class="form-input ">
                                         <input type="text" class="form-control" value="{{ $user->pan ?? '' }}"
                                             name="children[{{ $index }}][pan]">
                                         <label class="lh-1 text-16 text-light-1">{{ __('PAN') }} </label>
-
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -283,6 +305,8 @@
                                             class="required" style="color: rgb(190, 0, 0);">*</span></label>
                                     </div>
                                 </div>
+                                @endif
+
 
 <div class="col-md-6 field-Expire-line-1">
     <div class="form-group">

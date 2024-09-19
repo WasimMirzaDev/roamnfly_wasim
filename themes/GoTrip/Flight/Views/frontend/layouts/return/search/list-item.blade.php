@@ -12,9 +12,9 @@
             </div>
         </div>
 
-        <div class="col-auto bc-form-order">
+        {{-- <div class="col-auto bc-form-order">
             @include('Layout::global.search.orderby',['routeName'=>'flight.search','hidden_map_button'=>1])
-        </div>
+        </div> --}}
     </div>
     <style>
 

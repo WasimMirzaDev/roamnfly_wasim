@@ -834,7 +834,7 @@ class FlightService extends BaseService
 
     public function addToCart(Request $request)
     {
-        // dd($request);
+        
         $total_guests = 0;
         $total = 0;
 
@@ -846,7 +846,6 @@ class FlightService extends BaseService
             }
         }
 
-        //Buyer Fees for Admin
         $total_before_fees = $total;
         // $total_buyer_fee = 0;
         // if (!empty($list_buyer_fees = setting_item('flight_booking_buyer_fees'))) {

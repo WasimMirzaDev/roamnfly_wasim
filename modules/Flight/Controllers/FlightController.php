@@ -284,7 +284,7 @@ class FlightController extends Controller
         if (empty($allServices[$service_type])) {
             return $this->sendError(__('Service type not found'));
         }
-        if(count($request->flight ?? []) == 2){
+        if(count(value: $request->flight ?? []) == 2){
             $booked = $this->flightService->returnAddToCart($request);
         }else{
             $booked = $this->flightService->addToCart($request);
