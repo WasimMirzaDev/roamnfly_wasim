@@ -295,13 +295,14 @@ margin: 240px 0 0 0 !important;
                                 <div class="d-flex ratio-group ms-4 check-boxes" style="color: black; font-size:18px;">
                                     @foreach ($attr->terms as $term)
                                         @php $translate = $term->translate(); @endphp
-                                        <div class=" js-search-option getMultiRow" data-id="{{ $translate->name }}">
-                                            <div class="d-flex ms-4 check-box-one" style="justify-content: center;"
-                                                onclick="document.getElementById('{{ $translate->name }}').checked = true;">
+                                        <div class=" js-search-option getMultiRow" data-id="{{ $translate->name }}"        onclick="document.getElementById('{{ $translate->name }}').checked = true;">
+                                            <div class="d-flex ms-4 check-box-one" style="justify-content: center;">
                                                 <input type="radio" id="{{ $translate->name }}" class="me-2"
-                                                    checked=" {{ $translate->name == 'One Way' ? 'checked' : '' }}"
-                                                    name="travel_type_extra" value="{{ $translate->name }}" />
-                                                <label for="{{ $translate->name }}" style="white-space: nowrap;"
+       name="travel_type_extra" value="{{ $translate->name }}" 
+       {{ $translate->name == 'One Way' ? 'checked' : '' }}
+ />
+
+                                                <label for="{{ $translate->name }}"    style="white-space: nowrap;"
                                                     class="js-search-option-target">{{ $translate->name }}</label>
                                             </div>
                                         </div>
@@ -312,6 +313,16 @@ margin: 240px 0 0 0 !important;
                     </div>
                 </div>
             @endif
+            <script>
+                function checkRadioButton(clickedId) {
+                    // Find the radio button with the matching id
+                    var radioButton = document.getElementById(clickedId);
+                    // alert(clickedId);
+                    if (radioButton && !radioButton.checked) {
+                        radioButton.checked = true;
+                    }
+                }
+            </script>
             {{-- 
 <div class="d-flex ms-4" style="color: black; font-size:18px;">
     <div class="d-flex ms-4" style="justify-content: center;">
