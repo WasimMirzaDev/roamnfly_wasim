@@ -11151,7 +11151,7 @@ div[data-slider] > input[type=range]::-ms-tooltip {
   border-radius: 4px;
   padding: 0 15px;
   padding-top: 25px;
-  min-height: 70px;
+  /* min-height: 70px; */
   transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 

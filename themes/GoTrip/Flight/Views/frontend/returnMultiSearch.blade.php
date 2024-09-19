@@ -14,11 +14,15 @@
             background:transparent !important; 
         }
         @media (max-width: 992px) {
-    .bravo-search-container {
+    .inner-city-wrapper {
         max-height: 385px !important;
         height: 100% !important;
         overflow-y: scroll !important;
         margin-bottom: 20px;
+        overflow-x: hidden;
+    }
+    .button-item-one{
+        margin-top: none !important;
     }
 }
     </style>

@@ -2,7 +2,7 @@
     @csrf
     <div class="row y-gap-20">
         <div class="col-12">
-            <h1 class="text-22 fw-500">{{ __('Sign in or create an account') }}</h1>
+            <!-- <h1 class="text-22 fw-500">{{ __('Sign in or create an account') }}</h1> -->
             <p class="mt-10">{{ __('Already have an account?') }} <a data-bs-toggle="modal" href="#login" class="text-blue-1">{{ __('Log in') }}</a></p>
         </div>
         <div class="col-12">

@@ -287,7 +287,9 @@
 
             <div class="two-dives-wrapper d-flex justify-content-between align-items-center">
                 <div class="div-wrapper-1 d-flex align-items-center">
-                    <div class="has-skeleton">
+                    <div class="inner-side d-flex justify-content-between align-items-center">
+                    <div class="child-inner d-flex justify-content-between">
+                     <div class="has-skeleton">
                         @php
                             $logo = isset($row['sI'][0]['fD']['aI']['code'])
                                 ? \Modules\Flight\Services\FlightService::getAirLineLogo($row['sI'][0]['fD']['aI']['code'], true)
@@ -296,7 +298,7 @@
                         <img class="size-40" src="{{ asset('images/a.png') }}"
                             alt="{{ $row['sI'][0]['fD']['aI']['name'] ?? 'Airline' }}">
                     </div>
-                    <div class="content-wrapper px-2">
+                    <div class="content-wrapper  px-2">
                         <div class="h3-heading">
                             {{$row['sI'][0]['fD']['aI']['name'] ?? 'Airline'}}
                         </div>
@@ -304,28 +306,9 @@
                             6E716B,6E1431
                         </span>
                     </div>
-                </div>
-                <div class="div-wrapper-3">
-                    <div class="has-skeleton">
-                        <div class="d-flex items-center h-full justify-content-between">
-                            {{-- <div class="pl-30 border-left-light h-full md:d-none"></div> --}}
+                    </div>
 
-                            <div class="btn-flight-content d-flex ">
-                                @php
-                                    $index;
-                                    // print_r($index);
-                                    $publishedPrices = collect($row['totalPriceList'] ?? [])->filter(function ($price) {
-                                        return $price['fareIdentifier'] === 'PUBLISHED';
-                                    })->values()->all();
-                                    $publishedPrice = $publishedPrices[0]['fd']['ADULT']['fC']['TF'] ?? ($row['totalPriceList'][0]['fd']['ADULT']['fC']['TF'] ?? 0);
-                                    $publishedPriceId = $publishedPrices[0]['id'] ?? ($row['totalPriceList'][0]['id'] ?? 0);
-                                @endphp
-                                <div class="text-right md:text-left mb-10">
-                                    <div class="text-18 lh-16 fw-500">{{ format_money($publishedPrice ?? '30000') }}
-                                    </div>
-                                    <div class="text-15 lh-16 text-light-1">{{ __('avg/person') }}</div>
-                                </div>
-                                <div class="accordion__button" style="margin-left: 20px !important;">
+                    <div class="accordion__button" style="margin-left: 20px !important;">
                                     {{-- @if($row->can_book) --}}
                                         <a data-id="{{ $publishedPriceId ?? 'awojdioawjdi' }}" data-index="{{ $index ?? '1'}}" href="" onclick="event.preventDefault()" class="button -dark-1 px-30 h-50 bg-blue-1 text-white btn-Select-flight btn-flight-link"  style=" background: transparent !important;
                 color: #ff624d;
@@ -336,12 +319,12 @@
                                         <a href="#" class="button -dark-1 px-30 h-50 bg-warning-2 text-white btn-disabled">{{ __("Full Book") }}</a>
                                     @endif --}}
                                 </div>
-
-                            </div>
-                        </div>
                     </div>
+                   
                 </div>
+               
             </div>
+            <div class="two-three-dives-wrapper d-flex justify-content-between align-items-center mt-3">
             <div class="div-wrapper-2 ">
                 <div class="row x-gap-20 items-start">
                     <div class="col-auto custom-div-width">
@@ -399,7 +382,44 @@
                     </div>
                 </div>
             </div>
+            <div class="div-wrapper-3">
+                    <div class="has-skeleton">
+                        <div class="d-flex items-center h-full justify-content-between">
+                            {{-- <div class="pl-30 border-left-light h-full md:d-none"></div> --}}
 
+                            <div class="btn-flight-content d-flex ">
+                                @php
+                                    $index;
+                                    // print_r($index);
+                                    $publishedPrices = collect($row['totalPriceList'] ?? [])->filter(function ($price) {
+                                        return $price['fareIdentifier'] === 'PUBLISHED';
+                                    })->values()->all();
+                                    $publishedPrice = $publishedPrices[0]['fd']['ADULT']['fC']['TF'] ?? ($row['totalPriceList'][0]['fd']['ADULT']['fC']['TF'] ?? 0);
+                                    $publishedPriceId = $publishedPrices[0]['id'] ?? ($row['totalPriceList'][0]['id'] ?? 0);
+                                @endphp
+                                <div class="text-right md:text-left mb-10">
+                                    <div class="text-18 lh-16 fw-500">{{ format_money($publishedPrice ?? '30000') }}
+                                    </div>
+                                    <div class="text-15 lh-16 text-light-1">{{ __('avg/person') }}</div>
+                                </div>
+                                <!-- <div class="accordion__button" style="margin-left: 20px !important;">
+                                    {{-- @if($row->can_book) --}}
+                                        <a data-id="{{ $publishedPriceId ?? 'awojdioawjdi' }}" data-index="{{ $index ?? '1'}}" href="" onclick="event.preventDefault()" class="button -dark-1 px-30 h-50 bg-blue-1 text-white btn-Select-flight btn-flight-link"  style=" background: transparent !important;
+                color: #ff624d;
+                border: 1px solid #ff624d;
+                border-radius: 25px;"  onmouseover="this.style.backgroundColor='blue';">{{ __("Select") }} </a>
+                    {{-- <i v-show="onSubmit" class="fa fa-spinner fa-spin"></i> --}}
+                                    {{-- @else
+                                        <a href="#" class="button -dark-1 px-30 h-50 bg-warning-2 text-white btn-disabled">{{ __("Full Book") }}</a>
+                                    @endif --}}
+                                </div> -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
 
 
 

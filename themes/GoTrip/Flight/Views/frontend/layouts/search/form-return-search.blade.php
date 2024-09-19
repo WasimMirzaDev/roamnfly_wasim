@@ -248,7 +248,9 @@ margin: 7px 0 !important;
         .btn-non {
             display: none !important;
         }
-
+        .outer-city-btn{
+            display: none !important;
+        }
         @media (max-width: 992px) {
             .button-no-one {
                 display: none !important;
@@ -285,6 +287,16 @@ margin: 7px 0 !important;
             .btn-non {
                 display: block !important;
             }
+.inner-city-btn{
+            display: none !important;
+}
+.outer-city-btn{
+display: block !important;
+}
+
+
+
+
         }
 
    
@@ -330,11 +342,25 @@ margin: 7px 0 !important;
             margin-right: 3px !important;
         }
         @media (max-width: 450px) {
+            .card-item-two{
+                .inner-loop-wrap{
+                    padding: 10px 20px !important;
+                }
+            }
             .two-dives-wrapper {
+           
 .div-wrapper-1,
 .btn-flight-content {
-    flex-direction: column;
+    /* flex-direction: column; */
+    .content-wrapper,
+    .text-right{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 10px;
+    }
 }
+
 .btn-flight-content{
     & div{
         text-align: center;
@@ -364,11 +390,88 @@ justify-content: space-between;
 .button-city-add{
     padding: 22px 20px !important;
 }
+@media (max-width:1201px){
+    .child-inner{
+                .content-wrapper{
+                    display: flex !important;
+                    align-items: center !important;
+                gap: 10px;
+            }
+        }
+    .div-wrapper-2{
+        margin-top: 0 !important;
+   
+    }
+  
+   
+        .inner-side,
+        .div-wrapper-1{
+width: 100% !important;
+        }
+      
+}
 
 
+@media (max-width:769px){
+    .div-wrapper-1{
+
+    }
+    .div-wrapper-2{
+        margin-top: 0 !important;
+        .has-skeleton{
+            .lh-15{
+                font-size: 13px !important;
+            }
+        }
+        .text-15{
+            font-size: 12px !important;
+            overflow: hidden;
+             white-space: nowrap;
+              text-overflow: ellipsis;
+        }
+    }
+    .div-wrapper-3{
+        .lh-16{
+            font-size: 13px !important;
+        }
+        .text-15{
+            font-size: 12px !important;
+        }
+        
+    }
+    .accordion__button{
+            & a{
+                padding: 0 10px !important;
+                border-radius: 3px !important;
+                font-size: 13px !important;
+
+            }
+            .h-50 {
+    height: 32px !important;
+}
+        }
+        .inner-side,
+        .div-wrapper-1{
+width: 100% !important;
+        }
+        .child-inner{
+            .has-skeleton{
+                & img{
+                    width: 30px !important;
+                    height: 30px !important;
+
+                }
+            }
+            .content-wrapper{
+                    display: flex !important;
+                    align-items: center !important;
+                }
+        }
+}
 
 
-
+           
+      
 
 
     </style>
@@ -441,6 +544,8 @@ justify-content: space-between;
 </div> --}}
     {{-- < class="w-100" id="multiCityDivContainer"> --}}
     {{-- <div class="col-md-12"> --}}
+<div class="inner-city-wrapper">
+        
     <div class="row field-items " style="margin: 0px auto;">
         <div class="col-lg-11 p-0">
             @if (!empty($flight_search_fields))
@@ -555,8 +660,7 @@ justify-content: space-between;
     {{-- </div> --}}
 
     <!-- Repeat for multiCityDiv1 -->
-
-     <div class="col-md-12 mt-2 {{Request::query('from_where')[1] ?? 'd-none'}}" id="multiCityDiv1"
+<div class="col-md-12 mt-2 {{Request::query('from_where')[1] ?? 'd-none'}}" id="multiCityDiv1"
         style="border: 1px solid #e7e7e7; border-radius:10px; margin:0px 31px; width:auto !important;">
         {{-- <hr style="color: var(--color-dark-1);;"> --}}
         <div class="field-items d-block" style="padding: 0px; margin:0px !important;">
@@ -796,9 +900,7 @@ justify-content: space-between;
             @endif
         </div>
     </div>
-     
-  
-    <div class="col-lg-1 p-0">
+    <div class="col-lg-1 p-0 inner-city-btn">
 
         <div class="button-item button-item-one btn-non">
             <button class="mainSearch__submit button {{ $button_classes }}" id="flightSearch" type="submit">
@@ -807,9 +909,19 @@ justify-content: space-between;
             </button>
         </div>
     </div>
-    </div>
-    </div>
+</div>
 
+    </div>
+    </div>
+    <div class="col-lg-1 p-0 outer-city-btn">
+
+<div class="button-item button-item-one btn-non">
+    <button class="mainSearch__submit button {{ $button_classes }}" id="flightSearch" type="submit">
+        <i class="icon-search text-20 mr-10"></i>
+        <span class="text-search">{{ __('SEARCH') }}</span>
+    </button>
+</div>
+</div>
 
     <input type="hidden" id="cityCount" value="1">
 </form>

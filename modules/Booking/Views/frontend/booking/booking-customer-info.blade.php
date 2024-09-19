@@ -1,11 +1,11 @@
 <div class="booking-review">
     <h4 class="booking-review-title">{{__('Your Information')}}</h4>
-    <div class="booking-review-content">
+    <div class="booking-review-content ededede">
         <div class="review-section">
             <div class="info-form">
                 <ul>
                     <li class="info-first-name">
-                        <div class="label">{{__('First name')}}</div>
+                        <div class="label">{{__(key: 'First name')}}</div>
                         <div class="val">{{$booking->first_name}}</div>
                     </li>
                     <li class="info-last-name">
