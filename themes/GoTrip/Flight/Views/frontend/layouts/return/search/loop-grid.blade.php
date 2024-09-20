@@ -210,7 +210,7 @@
                             // Encode the array into JSON format
                             $priceIds = json_encode($priceIds);
                         @endphp    
-                        <div class="text-right md:text-left mb-10" style="margin-right: 11px;">
+                        <div class="text-right md:text-left mb-10 " style="margin-right: 11px;">
                             <div class="text-18 lh-16 fw-500 text-upper">{{format_money(@$total)}}</div>
                             <div class="text-15 lh-16 text-light-1 text-lower">{{__('avg/person')}}</div>
                         </div>

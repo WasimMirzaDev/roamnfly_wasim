@@ -88,7 +88,7 @@
             @endif
             <div class="col-auto">
                 <div class="d-flex items-center">
-                    <div class="header-menu menu-right">
+                    <div class="header-menu menu-right ">
                         <div class="mobile-overlay"></div>
                         <div class="header-menu__content">
                             <div class="menu js-navList">
