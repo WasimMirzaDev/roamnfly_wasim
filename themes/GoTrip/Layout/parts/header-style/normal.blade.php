@@ -1,3 +1,15 @@
+<style>
+
+ .inner-menu-wrapper{
+    background-color: rgb(153 152 152 / 50%); 
+    padding: 15px;
+    border-radius: 30px;
+    & i,
+    & span{
+        color: white;
+    }
+ }   
+</style>
 @php
     if($headerStyle == "normal_white"){
         $logo = $logoDark;
@@ -18,7 +30,7 @@
         <div class="mobile-overlay"></div>
         <div class="header-menu__content">
             <div class="mobile-bg js-mobile-bg"></div>
-            <div class="menu js-navList">
+            <!-- <div class="menu js-navList">
                 @php $textColor = $textColor ?? 'text-white';
                     if ($headerStyle == 'transparent_v5' || $headerStyle == 'transparent_v6' || $headerStyle == 'transparent_v9') $textColor = 'text-dark-1';
                     generate_menu('primary',[
@@ -28,6 +40,28 @@
                         'enable_mega_menu' => true
                      ])
                 @endphp
+            </div> -->
+            <div class="menu-second">
+                <div class="inner-menu-wrapper d-flex justify-content-start align-items-center ">
+                    <div class="icon-text-wrapper d-flex justify-content-start align-items-center me-4">
+                   <a href="">
+                   <i class="fa-solid fa-plane-departure me-2 fa-xl "></i>
+                   <span>Flight</span>
+                   </a>
+                    </div>
+                    <div class="icon-text-wrapper d-flex justify-content-start align-items-center me-4">
+                  <a href="">
+                  <i class="fa-solid fa-hotel me-2 fa-xl "></i>
+                  <span>Hotel</span>
+                  </a>
+                    </div>
+                    <div class="icon-text-wrapper d-flex justify-content-start align-items-center me-4">
+                  <a href=""> 
+                    <i class="fa-solid fa-suitcase-rolling me-2 fa-xl "></i>
+                  <span>Holidays</span>
+                </a>
+                    </div>
+                </div>
             </div>
             <div class="mobile-footer px-20 py-10 border-top-light js-mobile-footer">
                 @include('Core::frontend.currency-switcher')

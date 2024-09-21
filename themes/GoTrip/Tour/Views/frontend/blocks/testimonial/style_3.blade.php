@@ -15,6 +15,14 @@
     .width-important{
         width: 330px !important;
     }
+    .inner-wrapper-num-one{
+      .text-30,
+      .lh-15{
+justify-content: center;
+align-items: center;
+display: flex;
+      }
+    }
 </style>
         <div class="relative mt-80 md:mt-40 js-section-slider" data-gap="30" data-slider-cols="xl-3 lg-3 md-2 sm-1 base-1">
             <div class="swiper-wrapper">
@@ -57,21 +65,27 @@
         <div data-anim-child="fade delay-6" class="row y-gap-30 items-center pt-40 sm:pt-20">
             <div class="col-xl-4">
                 <div class="row y-gap-30 text-dark-1">
-                    <div class="col-sm-5 col-6">
+                    <div class="col-sm-6 col-6">
+                        <div class="inner-wrapper-num-one">
                         <div class="text-30 lh-15 fw-600">{{ $happy_people_number ?? '' }}</div>
                         <div class="lh-15">{{ $happy_people_text ?? '' }}</div>
+                        </div>
+                      
                     </div>
 
-                    <div class="col-sm-5 col-6">
+                    <div class="col-sm-6 col-6">
+                        <div class="inner-wrapper-num-one">
                         <div class="text-30 lh-15 fw-600">{{ $overall_rating_number ?? '' }}</div>
                         <div class="lh-15">{{ $overall_rating_text ?? '' }}</div>
                         @if(!empty($overall_rating_star))
-                            <div class="d-flex x-gap-5 items-center pt-10">
+                            <div class="d-flex x-gap-5 items-center justify-center pt-10">
                                 @for($i = 1; $i <= $overall_rating_star; $i++)
                                     <div class="icon-star text-dark-1 text-10"></div>
                                 @endfor
                             </div>
                         @endif
+                        </div>
+                        
                     </div>
                 </div>
             </div>
