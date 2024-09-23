@@ -8,7 +8,6 @@
                 <div class="profile-wrapper d-flex justify-content-start">
                 <div>
                     @php
-                        // dd($booking->total);
                         $logo = \Modules\Flight\Services\FlightService::getAirLineLogo($service['sI'][0]['fD']['aI']['code'] ?? '', true);
                     @endphp
                     <img src="{{ asset('images/a.png') }}" class="img-responsive" style="width: 53px !important; margin-right: 20px;" alt="{{ clean($service['sI'][0]['fD']['aI']['name'] ?? '') }}">
