@@ -1,9 +1,23 @@
+<style>
+    .info-list{
+        display: flex;
+        flex-wrap: wrap;
+        & li{
+            flex: 0 0 50%; 
+            justify-content: start !important;
+            .label{
+                width: 36% !important;
+        }
+        }
+    }
+</style>
+
 <div class="booking-review">
     <h4 class="booking-review-title">{{__('Your Information')}}</h4>
-    <div class="booking-review-content">
+    <div class="booking-review-content vvvv">
         <div class="review-section">
             <div class="info-form">
-                <ul>
+                <ul class="info-list">
                     <li class="info-first-name">
                         <div class="label">{{__('First name')}}</div>
                         <div class="val">{{$booking->first_name}}</div>

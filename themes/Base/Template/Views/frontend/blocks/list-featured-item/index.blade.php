@@ -1,3 +1,11 @@
+<style>
+    .apki-img{
+        width: 180px;
+        height: 180px;
+    }
+</style>
+
+
 @if($list_item)
     <div class="bravo-featured-item {{$style ?? ''}}" style="    margin-top: 100px;
     margin-bottom: 66px;">
@@ -14,15 +22,15 @@
                                 @else
                                 @php
                                 $imagePath = [
-                                    0 => asset('/images/Good2.png'),
-                                    1 => asset('/images/worldGlobal.svg'),
-                                    2 => asset('/images/24HourService.svg'),
+                                    0 => asset('/images/one.png'),
+                                    1 => asset('/images/two.png'),
+                                    2 => asset('/images/three.png'),
                                 ];
                                 
                                 $selectedImage = $imagePath[$k] ?? asset('/images/default.svg'); // Default image fallback
                                 @endphp
                                 
-                                <img src="{{ $selectedImage }}" class="img-fluid" alt="{{ $item['title'] }}">
+                                <img src="{{ $selectedImage }}" class="img-fluid apki-img" alt="{{ $item['title'] }}">
                                 
                                 @endif
                             </div>

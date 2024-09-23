@@ -62,9 +62,9 @@
                         @endphp
                         @if($headerStyle == 'transparent_v2')
                             @include("Layout::parts.header-style.$headerStyle")
-                            <div class="d-none xl:d-block">
+                            <!-- <div class="d-none xl:d-block"> -->
                                 @include("Layout::parts.header-style.normal")
-                            </div>
+                            <!-- </div> -->
                         @elseif($headerStyle == 'transparent_v4')
                             @include("Layout::parts.header-style.transparent_v2",['textColor' => 'text-dark-1'])
                         @elseif($headerStyle == 'normal_white')
@@ -84,11 +84,33 @@
                         @endif --}}
                         Goflyhabibi
                     </a>
+                    <div class="menu-second">
+                <div class="inner-menu-wrapper d-flex justify-content-start align-items-center ">
+                    <div class="icon-text-wrapper d-flex justify-content-start align-items-center me-4">
+                   <a href="">
+                   <i class="fa-solid fa-plane-departure me-2 fa-xl "></i>
+                   <span>Flight</span>
+                   </a>
+                    </div>
+                    <div class="icon-text-wrapper d-flex justify-content-start align-items-center me-4">
+                  <a href="">
+                  <i class="fa-solid fa-hotel me-2 fa-xl "></i>
+                  <span>Hotel</span>
+                  </a>
+                    </div>
+                    <div class="icon-text-wrapper d-flex justify-content-start align-items-center me-4">
+                  <a href=""> 
+                    <i class="fa-solid fa-suitcase-rolling me-2 fa-xl "></i>
+                  <span>Holidays</span>
+                </a>
+                    </div>
+                </div>
+            </div>
                 </div>
             @endif
             <div class="col-auto">
                 <div class="d-flex items-center">
-                    <div class="header-menu menu-right">
+                    <div class="header-menu menu-right ">
                         <div class="mobile-overlay"></div>
                         <div class="header-menu__content">
                             <div class="menu js-navList">
@@ -211,7 +233,7 @@
                         <div class="d-none xl:d-flex x-gap-20 items-center pl-30 {{$navTextStyle}}" data-x="header-mobile-icons" data-x-toggle="text-white">
                             <div><a href="@if(!Auth::check()) {{ url('/login') }} @else {{ route('user.profile.index') }} @endif" class="d-flex items-center icon-user text-inherit text-22"></a></div>
                             @if($headerStyle !== 'transparent_v4')
-                                <div><button class="d-flex items-center icon-menu text-inherit text-20" data-x-click="header, header-logo, header-mobile-icons, mobile-menu"></button></div>
+                                <!-- <div><button class=" d-flex items-center icon-menu text-inherit text-20" data-x-click="header, header-logo, header-mobile-icons, mobile-menu"></button></div> -->
                             @endif
                         </div>
                     </div>
@@ -234,5 +256,15 @@ if (window.location.pathname === '/') {
             header.style.cssText += ';background-color:transparent !important;';
         }
     });
+}
+if(window.location.pathname != '/'){
+        var header = document.querySelector('.inner-menu-wrapper');
+        if (window.scrollY > window.innerHeight) {
+            header.style.background = 'rgb(242 222 211 / 28%)';
+            header.style.cssText += ';background-color: rgb(242 222 211 / 28%) !important;';
+        } else {
+            header.style.background = 'rgb(242 222 211 / 28%)';
+            header.style.cssText += ';background-color:rgb(242 222 211 / 28%) !important;';
+        }
 }
 </script>

@@ -1,3 +1,14 @@
+<style>
+     @media (max-width: 532px){
+  .arrow-dots-wrapper{
+        margin:  0 auto ;
+    }
+     }
+    .bravo-list-news .col-lg-4{
+        margin: 0 auto;
+    }
+</style>
+
 <section class="layout-pt-md layout-pb-md bravo-list-locations @if(!empty($layout)) {{ $layout }} @endif">
     <div data-anim-wrap class="container">
         <div data-anim-child="slide-up delay-1" class="row y-gap-20 justify-between items-end">
@@ -7,7 +18,7 @@
                     <p class=" sectionTitle__text mt-5 sm:mt-0">{{$desc}}</p>
                 </div>
             </div>
-            <div class="col-auto">
+            <div class="col-auto arrow-dots-wrapper">
                 <div class="d-flex x-gap-15 items-center justify-center pt-40 sm:pt-20">
                     <div class="col-auto">
                         <button class="d-flex items-center text-24 arrow-left-hover js-places-prev">

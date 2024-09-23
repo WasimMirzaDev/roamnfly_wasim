@@ -201,7 +201,7 @@
                                                         </div>
                                                     @endif
                                                 </div>
-                                                <div><button class="d-flex items-center icon-menu text-inherit text-20" data-x-click="header, header-logo, header-mobile-icons, mobile-menu"></button></div>
+                                                <div><button class="aaa d-flex items-center icon-menu text-inherit text-20" data-x-click="header, header-logo, header-mobile-icons, mobile-menu"></button></div>
                                             </div>
                                         </ul>
                                     </div>
@@ -211,7 +211,7 @@
                         <div class="d-none xl:d-flex x-gap-20 items-center pl-30 {{$navTextStyle}}" data-x="header-mobile-icons" data-x-toggle="text-white">
                             <div><a href="@if(!Auth::check()) {{ url('/login') }} @else {{ route('user.profile.index') }} @endif" class="d-flex items-center icon-user text-inherit text-22"></a></div>
                             @if($headerStyle !== 'transparent_v4')
-                                <div><button class="d-flex items-center icon-menu text-inherit text-20" data-x-click="header, header-logo, header-mobile-icons, mobile-menu"></button></div>
+                                <div><button class=" d-flex items-center icon-menu text-inherit text-20" data-x-click="header, header-logo, header-mobile-icons, mobile-menu"></button></div>
                             @endif
                         </div>
                     </div>

@@ -157,7 +157,11 @@
         height: 100%;
         /* margin: 20px 0; */
     }
-
+@media (max-width: 769px){
+    .none-for-small{
+        display: none;
+    }
+}
     @media (max-width: 426px) {
         .main-wrapper {
             .heading {
@@ -226,6 +230,9 @@ border-radius: 0 15px 15px 0 ;
         border-radius: 10px 10px 0 0 !important;
     }
   }
+.modal-dialog-centered{
+    margin-top: 10px !important;
+}
 
 </style>
 
@@ -396,7 +403,7 @@ border-radius: 0 15px 15px 0 ;
             <div class="row">
                 <div class="col-lg-2">
                 </div>
-                <div class="col-lg-3 col-xl-3 col-md-12 p-0 ">
+                <div class="col-lg-3 col-xl-3 col-md-12 none-for-small  p-0 ">
                     <div class="slider-wrapper slider-wrapper-one">
                         <div class="carousel-one ">
                             <div class="carousel-inner-one ">
@@ -531,7 +538,7 @@ border-radius: 0 15px 15px 0 ;
                                 </i>
                             </span>
                         </div>
-                        <div class="modal-body modal-body-login">
+                        <div class="modal-body modal-body-login py-0">
                             @include('Layout::auth/register-form')
                         </div>
                     </div>

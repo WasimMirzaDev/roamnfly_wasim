@@ -1,6 +1,6 @@
 <div class="booking-review">
     <h4 class="booking-review-title">{{__('Your Information')}}</h4>
-    <div class="booking-review-content">
+    <div class="booking-review-content frcr">
         <div class="review-section">
             <div class="info-form">
                 <ul>
