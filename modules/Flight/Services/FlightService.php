@@ -517,7 +517,7 @@ class FlightService extends BaseService
                     'lN' => $adult['last_name'],
                     'pan' => $adult['pan'],
                     'pNum' => $adult['passport'],
-                    "dob" => $adult['dob'],
+                    "dob" => Carbon::now()->subYears($adult['dob'])->format('Y-m-d'),
                     'ti' => 'Mr',
                     "pNat" => "IN",
                     'pt' => 'ADULT',
@@ -535,7 +535,7 @@ class FlightService extends BaseService
                     'lN' => $child['last_name'],
                     'pan' => $child['pan'],
                     'pNum' => $child['passport'],
-                    "dob" => $child['dob'],
+                    "dob" => Carbon::now()->subYears($child['dob']),
                     'ti' => 'Master',
                     "pNat" => "IN",
                     'pt' => 'CHILD',
@@ -551,7 +551,7 @@ class FlightService extends BaseService
                 $travellerInfo[] = [
                     'fN' => $infant['first_name'],
                     'lN' => $infant['last_name'],
-                    "dob" => $infant['dob'],
+                    "dob" => Carbon::now()->subYears($infant['dob']),
                     'ti' => 'Master',
                     "pNat" => "IN",
                     'pt' => 'INFANT'

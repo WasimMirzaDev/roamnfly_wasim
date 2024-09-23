@@ -300,7 +300,7 @@ margin: 240px 0 0 0 !important;
                                                 <input type="radio" id="{{ $translate->name }}" class="me-2"
        name="travel_type_extra" value="{{ $translate->name }}" 
        {{ $translate->name == 'One Way' ? 'checked' : '' }}
- />
+       />
 
                                                 <label for="{{ $translate->name }}"    style="white-space: nowrap;"
                                                     class="js-search-option-target">{{ $translate->name }}</label>

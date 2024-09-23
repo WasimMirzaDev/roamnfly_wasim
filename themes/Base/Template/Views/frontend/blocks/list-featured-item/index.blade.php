@@ -14,7 +14,7 @@
                                 @else
                                 @php
                                 $imagePath = [
-                                    0 => asset('/images/Good.svg'),
+                                    0 => asset('/images/Good2.png'),
                                     1 => asset('/images/worldGlobal.svg'),
                                     2 => asset('/images/24HourService.svg'),
                                 ];

@@ -182,26 +182,24 @@
                                 </div>
 <div class="col-md-12 field-Expire-line-1">
     <div class="form-group">
-        <label>{{ __('Date of Birth') }} <span
+        <label>{{ __('Age') }} <span
             class="required" style="color: rgb(190, 0, 0);">*</span></label>
-        <input type="date" placeholder="{{ __('Date of Birth') }}"
-            class="form-control" 
-            max="{{ now()->subYears(12)->format('Y-m-d') }}"
-            value="{{ $user->dob ?? '' }}"
+        <input type="number" placeholder="{{ __('Age') }}"
+            class="form-control"
+            value="{{ $user->dob ?? '12' }}"
+            min="12"
             name="adults[{{ $index }}][dob]">
     </div>
 </div>
 
 
 @if($booking->object_model == 'flight')
-<div class="col-md-12">
-    <div class="form-input ">
+
         <input type="text" class="form-control" value="{{ $user->passport ?? '' }}"
-            name="adults[{{ $index }}][passport]">
-        <label class="lh-1 text-16 text-light-1">{{ __('Passport') }} <span
-            class="required" style="color: rgb(190, 0, 0);">*</span></label>
-    </div>
-</div>
+            name="adults[{{ $index }}][passport]" hidden>
+
+<input type="text" class="form-control" value="{{ $user->pan ?? '' }}"
+name="adults[{{ $index }}][pan]" placeholder="i.e (AAAAA9999A)" hidden>
 @else
 <div class="col-md-6">
     <div class="form-input ">
@@ -211,18 +209,18 @@
             class="required" style="color: rgb(190, 0, 0);">*</span></label>
     </div>
 </div>
-<div class="col-md-6">
+{{-- <div class="col-md-6">
     <div class="form-input ">
         <input type="text" class="form-control" value="{{ $user->passport ?? '' }}"
             name="adults[{{ $index }}][passport]">
         <label class="lh-1 text-16 text-light-1">{{ __('Passport') }} <span
             class="required" style="color: rgb(190, 0, 0);">*</span></label>
     </div>
-</div>
+</div> --}}
 @endif
 
 
-                                <div class="col-md-6 field-Expire-line-1">
+                                {{-- <div class="col-md-6 field-Expire-line-1">
                                     <div class="form-group">
                                         <label>{{ __('Issue Date') }} </label>
                                         <input type="date" placeholder="{{ __('Passport Issue Date') }}"
@@ -237,7 +235,7 @@
                                             class="form-control" value="{{ $user->eD ?? '' }}"
                                             name="adults[{{ $index }}][eD]">
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     @endforeach
@@ -273,21 +271,22 @@
                                 </div>
                                 <div class="col-md-12 field-Expire-line-1">
                                     <div class="form-group">
-                                        <label>{{ __('Date of Birth') }} <span
+                                        <label>{{ __('Age') }} <span
                                             class="required" style="color: rgb(190, 0, 0);">*</span></label>
-                                        <input type="date" placeholder="{{ __('Date of Birth') }}"
-                                            class="form-control" value="{{ $user->dob ?? '' }}"
+                                        <input type="number" placeholder="{{ __('Age') }}"
+                                            class="form-control" value="{{ $user->dob ?? '3' }}"
+                                            min="2"
+                                            max="12"
                                             name="children[{{ $index }}][dob]">
                                     </div>
                                 </div>
                                 @if($booking->object_model == 'flight')
-                                <div class="col-md-12">
-                                    <div class="form-input ">
-                                        <input type="text" class="form-control" value="{{ $user->pan ?? '' }}"
-                                            name="children[{{ $index }}][pan]">
-                                        <label class="lh-1 text-16 text-light-1">{{ __('PAN') }} </label>
-                                    </div>
-                                </div>
+                                <input type="text" class="form-control" value="{{ $user->pan ?? '' }}"
+                                            name="children[{{ $index }}][pan]" hidden>
+
+                                            <input type="text" class="form-control"
+                                            value="{{ $user->passport ?? '' }}"
+                                            name="children[{{ $index }}][passport]" hidden>
                                 @else
                                 <div class="col-md-6">
                                     <div class="form-input ">
@@ -296,7 +295,7 @@
                                         <label class="lh-1 text-16 text-light-1">{{ __('PAN') }} </label>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="form-input ">
                                         <input type="text" class="form-control"
                                             value="{{ $user->passport ?? '' }}"
@@ -304,11 +303,11 @@
                                         <label class="lh-1 text-16 text-light-1">{{ __('Passport') }} <span
                                             class="required" style="color: rgb(190, 0, 0);">*</span></label>
                                     </div>
-                                </div>
+                                </div> --}}
                                 @endif
 
 
-<div class="col-md-6 field-Expire-line-1">
+{{-- <div class="col-md-6 field-Expire-line-1">
     <div class="form-group">
         <label>{{ __('Issue Date') }} </label>
         <input type="date" placeholder="{{ __('Passport Issue Date') }}"
@@ -323,7 +322,7 @@
                                             class="form-control" value="{{ $user->eD ?? '' }}"
                                             name="children[{{ $index }}][eD]">
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     @endforeach
@@ -359,12 +358,14 @@
                                 </div>
 <div class="col-md-12 field-Expire-line-1">
     <div class="form-group">
-        <label>{{ __('Date of Birth') }} <span
+        <label>{{ __('Age') }} <span
             class="required" style="color: rgb(190, 0, 0);">*</span></label>
-        <input type="date" placeholder="{{ __('Date of Birth') }}"
+        <input type="number" placeholder="{{ __('Age') }}"
             class="form-control" 
-            max="{{ now()->subYears(2)->format('Y-m-d') }}"
-            value="{{ $user->dob ?? '' }}"
+            min="0"
+            max="2"
+
+            value="{{ $user->dob ?? '1' }}"
             name="infants[{{ $index }}][dob]">
     </div>
 </div>
@@ -391,7 +392,7 @@
                         class="required" style="color: rgb(190, 0, 0);">*</span></label>
                 </div>
             </div>
-            <div class="col-md-6 field-address-line-1">
+            {{-- <div class="col-md-6 field-address-line-1">
                 <div class="form-input ">
                     <input type="text" class="form-control" value="{{ $user->address ?? '' }}"
                         name="address_line_1">
@@ -439,13 +440,14 @@
                     <label class="lh-1 text-16 text-light-1">{{ __('Country') }} 
                     </label>
                 </div>
-            </div>
-            <div class="col-md-12">
+            </div> --}}
+            {{-- <div class="col-md-12">
                 <div class="form-input">
                     <textarea name="customer_notes" cols="30" rows="6" class="form-control"></textarea>
                     <label class="lh-1 text-16 text-light-1">{{ __('Special Requirements') }} </label>
                 </div>
-            </div>
+            </div> --}}
+            <input name="country" hidden value="NULL"/>
         </div>
     </div>
 
