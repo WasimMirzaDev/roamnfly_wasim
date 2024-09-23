@@ -120,7 +120,9 @@
 
     <div class="dashboard bravo_user_profile p-0" data-x="dashboard" data-x-toggle="-is-sidebar-open">
         @include('User::frontend.layouts.sidebar')
-        <div class="dashboard__main">
+        <div class="dashboard__main llll">
+        <div class="bg-color-div"></div>
+
             <div class="dashboard__content bg-light-2">
                 @yield('content')
                 @include( 'Layout::parts.user.footer' )
