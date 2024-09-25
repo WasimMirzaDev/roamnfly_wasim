@@ -99,7 +99,7 @@
                   </a>
                     </div>
                     <div class="icon-text-wrapper d-flex justify-content-start align-items-center me-4">
-                  <a href=""> 
+                  <a href="#HolidayTrip"> 
                     <i class="fa-solid fa-suitcase-rolling me-2 fa-xl "></i>
                   <span>Holidays</span>
                 </a>

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Mail\ResetPasswordMail;
 use App\User;
 use Modules\Hotel\Models\Hotel;
 use Modules\Location\Models\LocationCategory;
@@ -10,6 +11,8 @@ use Modules\News\Models\Tag;
 use Modules\News\Models\News;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -60,6 +63,33 @@ class HomeController extends Controller
         return view('News::frontend.index',$data);
     }
 
+    public function resetPasswordEmail(Request $request){
+        $this->validate($request, [
+            'email' => 'required|email',
+        ]);
+        $email = $request->input('email');
+        $user = User::where('email', $email)->first();
+        
+        if($user){
+            $verification_code = Str::random(6);
+            $user->two_factor_recovery_codes = $verification_code;
+            $user->save();
+            
+            $url = url('/reset-password/'.$user->id.'/'.$verification_code);
+            
+            $data = [
+                'url' => $url,
+                'name' => $user->name,
+            ];
+            $email = "ahmadsaeedp52@gmail.com";
+
+            Mail::to($email)->send(new ResetPasswordMail($url, $user->name));
+
+            return redirect()->back()->with('success', 'Reset password link has been sent to your email.');
+        } else {
+            return redirect()->back()->with('error', 'Failed to send Mail.');
+        }
+    }
     public function checkConnectDatabase(Request $request){
         $connection = $request->input('database_connection');
         config([

@@ -94,7 +94,7 @@
                   </a>
                     </div>
                     <div class="icon-text-wrapper ">
-                  <a href="#" class=" d-flex justify-content-start align-items-center"> 
+                  <a href="#HolidayTrip" class=" d-flex justify-content-start align-items-center"> 
                     <i class="fa-solid fa-suitcase-rolling me-2 fa-xl "></i>
                   <span>Holidays</span>
                 </a>

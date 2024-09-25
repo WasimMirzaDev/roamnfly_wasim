@@ -2,8 +2,8 @@
 $user = auth()->user();
 ?>
 <div class="modal fade" tabindex="-1" role="dialog" id="enquiry_form_modal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content enquiry_form_modal_form">
+    <div class="modal-dialog modal-dialog-centered" style="margin: 0 auto !important;  width:80vw !important;">
+        <div class="modal-content enquiry_form_modal_form" style="flex-direction: column !important;">
             <div class="modal-header">
                 <h5 class="modal-title">{{__("Enquiry")}}</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">

@@ -34,16 +34,21 @@ class EnquirySendListen
      */
     public function handle(EnquirySendEvent $event)
     {
-        if (!empty(setting_item('booking_enquiry_enable_mail_to_vendor'))) {
+        // Send mail to the vendor
+        $vendor = User::find($event->enquiry->vendor_id);
+        if ($vendor && !empty($vendor->email) && !empty(setting_item('booking_enquiry_enable_mail_to_vendor'))) {
             $body = $this->replaceContentEmail($event, setting_item_with_lang('booking_enquiry_mail_to_vendor_content'));
-            Mail::to(User::find($event->enquiry->vendor_id))->send(new EnquirySendEmail($event->enquiry, $body, 'vendor'));
+            Mail::to($vendor->email)->send(new EnquirySendEmail($event->enquiry, $body, 'vendor'));
         }
-
-        if (!empty(setting_item('admin_email') and !empty(setting_item('booking_enquiry_enable_mail_to_admin')))) {
+    
+        // Send mail to admin
+        $adminEmail = setting_item('admin_email');
+        if (!empty($adminEmail) && !empty(setting_item('booking_enquiry_enable_mail_to_admin'))) {
             $body = $this->replaceContentEmail($event, setting_item_with_lang('booking_enquiry_mail_to_admin_content'));
-            Mail::to(setting_item('admin_email'))->send(new EnquirySendEmail($event->enquiry, $body, 'admin'));
+            Mail::to($adminEmail)->send(new EnquirySendEmail($event->enquiry, $body, 'admin'));
         }
     }
+    
 
     public function replaceContentEmail($event, $content)
     {
@@ -61,7 +66,7 @@ class EnquirySendListen
                         break;
                     case "[vendor_link]":
                         $user = $event->enquiry->vendor;
-                        $text = '<a href="'.route('user.admin.detail',['id'=>$event->enquiry->vendor_id]).'" target="_blank"> '.$user->first_name." ".$user->last_name.' </a>';
+                        $text = '<a href="#" target="_blank"> '.$user->first_name." ".$user->last_name.' </a>';
                         $content = str_ireplace($value, $text, $content);
                         break;
                     case "[vendor_name]":

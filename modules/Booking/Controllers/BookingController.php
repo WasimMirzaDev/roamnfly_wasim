@@ -639,14 +639,14 @@ $infants = $request->input('infants');
         if ($validator->fails()) {
             return $this->sendError('', ['errors' => $validator->errors()]);
         }
-
+        
         if (setting_item('booking_enquiry_enable_recaptcha')) {
             $codeCapcha = trim($request->input('g-recaptcha-response'));
             if (empty($codeCapcha) or !ReCaptchaEngine::verify($codeCapcha)) {
                 return $this->sendError(__("Please verify the captcha"));
             }
         }
-
+        
         $service_type = $request->input('service_type');
         $service_id = $request->input('service_id');
         $allServices = get_bookable_services();
@@ -671,6 +671,7 @@ $infants = $request->input('infants');
         $row->vendor_id = $service->author_id;
         $row->save();
         event(new EnquirySendEvent($row));
+        // dd($request);
         return $this->sendSuccess([
             'message' => __("Thank you for contacting us! We will be in contact shortly.")
         ]);

@@ -622,6 +622,7 @@ $infants = $request->input('infants');
 
     public function addEnquiry(Request $request)
     {
+        dd($request);
         $rules = [
             'service_id'    => 'required|integer',
             'service_type'  => 'required',
@@ -645,7 +646,6 @@ $infants = $request->input('infants');
                 return $this->sendError(__("Please verify the captcha"));
             }
         }
-
         $service_type = $request->input('service_type');
         $service_id = $request->input('service_id');
         $allServices = get_bookable_services();
