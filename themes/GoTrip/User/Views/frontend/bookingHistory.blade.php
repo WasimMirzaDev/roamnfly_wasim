@@ -1,9 +1,24 @@
+<style>
+    .add-gap{
+        gap: 10px;
+        & h1{
+            font-size: 19px !important;
+        }
+    }
+    .bg-color-div{
+        background-color: red;
+    width: 100%;
+    height: 59%;
+    position: absolute;
+    z-index: 0;
+    }
+</style>
 @extends('layouts.user')
 @section('content')
     <div class="row y-gap-20 justify-between items-end pb-60 lg:pb-40 md:pb-32">
-        <div class="col-auto">
-            <h1 class="text-30 lh-14 fw-600">{{ __("Booking History") }}</h1>
-            <div class="text-15 text-light-1">{{ __("Lorem ipsum dolor sit amet, consectetur.") }}</div>
+        <div class="col-auto d-flex justify-between-start align-items-center add-gap">
+            <h1 class="text-30 lh-14 fw-600">{{ __("My Account ") }}</h1>
+            <div class="text-15 text-light-1">{{ __(" >   My Trips") }}</div>
         </div>
         <div class="col-auto"></div>
     </div>

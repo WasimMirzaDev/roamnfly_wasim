@@ -35,9 +35,35 @@
     }
  }
  }
+ @media (max-width:426px){
+    .inner-menu-wrapper{
+    background-color: rgb(153 152 152 / 50%); 
+    padding: 8px 5px !important;
+    border-radius: 30px;
+    .icon-text-wrapper:nth-child(n):not(:last-child){
+        margin-right: 0 !important;
+    }
+    & i{
+        margin-right: 6px !important;
+        &::before{
+           color : white;
+            font-size: 12px ;
+        }
+    }
+    & span{
+        color: white;
+        font-size: 13px;
+    }
+ }
+ .gotrip-header-transparent{
+    & a{
+        margin-right: 8px !important;
+    }
+ }
+ }
  .row{
     .col-auto{
-        padding: 0 10px !important;
+        padding: 0 !important;
        .items-center{
         padding: 0 !important;
        }
@@ -54,7 +80,7 @@
     }
 @endphp
 <div class="d-flex items-center gotrip-header-{{$headerStyle}}">
-    <a href="{{url(app_get_locale(false,'/'))}}" class="text-white @if($headerStyle == 'transparent_v3') d-none xl:d-flex @endif header-logo mr-20" data-x="header-logo" data-x-toggle="is-logo-dark">
+    <a href="{{url(app_get_locale(false,'/'))}}" class="text-white @if($headerStyle == 'transparent_v3') d-none xl:d-flex @endif header-logo mr-10" data-x="header-logo" data-x-toggle="is-logo-dark">
         {{-- @if($logo)
         RoamNfly    
         @endif
@@ -82,13 +108,13 @@
             <div class="menu-second">
                 <div class="inner-menu-wrapper d-flex justify-content-start align-items-center ">
                     <div class="icon-text-wrapper me-4">
-                    <a href="{{ url('/flight') }}" class="d-flex justify-content-start align-items-center {{ request()->is('flight') ? 'active' : '' }}">
+                    <a href="{{ url('/flight') }}" class="d-flex justify-content-start align-items-center  me-2 {{ request()->is('flight') ? 'active' : '' }}">
                    <i class="fa-solid fa-plane-departure me-2 fa-xl "></i>
                    <span>Flight</span>
                    </a>
                     </div>
                     <div class="icon-text-wrapper me-4">
-                  <a href="{{url('/hotel')}}" class=" d-flex justify-content-start align-items-center {{ request()->is('hotel') ? 'active' : '' }}">
+                  <a href="{{url('/hotel')}}" class=" d-flex justify-content-start align-items-center  me-2 {{ request()->is('hotel') ? 'active' : '' }}">
                   <i class="fa-solid fa-hotel me-2 fa-xl "></i>
                   <span>Hotel</span>
                   </a>
