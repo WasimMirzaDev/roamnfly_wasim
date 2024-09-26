@@ -98,7 +98,7 @@ class ModuleProvider extends ModuleServiceProvider
     {
         $res = [];
         if(Boat::isEnable()){
-            $res['holiday_trip'] = [
+            $res['holiday trip'] = [
                 'url'   => route('boat.vendor.index'),
                 'title'      => __("Manage Holiday Trips"),
                 'icon'       => Boat::getServiceIconFeatured(),
