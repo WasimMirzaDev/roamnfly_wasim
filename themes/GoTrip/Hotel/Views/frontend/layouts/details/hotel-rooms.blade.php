@@ -1,12 +1,12 @@
 <h3 class="text-22 fw-500 heading-section mb-20 pt-40">{{__('Available Rooms')}}</h3>
 <div id="hotel-rooms-form" class="hotel_rooms_form border-light rounded-4 shadow-4" v-cloak="" :class="{'d-none':enquiry_type!='book'}">
     <div class="nav-enquiry d-flex" v-if="is_form_enquiry_and_book">
-        <div class="enquiry-item active" >
+        <div class="enquiry-item active" style="margin: 0 auto;">
             <span>{{ __("Book") }}</span>
         </div>
-        <div class="enquiry-item" data-toggle="modal" data-target="#enquiry_form_modal">
+        {{-- <div class="enquiry-item" data-toggle="modal" data-target="#enquiry_form_modal">
             <span>{{ __("Enquiry") }}</span>
-        </div>
+        </div> --}}
     </div>
     <div class="form-book">
         <div class="form-search-rooms">

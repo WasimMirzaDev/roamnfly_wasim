@@ -31,7 +31,7 @@ class ThemeProvider extends \Themes\Base\ThemeProvider
     {
         parent::register();
         $this->app->register(\Themes\GoTrip\User\ModuleProvider::class);
-        // $this->app->register(\Themes\GoTrip\Boat\ModuleProvider::class);
+        $this->app->register(\Themes\GoTrip\Boat\ModuleProvider::class);
         $this->app->register(\Themes\GoTrip\Page\ModuleProvider::class);
         $this->app->register(\Themes\GoTrip\Location\ModuleProvider::class);
         $this->app->register(\Themes\GoTrip\Hotel\ModuleProvider::class);

@@ -4,6 +4,10 @@ $defaultStartDate = date("Y-m-d");
 $defaultEndDate = date("Y-m-d", strtotime("+1 day"));
 
 // Get dates from URL or use default values
+
+if (!isset($index)) {
+    $index = 0;
+}
 $startDate = Request::query('start')[$index] ?? $defaultStartDate;
 $endDate = Request::query('end')[$index] ?? $defaultEndDate;
 

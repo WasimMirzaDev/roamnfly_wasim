@@ -5,9 +5,9 @@ use App\BaseModel;
 
 class Enquiry extends BaseModel
 {
-    protected $table      = 'bravo_enquiries';
+    protected $table = 'bravo_enquiries';
 
-    protected $fillable                           = [
+    protected $fillable = [
         'object_id',
         'object_model',
         'name',

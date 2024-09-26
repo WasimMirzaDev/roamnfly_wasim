@@ -49,7 +49,7 @@ $style_typo = json_decode(setting_item_with_lang('style_typo',false,"{}"),true);
         .noUi-connect,
         .accordion.-map .accordion__item.is-active .accordion__icon,
         .form-checkbox input:checked ~ .form-checkbox__mark{
-            background: {{ linear-gradient(90deg, rgb(255, 73, 89), rgb(255, 104, 74)) }} !important;
+            background: linear-gradient(90deg, rgb(255, 73, 89), rgb(255, 104, 74)) !important;
         }
 
         .button.-blue-1:hover,
@@ -59,9 +59,10 @@ $style_typo = json_decode(setting_item_with_lang('style_typo',false,"{}"),true);
         .hotel_rooms_form .nav-enquiry .enquiry-item.active span,
         .bravo_single_book .nav-enquiry .enquiry-item.active span,
         .form-checkbox input:checked ~ .form-checkbox__mark,
-        .pricing-table .inner-box:hover, .pricing-table.tagged .inner-box{
-            border-color: {{  }};
+        .pricing-table .inner-box:hover, .pricing-table.tagged .inner-box {
+            border-color: #ff4975; /* Example color */
         }
+        
         /*-----------end main color------------*/
     @endif
 

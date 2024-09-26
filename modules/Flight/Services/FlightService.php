@@ -86,8 +86,31 @@ class FlightService extends BaseService
             // return $param;
             // return $this->setSearchParams($param);
             $index = 0;
-            $response = Http::withHeaders(['apikey' => $this->apiToken])
-                ->post($this->getEndpoint('air-search-all', 'fms'), $this->setSearchParams($param, $index));
+            try {
+                $requestUrl = $this->getEndpoint('air-search-all', 'fms');
+                $requestBody = $this->setSearchParams($param, $index);
+            
+                // Log the request details
+                \Log::info('Making request to URL: ' . $requestUrl, [
+                    'headers' => ['apikey' => $this->apiToken],
+                    'body' => $requestBody,
+                ]);
+            
+                $response = Http::withHeaders(['apikey' => $this->apiToken])
+                    ->post($requestUrl, $requestBody);
+            
+                // Log the response details
+                \Log::info('Received response', [
+                    'status' => $response->status(),
+                    'body' => $response->body(),
+                    'json' => $response->json(),
+                ]);
+                
+            } catch (\Exception $e) {
+                // Log the exception if something goes wrong
+                \Log::error('Error occurred during HTTP request', ['message' => $e->getMessage()]);
+            }
+            
 
             if ($response->successful()) {
 

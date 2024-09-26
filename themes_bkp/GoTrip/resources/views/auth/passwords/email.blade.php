@@ -5,7 +5,7 @@
             <div class="row justify-content-center bravo-login-form-page bravo-login-page">
                 <div class="col-xl-6 col-lg-7 col-md-9">
                     <div class="px-50 py-50 sm:px-20 sm:py-20 bg-white shadow-4 rounded-4">
-                        <h4 class="form-title text-22 fw-500 mb-3">{{ __('Reset Password') }}</h4>
+                        <h4 class="form-title text-22 fw-500 mb-3">{{ __('Reset Password q231') }}</h4>
                         <div class="row">
                             @if (session('status'))
                                 <div class="alert alert-success" role="alert">

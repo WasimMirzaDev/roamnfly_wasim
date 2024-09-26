@@ -145,25 +145,43 @@
             <div class="menu-second">
                 <div class="inner-menu-wrapper d-flex justify-content-start align-items-center ">
                     <div class="icon-text-wrapper me-4">
-                    <a href="{{ url('/flight') }}" class="d-flex justify-content-start align-items-center  me-2 {{ request()->is('flight') ? 'active' : '' }}">
+                    <a href="{{ url('/flight') }}" class="menu-link d-flex justify-content-start align-items-center  me-2 {{ request()->is('flight') ? 'active' : '' }}">
                    <i class="fa-solid fa-plane-departure me-2 fa-xl "></i>
                    <span>Flight</span>
                    </a>
                     </div>
                     <div class="icon-text-wrapper me-4">
-                  <a href="{{url('/hotel')}}" class=" d-flex justify-content-start align-items-center  me-2 {{ request()->is('hotel') ? 'active' : '' }}">
+                  <a href="{{url('/hotel')}}" class="menu-link d-flex justify-content-start align-items-center  me-2 {{ request()->is('hotel') ? 'active' : '' }}">
                   <i class="fa-solid fa-hotel me-2 fa-xl "></i>
                   <span>Hotel</span>
                   </a>
                     </div>
                     <div class="icon-text-wrapper ">
-                  <a href="#" class=" d-flex justify-content-start align-items-center me-2 "> 
+                  <a href="#HolidayTrip" class="menu-link d-flex justify-content-start align-items-center {{ request()->is('holiday_trip') ? 'active' : '' }}"> 
                     <i class="fa-solid fa-suitcase-rolling me-2 fa-xl "></i>
                   <span>Holidays</span>
                 </a>
                     </div>
                 </div>
             </div>
+            <script>
+                document.querySelectorAll('.menu-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+        // Prevent default behavior if needed
+        // e.preventDefault();
+
+        // Remove 'active' class from all links
+        document.querySelectorAll('.menu-link').forEach(item => {
+            item.classList.remove('active');
+        });
+
+        // Add 'active' class to the clicked link
+        this.classList.add('active');
+    });
+});
+
+            </script>
+        
             <!-- <div class="mobile-footer px-20 py-10 border-top-light js-mobile-footer">
                 @include('Core::frontend.currency-switcher')
                 @include('Language::frontend.switcher-dropdown')
@@ -172,3 +190,8 @@
     </div>
     
 </div>
+<script>
+if(window.location.pathname === '/holiday_trip'){
+    window.location.href = '/';
+}
+</script>

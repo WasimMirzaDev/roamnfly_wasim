@@ -4,16 +4,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Modules\Booking\Models\Booking;
 use Modules\Booking\Models\Enquiry;
+use Modules\hotel\Services\HotelService; // Make sure this is the correct path
+use Modules\flight\Services\FlightService; // Make sure this is the correct path
 use Modules\Template\Models\Template;
 use Illuminate\Support\Facades\Validator;
 
 class BookingController extends \Modules\Booking\Controllers\BookingController
 {
-    public function __construct(Booking $booking, Enquiry $enquiryClass)
+    public function __construct(Booking $booking, Enquiry $enquiryClass, HotelService $hotelService, FlightService $flightService)
     {
-        parent::__construct($booking, $enquiryClass);
+        // Pass all dependencies to the parent constructor
+        parent::__construct($booking, $enquiryClass, $hotelService, $flightService);
+
         $this->middleware('auth:sanctum')->except([
-            'detail','getConfigs','getHomeLayout','getTypes','cancelPayment','thankyou'
+            'detail', 'getConfigs', 'getHomeLayout', 'getTypes', 'cancelPayment', 'thankyou'
         ]);
     }
     public function getTypes(){
