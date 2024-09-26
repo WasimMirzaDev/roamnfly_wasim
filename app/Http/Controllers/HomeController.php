@@ -31,6 +31,21 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function privacypolicy(){
+        return view('policy/privacypolicy');
+    }
+
+
+    public function termsandconditions(){
+        return view('policy/termsandconditions');
+    }
+    public function cancellationandpaymentpolicy(){
+        return view('policy/cancellationandpaymentpolicy');
+    }
+    public function disclaimer(){
+        return view('policy/disclaimer');
+    }
+
     public function index()
     {
         $home_page_id = setting_item('home_page_id');

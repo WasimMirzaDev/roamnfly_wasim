@@ -23,7 +23,8 @@
     }
     $search_style = setting_item('hotel_location_search_style',"normal")
 @endphp
-<form action="{{ route("hotel.search") }}" class="gotrip_form_search bravo_form_search bravo_form form {{ $classes }}" style="width:100% !important; background:transparent !important;" method="get">
+{{-- bravo_form_search --}}
+<form action="{{ route("hotel.search") }}" class="gotrip_form_search  bravo_form form {{ $classes }}" style="width:100% !important; background:transparent !important;" method="get">
     @if( !empty(Request::query('_layout')) )
         <input type="hidden" name="_layout" value="{{Request::query('_layout')}}">
     @endif

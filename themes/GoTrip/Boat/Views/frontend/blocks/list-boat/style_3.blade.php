@@ -100,32 +100,37 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $('.slider-container').slick({
-        slidesToShow: 4,  // Number of items to show at once on large screens
+        slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 3000,
-        infinite: true,   // Allows looping
-        arrows: false,    // Hide arrows
-        dots: false,      // Hide dots
+        autoplaySpeed: 900,
+        infinite: true,
+        arrows: false,
+        dots: false,
+        centerMode: true,  // Enable center mode
+        centerPadding: '60px',  // Adjust padding for centered slides
         responsive: [
             {
-                breakpoint: 1024,  // At 1024px or less, show 3 slides
+                breakpoint: 1024,
                 settings: {
                     slidesToShow: 3,
+                    centerPadding: '40px',  // Adjust padding for responsive
                     slidesToScroll: 1
                 }
             },
             {
-                breakpoint: 768,  // At 768px or less, show 2 slides
+                breakpoint: 768,
                 settings: {
                     slidesToShow: 2,
+                    centerPadding: '20px',  // Adjust padding for responsive
                     slidesToScroll: 1
                 }
             },
             {
-                breakpoint: 480,  // At 480px or less, show 1 slide
+                breakpoint: 480,
                 settings: {
                     slidesToShow: 1,
+                    centerPadding: '10px',  // Adjust padding for responsive
                     slidesToScroll: 1
                 }
             }

@@ -257,14 +257,9 @@ if (window.location.pathname === '/') {
         }
     });
 }
-if(window.location.pathname != '/'){
-        var header = document.querySelector('.inner-menu-wrapper');
-        if (window.scrollY > window.innerHeight) {
-            header.style.background = 'rgb(242 222 211 / 28%)';
-            header.style.cssText += ';background-color: rgb(242 222 211 / 28%) !important;';
-        } else {
-            header.style.background = 'rgb(242 222 211 / 28%)';
-            header.style.cssText += ';background-color:rgb(242 222 211 / 28%) !important;';
-        }
+if(window.location.pathname != '/' && window.location.pathname != '/hotel' && window.location.pathname != '/flight'){
+        var header = document.querySelector('.bravo_header');
+        header.style.background = '#0000008';
+        header.style.cssText += ';background-color: #00000082 !important;';
 }
 </script>

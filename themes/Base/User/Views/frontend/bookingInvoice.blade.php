@@ -75,7 +75,7 @@
                         <div>
                           <div class="h-12" style="    font-size: 34px;
     font-weight: 900;
-">INVIOCE</div>
+">INVOICE</div>
                         </div>
                       </td>
         

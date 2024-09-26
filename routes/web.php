@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
     */
 Route::get('/intro','LandingpageController@index');
 Route::get('/', 'HomeController@index');
+Route::get('/privacypolicy', 'HomeController@privacypolicy');
+Route::get('/termsandconditions', 'HomeController@termsandconditions');
+Route::get('/cancellationandpaymentpolicy', 'HomeController@cancellationandpaymentpolicy');
+Route::get('/disclaimer', 'HomeController@disclaimer');
 Route::get('/home', 'HomeController@index')->name('home');
 // Route::post('/forgot-password', 'HomeController@resetPasswordEmail')->name('password.emailSend');
 Route::post('/install/check-db', 'HomeController@checkConnectDatabase');
