@@ -99,6 +99,11 @@
         .bravo_user_profile > .container-fluid > .row-eq-height > .col-md-3 {
             min-height: 100vh !important;
         }
+        @media (max-width: 991px){
+            .dashboard__content{
+                padding: 0 !important;
+            }
+        }
     </style>
     {{--Custom Style--}}
     <link href="{{ route('core.style.customCss') }}" rel="stylesheet">
@@ -120,10 +125,10 @@
 
     <div class="dashboard bravo_user_profile p-0" data-x="dashboard" data-x-toggle="-is-sidebar-open">
         @include('User::frontend.layouts.sidebar')
-        <div class="dashboard__main llll">
+        <div class="dashboard__main llll position-relative">
         <div class="bg-color-div"></div>
 
-            <div class="dashboard__content bg-light-2">
+            <div class="dashboard__content bg-light-2 vvvv">
                 @yield('content')
                 @include( 'Layout::parts.user.footer' )
             </div>

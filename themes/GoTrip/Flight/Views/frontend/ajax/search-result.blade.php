@@ -1,7 +1,7 @@
 
 
 
-<div class="row  weqdwe">
+<div class="row  weqdwe" style="min-height: 250px; height:100%;">
     @if($rows->total() > 0)
         @foreach($rows as $row)
             <div class="col-lg-12">

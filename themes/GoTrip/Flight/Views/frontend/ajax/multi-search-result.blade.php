@@ -1,6 +1,6 @@
 
 
-<div class="row">
+<div class="row" style="min-height: 250px; height:100%;">
     
     <ul class="nav nav-tabs" id="myTab" role="tablist">
     @foreach($rows as $index => $onward)
