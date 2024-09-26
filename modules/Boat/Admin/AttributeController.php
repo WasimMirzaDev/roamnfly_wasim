@@ -20,7 +20,7 @@ class AttributeController extends AdminController
 
     public function __construct(Attributes $attributesClass, Terms $termsClass,AttributesTranslation $attributesTranslation, TermsTranslation $termsTranslation)
     {
-        $this->setActiveMenu('admin/module/boat');
+        $this->setActiveMenu('admin/module/holiday_trip');
         $this->termsClass = $termsClass;
         $this->attributesClass = $attributesClass;
         $this->attributesTranslation = $attributesTranslation;
@@ -50,7 +50,7 @@ class AttributeController extends AdminController
             'translation'    => new $this->attributesTranslation,
             'breadcrumbs' => [
                 [
-                    'name' => __('Boat'),
+                    'name' => __('holiday trip'),
                     'url'  => route('boat.admin.index')
                 ],
                 [
@@ -77,7 +77,7 @@ class AttributeController extends AdminController
             'row'         => $row,
             'breadcrumbs' => [
                 [
-                    'name' => __('Boat'),
+                    'name' => __('holiday trip'),
                     'url'  => route('boat.admin.index')
                 ],
                 [
@@ -158,7 +158,7 @@ class AttributeController extends AdminController
             'translation'    => new $this->termsTranslation,
             'breadcrumbs' => [
                 [
-                    'name' => __('Boat'),
+                    'name' => __('holiday trip'),
                     'url'  => route('boat.admin.index')
                 ],
                 [
@@ -189,7 +189,7 @@ class AttributeController extends AdminController
             'enable_multi_lang'=>true,
             'breadcrumbs' => [
                 [
-                    'name' => __('Boat'),
+                    'name' => __('holiday trip'),
                     'url'  => route('boat.admin.index')
                 ],
                 [

@@ -111,7 +111,7 @@ class Boat extends Bookable
      */
     static public function getSeoMetaForPageList()
     {
-        $meta['seo_title'] = __("Search for Boats");
+        $meta['seo_title'] = __("Search for holiday trips");
         if (!empty($title = setting_item_with_lang("boat_page_list_seo_title",false))) {
             $meta['seo_title'] = $title;
         }else if(!empty($title = setting_item_with_lang("boat_page_search_title"))) {
@@ -346,7 +346,7 @@ class Boat extends Bookable
         if($type == 'per_hour'){
             $end_date_time = date('Y-m-d H:i' , strtotime($start_date_time ." +".$hour."hours"));
             if( strtotime($end_date_time) > strtotime($start_date ." +1day")){
-                return $this->sendError(__("You need return boat on same-day"));
+                return $this->sendError(__("You need return holiday trip on same-day"));
             }
         }
         if($type == 'per_day'){
@@ -354,7 +354,7 @@ class Boat extends Bookable
         }
 
         if(!$this->isAvailableInRanges($start_date_time,$end_date_time,$type,$hour,$total_number)){
-            return $this->sendError(__("This boat is not available at selected dates"));
+            return $this->sendError(__("This holiday trip is not available at selected dates"));
         }
         return true;
     }
@@ -362,7 +362,7 @@ class Boat extends Bookable
     public function beforeCheckout(Request $request, $booking)
     {
         if(!$this->isAvailableInRanges($booking->start_date,$booking->end_date,$booking->getMeta("type_date"),$booking->getMeta("hour"),$booking->number)){
-            return $this->sendError(__("This boat is not available at selected dates"));
+            return $this->sendError(__("This holiday trip is not available at selected dates"));
         }
     }
 
@@ -419,7 +419,7 @@ class Boat extends Bookable
                     return false;
                 }
             }
-            // Remove ngay cuoi tra boat
+            // Remove ngay cuoi tra holiday trip
             array_pop($allDates);
         }
         $bookingData = $this->getBookingsInRange($start_date_time,$end_date_time);
@@ -663,9 +663,9 @@ class Boat extends Bookable
         }
         if(empty($number)) return false;
         if ($number > 1) {
-            return __(":number Boats", ['number' => $number]);
+            return __(":number holiday trips", ['number' => $number]);
         }
-        return __(":number Boat", ['number' => $number]);
+        return __(":number holiday trip", ['number' => $number]);
     }
 
     /**
@@ -961,7 +961,7 @@ class Boat extends Bookable
 
     static public function getClassAvailability()
     {
-        return "\Modules\Boat\Controllers\AvailabilityController";
+        return "\Modules\holiday_trip\Controllers\AvailabilityController";
     }
 
     static public function getFiltersSearch()

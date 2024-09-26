@@ -82,7 +82,7 @@
 
         </div>
 
-        <div class="row y-gap-20 justify-between items-center pt-5">
+        <div class="row y-gap-20 justify-between items-center pt-5" style="margin: 0 4px;">
             <div class="col-auto">
                 @if(setting_item('boat_enable_review'))
                     <?php $reviewData = $row->getScoreReview(); $score_total = $reviewData['score_total'];?>

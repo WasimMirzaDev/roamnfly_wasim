@@ -186,21 +186,21 @@
     <div class="row">
         <div class="col-sm-4">
             <h3 class="form-group-title">{{__("Review Options")}}</h3>
-            <p class="form-group-desc">{{__('Config review for boat')}}</p>
+            <p class="form-group-desc">{{__('Config review for holiday_trip')}}</p>
         </div>
         <div class="col-sm-8">
             <div class="panel">
                 <div class="panel-body">
                     <div class="form-group">
-                        <label class="" >{{__("Enable review system for Boat?")}}</label>
+                        <label class="" >{{__("Enable review system for holiday_trip?")}}</label>
                         <div class="form-controls">
                             <label><input type="checkbox" name="boat_enable_review" value="1" @if(!empty($settings['boat_enable_review'])) checked @endif /> {{__("Yes, please enable it")}} </label>
                             <br>
-                            <small class="form-text text-muted">{{__("Turn on the mode for reviewing boat")}}</small>
+                            <small class="form-text text-muted">{{__("Turn on the mode for reviewing holiday_trip")}}</small>
                         </div>
                     </div>
                     <div class="form-group" data-condition="boat_enable_review:is(1)">
-                        <label class="" >{{__("Customer must book a boat before writing a review?")}}</label>
+                        <label class="" >{{__("Customer must book a holiday_trip before writing a review?")}}</label>
                         <div class="form-controls">
                             <label><input type="checkbox" name="boat_enable_review_after_booking" value="1"  @if(!empty($settings['boat_enable_review_after_booking'])) checked @endif /> {{__("Yes please")}} </label>
                             <br>
@@ -298,7 +298,7 @@
     <div class="row">
         <div class="col-sm-4">
             <h3 class="form-group-title">{{__("Booking Buyer Fees Options")}}</h3>
-            <p class="form-group-desc">{{__('Config buyer fees for boat')}}</p>
+            <p class="form-group-desc">{{__('Config buyer fees for holiday_trip')}}</p>
         </div>
         <div class="col-sm-8">
             <div class="panel">
@@ -407,13 +407,13 @@
     <div class="row">
         <div class="col-sm-4">
             <h3 class="form-group-title">{{__("Vendor Options")}}</h3>
-            <p class="form-group-desc">{{__('Vendor config for boat')}}</p>
+            <p class="form-group-desc">{{__('Vendor config for holiday_trip')}}</p>
         </div>
         <div class="col-sm-8">
             <div class="panel">
                 <div class="panel-body">
                     <div class="form-group">
-                        <label class="" >{{__("Boat created by vendor must be approved by admin")}}</label>
+                        <label class="" >{{__("holiday_trip created by vendor must be approved by admin")}}</label>
                         <div class="form-controls">
                             <label><input type="checkbox" name="boat_vendor_create_service_must_approved_by_admin" value="1" @if(!empty($settings['boat_vendor_create_service_must_approved_by_admin'])) checked @endif /> {{__("Yes please")}} </label>
                             <br>
@@ -503,11 +503,11 @@
 <hr>
 <div class="row">
     <div class="col-sm-4">
-        <h3 class="form-group-title">{{__("Disable boat module?")}}</h3>
+        <h3 class="form-group-title">{{__("Disable holiday_trip module?")}}</h3>
     </div>
     <div class="col-sm-8">
         <div class="panel">
-            <div class="panel-title"><strong>{{__("Disable boat module")}}</strong></div>
+            <div class="panel-title"><strong>{{__("Disable holiday_trip module")}}</strong></div>
             <div class="panel-body">
                 <div class="form-group">
                     <div class="form-controls">

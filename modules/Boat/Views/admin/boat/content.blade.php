@@ -1,5 +1,5 @@
 <div class="panel">
-    <div class="panel-title"><strong>{{__("Boat Content")}}</strong></div>
+    <div class="panel-title"><strong>{{__("holiday trip Content")}}</strong></div>
     <div class="panel-body">
         <div class="form-group magic-field" data-id="title" data-type="title">
             <label class="control-label">{{__("Title")}}</label>

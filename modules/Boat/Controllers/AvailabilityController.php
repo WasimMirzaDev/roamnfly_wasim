@@ -76,7 +76,7 @@ class AvailabilityController extends FrontendController{
                 'class' => 'active'
             ],
         ];
-        $page_title = __('Boats Availability');
+        $page_title = __('holiday trips Availability');
 
         return view($this->indexView,compact('rows','breadcrumbs','current_month','page_title','request'));
     }
@@ -94,7 +94,7 @@ class AvailabilityController extends FrontendController{
         $is_single = $request->query('for_single');
         $boat = $this->boatClass::find($request->query('id'));
         if(empty($boat)){
-            return $this->sendError(__('Boat not found'));
+            return $this->sendError(__('holiday trips not found'));
         }
         $query = $this->boatDateClass::query();
         $query->where('target_id',$request->query('id'));
@@ -237,7 +237,7 @@ class AvailabilityController extends FrontendController{
 
         $boat = $this->boatClass::find($request->input('id'));
         if(empty($boat)){
-            return $this->sendError(__('Boat not found'));
+            return $this->sendError(__('holiday trips not found'));
         }
 
         $hour = $request->input('hour',0);
@@ -249,14 +249,14 @@ class AvailabilityController extends FrontendController{
         if($type == 'per_hour'){
             $end_date_time = date('Y-m-d H:i' , strtotime($start_date_time ." +".$hour."hours"));
             if( strtotime($end_date_time) > strtotime($start_date ." +1day")){
-                return $this->sendError(__("You need to return the boat on the same-day"));
+                return $this->sendError(__("You need to return the holiday trip on the same-day"));
             }
         }
         if($type == 'per_day'){
             $end_date_time = date('Y-m-d H:i' , strtotime($start_date_time ." +".$day."days"));
         }
         if(!$boat->isAvailableInRanges($start_date_time,$end_date_time,$type,$hour,1)){
-            return $this->sendError(__("This boat is not available at selected dates"));
+            return $this->sendError(__("This holiday trip is not available at selected dates"));
         }
         return $this->sendSuccess();
     }
@@ -273,7 +273,7 @@ class AvailabilityController extends FrontendController{
         $target_id = $request->input('target_id');
 
         if(empty($boat)){
-            return $this->sendError(__('Boat not found'));
+            return $this->sendError(__('holiday trips not found'));
         }
 
         if(!$this->hasPermission('boat_manage_others')){

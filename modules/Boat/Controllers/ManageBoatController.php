@@ -56,7 +56,7 @@ class ManageBoatController extends FrontendController
             'rows' => $list_tour->paginate(5),
             'breadcrumbs'        => [
                 [
-                    'name' => __('Manage Boats'),
+                    'name' => __('Manage holiday trips'),
                     'url'  => route('boat.vendor.index')
                 ],
                 [
@@ -64,7 +64,7 @@ class ManageBoatController extends FrontendController
                     'class' => 'active'
                 ],
             ],
-            'page_title'         => __("Manage Boats"),
+            'page_title'         => __("Manage holiday trips"),
         ];
         return view('Boat::frontend.manageBoat.index', $data);
     }
@@ -79,7 +79,7 @@ class ManageBoatController extends FrontendController
             'recovery'           => 1,
             'breadcrumbs'        => [
                 [
-                    'name' => __('Manage Boats'),
+                    'name' => __('Manage holiday trips'),
                     'url'  => route('boat.vendor.index')
                 ],
                 [
@@ -87,7 +87,7 @@ class ManageBoatController extends FrontendController
                     'class' => 'active'
                 ],
             ],
-            'page_title'         => __("Recovery Boats"),
+            'page_title'         => __("Recovery holiday trips"),
         ];
         return view('Boat::frontend.manageBoat.index', $data);
     }
@@ -102,7 +102,7 @@ class ManageBoatController extends FrontendController
             event(new UpdatedServiceEvent($query));
 
         }
-        return redirect(route('boat.vendor.recovery'))->with('success', __('Restore boat success!'));
+        return redirect(route('boat.vendor.recovery'))->with('success', __('Restore holiday trip success!'));
     }
 
     public function createBoat(Request $request)
@@ -119,7 +119,7 @@ class ManageBoatController extends FrontendController
             'attributes'    => $this->attributesClass::where('service', 'boat')->get(),
             'breadcrumbs'        => [
                 [
-                    'name' => __('Manage Boats'),
+                    'name' => __('Manage holiday trips'),
                     'url'  => route('boat.vendor.index')
                 ],
                 [
@@ -127,7 +127,7 @@ class ManageBoatController extends FrontendController
                     'class' => 'active'
                 ],
             ],
-            'page_title'         => __("Create Boats"),
+            'page_title'         => __("Create holiday trips"),
         ];
         return view('Boat::frontend.manageBoat.detail', $data);
     }
@@ -206,10 +206,10 @@ class ManageBoatController extends FrontendController
 
             if($id > 0 ){
                 event(new UpdatedServiceEvent($row));
-                return back()->with('success',  __('Boat updated') );
+                return back()->with('success',  __('holiday trips updated') );
             }else{
                 event(new CreatedServicesEvent($row));
-                return redirect(route('boat.vendor.edit',['id'=>$row->id]))->with('success', __('Boat created') );
+                return redirect(route('boat.vendor.edit',['id'=>$row->id]))->with('success', __('holiday trips created') );
             }
         }
     }
@@ -237,7 +237,7 @@ class ManageBoatController extends FrontendController
         $row = $this->boatClass::where("author_id", $user_id);
         $row = $row->find($id);
         if (empty($row)) {
-            return redirect(route('boat.vendor.index'))->with('warning', __('Boat not found!'));
+            return redirect(route('boat.vendor.index'))->with('warning', __('holiday trips not found!'));
         }
         $translation = $row->translate($request->query('lang'));
         $data = [
@@ -248,7 +248,7 @@ class ManageBoatController extends FrontendController
             "selected_terms" => $row->terms->pluck('term_id'),
             'breadcrumbs'        => [
                 [
-                    'name' => __('Manage Boats'),
+                    'name' => __('Manage holiday trips'),
                     'url'  => route('boat.vendor.index')
                 ],
                 [
@@ -256,7 +256,7 @@ class ManageBoatController extends FrontendController
                     'class' => 'active'
                 ],
             ],
-            'page_title'         => __("Edit Boats"),
+            'page_title'         => __("Edit holiday trips"),
         ];
         return view('Boat::frontend.manageBoat.detail', $data);
     }
@@ -277,7 +277,7 @@ class ManageBoatController extends FrontendController
                 event(new UpdatedServiceEvent($query));
             }
         }
-        return redirect(route('boat.vendor.index'))->with('success', __('Delete boat success!'));
+        return redirect(route('boat.vendor.index'))->with('success', __('Delete holiday trips success!'));
     }
 
     public function bulkEditBoat($id , Request $request){

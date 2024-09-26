@@ -12,7 +12,7 @@ class SettingClass extends BaseSettingsClass
         return [
             [
                 'id'   => 'boat',
-                'title' => __("Boat Settings"),
+                'title' => __("holiday trip Settings"),
                 'position'=>20,
                 'view'=>"Boat::admin.settings.boat",
                 "keys"=>[

@@ -5,11 +5,12 @@
 
 <style>
    .slider-container .slick-slide {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 0px;  /* Adjust spacing between slides */
+        /* display: flex; */
+        /* justify-content: center; */
+        /* align-items: center; */
+        margin: 0 10px;  /* Adjust spacing between slides */
     }
+
 
     .slick-prev, .slick-next {
         background-color: #000;
@@ -26,6 +27,12 @@
         margin-left: 0 !important;
         margin-right: 0 !important;
     }
+    .uhhh.slider-container {
+    padding: 0; /* Ensure no extra padding on the container */
+    margin: 0 auto; /* Center the carousel if needed */
+    width: 100%; /* Ensure it spans the full width */
+}
+
 
 </style>
 @endpush
@@ -56,7 +63,7 @@
                 }
             @endphp
             @foreach($rows as $key => $row)
-                <div data-anim-child="slide-up delay-{{ $index }}" class="{{ $classes }} col-sm-6">
+                <div data-anim-child="slide-up delay-{{ $index }}" class="{{ $classes }} col-sm-6" style="width:100% !important;">
                     @include('Boat::frontend.layouts.search.loop-grid-2')
                 </div>
                 @php

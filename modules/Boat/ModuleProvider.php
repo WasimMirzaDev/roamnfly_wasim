@@ -36,11 +36,11 @@ class ModuleProvider extends ModuleServiceProvider
     {
         if(!Boat::isEnable()) return [];
         return [
-            'Holiday'=>[
+            'Holiday Trip'=>[
                 "position"=>45,
                 'url'        => route('boat.admin.index'),
                 'title'      => __('Holiday Trip'),
-                'icon'       => 'ion-md-boat',
+                'icon'       => 'icon ion-md-umbrella',
                 'permission' => 'boat_view',
                 'children'   => [
                     'add'=>[
@@ -98,7 +98,7 @@ class ModuleProvider extends ModuleServiceProvider
     {
         $res = [];
         if(Boat::isEnable()){
-            $res['boat'] = [
+            $res['holiday_trip'] = [
                 'url'   => route('boat.vendor.index'),
                 'title'      => __("Manage Holiday Trips"),
                 'icon'       => Boat::getServiceIconFeatured(),

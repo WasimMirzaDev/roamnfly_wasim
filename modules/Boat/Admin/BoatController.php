@@ -71,7 +71,7 @@ class BoatController extends AdminController
             'boat_manage_others' => $this->hasPermission('boat_manage_others'),
             'breadcrumbs'       => [
                 [
-                    'name' => __('Boats'),
+                    'name' => __('holiday_trips'),
                     'url'  => route('boat.admin.index')
                 ],
                 [
@@ -79,7 +79,7 @@ class BoatController extends AdminController
                     'class' => 'active'
                 ],
             ],
-            'page_title'        => __("Boat Management")
+            'page_title'        => __("holiday_trip Management")
         ];
         return view('Boat::admin.index', $data);
     }
@@ -106,7 +106,7 @@ class BoatController extends AdminController
             'recovery'          => 1,
             'breadcrumbs'       => [
                 [
-                    'name' => __('Boats'),
+                    'name' => __('holiday_trips'),
                     'url'  => route('boat.admin.index')
                 ],
                 [
@@ -114,7 +114,7 @@ class BoatController extends AdminController
                     'class' => 'active'
                 ],
             ],
-            'page_title'        => __("Recovery Boat Management")
+            'page_title'        => __("Recovery holiday_trip Management")
         ];
         return view('Boat::admin.index', $data);
     }
@@ -133,15 +133,15 @@ class BoatController extends AdminController
             'translation'  => new $this->boat_translation(),
             'breadcrumbs'  => [
                 [
-                    'name' => __('Boats'),
+                    'name' => __('holiday_trips'),
                     'url'  => route('boat.admin.index')
                 ],
                 [
-                    'name'  => __('Add Boat'),
+                    'name'  => __('Add holiday_trip'),
                     'class' => 'active'
                 ],
             ],
-            'page_title'   => __("Add new Boat")
+            'page_title'   => __("Add new holiday_trip")
         ];
         return view('Boat::admin.detail', $data);
     }
@@ -168,11 +168,11 @@ class BoatController extends AdminController
             'enable_multi_lang' => true,
             'breadcrumbs'       => [
                 [
-                    'name' => __('Boats'),
+                    'name' => __('holiday_trips'),
                     'url'  => route('boat.admin.index')
                 ],
                 [
-                    'name'  => __('Edit Boat'),
+                    'name'  => __('Edit holiday_trip'),
                     'class' => 'active'
                 ],
             ],
@@ -254,10 +254,10 @@ class BoatController extends AdminController
             }
             if ($id > 0) {
                 event(new UpdatedServiceEvent($row));
-                return back()->with('success', __('Boat updated'));
+                return back()->with('success', __('holiday_trip updated'));
             } else {
                 event(new CreatedServicesEvent($row));
-                return redirect(route('boat.admin.edit', $row->id))->with('success', __('Boat created'));
+                return redirect(route('boat.admin.edit', $row->id))->with('success', __('holiday_trip created'));
             }
         }
     }

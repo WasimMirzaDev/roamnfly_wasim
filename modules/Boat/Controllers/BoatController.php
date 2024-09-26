@@ -72,8 +72,8 @@ class BoatController extends Controller
                 "markers" => $markers,
                 'fragments'=>[
                     '.ajax-search-result'=>view('Boat::frontend.ajax.search-result'.($for_map ? '-map' : ''), $data)->render(),
-                    '.result-count'=>$list->total() ? ($list->total() > 1 ? __(":count boats found",['count'=>$list->total()]) : __(":count boat found",['count'=>$list->total()])) : '',
-                    '.count-string'=> $list->total() ? __("Showing :from - :to of :total Boats",["from"=>$list->firstItem(),"to"=>$list->lastItem(),"total"=>$list->total()]) : ''
+                    '.result-count'=>$list->total() ? ($list->total() > 1 ? __(":count holiday trips found",['count'=>$list->total()]) : __(":count holiday trip found",['count'=>$list->total()])) : '',
+                    '.count-string'=> $list->total() ? __("Showing :from - :to of :total holiday trips",["from"=>$list->firstItem(),"to"=>$list->lastItem(),"total"=>$list->total()]) : ''
                 ],
             ]);
         }
