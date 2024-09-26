@@ -1,7 +1,24 @@
 <style>
-
- .inner-menu-wrapper{
+     .menu-second{
+  .inner-menu-wrapper{
     background-color: rgb(153 152 152 / 50%); 
+  }
+ }
+ .menu-second-for-next-line{
+    .inner-menu-wrapper{
+        display: flex !important;
+        justify-content: center !important;
+    }
+    .inner-the-wrapper{ 
+        display: flex;
+    background-color: rgb(153 152 152 / 50%); 
+    padding: 6px 10px;
+    border-radius: 30px;
+ }
+ }
+    .menu-second,
+    .menu-second-for-next-line{
+ .inner-menu-wrapper{
     padding: 15px;
     border-radius: 30px;
     & i,
@@ -9,9 +26,19 @@
         color: white;
     }
  }   
+}
+.menu-second-for-next-line{
+    display: none;
+}
  @media (max-width:769px){
-    .inner-menu-wrapper{
+    .menu-second{
+  .inner-menu-wrapper{
     background-color: rgb(153 152 152 / 50%); 
+  }
+ }
+    .menu-second,
+    .menu-second-for-next-line{
+    .inner-menu-wrapper{
     padding: 10px;
     border-radius: 30px;
     .icon-text-wrapper:nth-child(n):not(:last-child){
@@ -29,15 +56,30 @@
         font-size: 15px;
     }
  }
- .gotrip-header-transparent{
+}
+    .gotrip-header-transparent{
     & a{
         margin-right: 10px !important;
+       }
     }
- }
+    .menu-second{
+        display: none !important;
+
+    }
+    .menu-second-for-next-line{
+        display: block !important;
+    }
+    
  }
  @media (max-width:426px){
-    .inner-menu-wrapper{
+    .menu-second{
+  .inner-menu-wrapper{
     background-color: rgb(153 152 152 / 50%); 
+  }
+ }
+    .menu-second,
+    .menu-second-for-next-line{  
+    .inner-menu-wrapper{
     padding: 8px 5px !important;
     border-radius: 30px;
     .icon-text-wrapper:nth-child(n):not(:last-child){
@@ -55,24 +97,19 @@
         font-size: 13px;
     }
  }
+}
  .gotrip-header-transparent{
     & a{
         margin-right: 8px !important;
     }
  }
  }
- .row{
-    .col-auto{
-        padding: 0 !important;
-       .items-center{
-        padding: 0 !important;
-       }
-    }
- }
+
  a.active i,
  a.active span{
     color: orange;
  }
+
 </style>
 @php
     if($headerStyle == "normal_white"){
@@ -90,7 +127,7 @@
         Goflyhabibi
         
     </a>
-    <div class="header-menuONE mmmmm" data-x="mobile-menu" data-x-toggle="is-menu-active">
+    <div class="header-menuONE" data-x="mobile-menu" data-x-toggle="is-menu-active">
         <div class="mobile-overlayONE"></div>
         <div class="header-menu__contentONE">
             <div class="mobile-bg js-mobile-bg"></div>

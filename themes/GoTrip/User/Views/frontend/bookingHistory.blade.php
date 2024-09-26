@@ -6,11 +6,22 @@
         }
     }
     .bg-color-div{
-        background-color: red;
+        background-color: #0dcaf045;
     width: 100%;
-    height: 59%;
+    height: 7%;
     position: absolute;
     z-index: 0;
+    }
+    .booking-history-manager{
+        position: relative;
+    }
+    @media (max-width: 991px) {
+ .booking-history-manager{
+    padding: 0 !important;
+ }
+ .add-gap{
+    padding: 20px 0 0 40px !important;
+ }
     }
 </style>
 @extends('layouts.user')
@@ -33,21 +44,23 @@
                     </a>
                 </div>
                 @if(!empty($statues))
-                    @foreach($statues as $status)
-                        <div class="col-auto">
-                            <a href="{{route("user.booking_history",['status'=>$status])}}" class="tabs__button text-18 lg:text-16 text-light-1 fw-500 pb-5 lg:pb-0 @if(!empty($status_type) && $status_type == $status) is-tab-el-active @endif" >
-                                {{booking_status_to_text($status)}}
-                            </a>
-                        </div>
-                    @endforeach
+@foreach($statues as $key => $status)
+    @if($key < count($statues) - 1)
+        <div class="col-auto">
+            <a href="{{route("user.booking_history",['status'=>$status])}}" class="tabs__button text-18 lg:text-16 text-light-1 fw-500 pb-5 lg:pb-0 @if(!empty($status_type) && $status_type == $status) is-tab-el-active @endif" >
+                {{booking_status_to_text($status)}}
+            </a>
+        </div>
+    @endif
+@endforeach
                 @endif
             </div>
             <div class="tabs__content pt-30 js-tabs-content">
                 <div class="tabs__pane -tab-item-1 is-tab-el-active">
                     <div class="overflow-scroll scroll-bar-1">
                         @if(!empty($bookings) and $bookings->total() > 0)
-                            <table class="table-3 -border-bottom col-12">
-                                <thead class="bg-light-2">
+                            <div class="table-3 -border-bottom col-12">
+                                <!-- <thead class="bg-light-2">
                                     <tr>
                                         <th width="2%">{{__("Type")}}</th>
                                         <th>{{__("Title")}}</th>
@@ -59,13 +72,14 @@
                                         <th class="a-hidden">{{__("Status")}}</th>
                                         <th>{{__("Action")}}</th>
                                     </tr>
-                                </thead>
-                                <div class="tbody">
+                                </thead> -->
+
+                                <!-- <div class="tbody"> -->
                                     @foreach($bookings as $key => $booking)
                                         @include(ucfirst($booking->object_model).'::frontend.bookingHistory.loop', ['key' => $key])
                                     @endforeach
-                                </tbody>
-                            </table>
+                                <!-- </tbody> -->
+                            </div>
                             <div class="bravo-pagination pt-30">
                                 {{$bookings->appends(request()->query())->links()}}
                             </div>

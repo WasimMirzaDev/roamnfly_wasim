@@ -53,7 +53,7 @@
     @default
         <header data-add-bg="{{ $dataBg }}" class="custom-header header {{ $headerClass }} js-header bravo_header " data-x="header" data-x-toggle="is-menu-opened">
             <div data-anim="fade" class="{{ $container_class ?? 'header__container' }} px-30 sm:px-20 @if($headerStyle == 'transparent_v2') container @endif is-in-view">
-                <div class="row justify-between items-center">
+                <div class="row justify-between items-center w-100">
                     <div class="col-auto @if($headerStyle == 'transparent_v7') col-left @endif">
                         @php
                             $logo = setting_item('logo_id');
@@ -237,7 +237,32 @@
                             @endif
                         </div>
                     </div>
+                   
                 </div>
+                <div class="menu-second-for-next-line ">
+                    <div class="inner-menu-wrapper d-flex justify-content-start align-items-center p-0 ">
+                   <div class="inner-the-wrapper">
+                   <div class="icon-text-wrapper me-4">
+                    <a href="{{ url('/flight') }}" class="d-flex justify-content-start align-items-center  me-2 {{ request()->is('flight') ? 'active' : '' }}">
+                   <i class="fa-solid fa-plane-departure me-2 fa-xl "></i>
+                   <span>Flight</span>
+                   </a>
+                    </div>
+                    <div class="icon-text-wrapper me-4">
+                  <a href="{{url('/hotel')}}" class=" d-flex justify-content-start align-items-center  me-2 {{ request()->is('hotel') ? 'active' : '' }}">
+                  <i class="fa-solid fa-hotel me-2 fa-xl "></i>
+                  <span>Hotel</span>
+                  </a>
+                    </div>
+                    <div class="icon-text-wrapper ">
+                  <a href="#" class=" d-flex justify-content-start align-items-center me-2 "> 
+                    <i class="fa-solid fa-suitcase-rolling me-2 fa-xl "></i>
+                  <span>Holidays</span>
+                </a>
+                    </div>
+                </div>
+               </div>
+            </div>
                 <div class="d-none xl:d-flex x-gap-20 items-center pl-30" data-x="header-mobile-icons" data-x-toggle="text-white">
                 </div>
             </div>
