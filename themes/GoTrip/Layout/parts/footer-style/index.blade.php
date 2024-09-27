@@ -30,6 +30,11 @@
     .white-kro > p{
         color:white;
     }
+    .its-anchor{
+        &:hover{
+            color: orange;
+        }
+    }
 </style>
 <div class="footer {{ $footer_classes }} {{$footerStyle}}" style="background-color: #545454;">
     <div class="container">
@@ -43,10 +48,19 @@
 
         <section class="footer_middle_area py-20 @if($footerStyle == 'style_1') border-top-white-15 @else border-top-light @endif">
             <div class="row justify-between items-center y-gap-10">
-                <div class="col-auto white-kro">
+                <div class="col-auto white-kro ">
                     {!! setting_item_with_lang("footer_text_left") ?? ''  !!}
+                   
                 </div>
                 <div class="col-auto">
+<div class="anchor-wrapper ">
+                    <a href="{{url('/privacypolicy')}}" class="text-white its-anchor">Privacy Policy |</a>
+                    <a href="{{url('/termsandconditions')}}" class="text-white its-anchor">Term & Conditions |</a>
+                    <a href="{{url('/cancellationandpaymentpolicy')}}" class="text-white its-anchor">Cancellations & Payment Policy |</a>
+                    <a href="{{url('/disclaimer')}}" class="text-white its-anchor">Disclaimer</a>
+</div>
+                </div>
+                <!-- <div class="col-auto">
                     <div class="row y-gap-10 items-center">
                         <div class="col-auto">
                             <div class="d-flex items-center">
@@ -63,11 +77,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-auto white-kro">
+                        <div class="col-auto white-kro ">
                             {!! setting_item_with_lang("footer_text_right") ?? ''  !!}
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </section>
     </div>
