@@ -1,7 +1,7 @@
 <div class="bravo-offer layout-pb-md">
     <div data-anim-wrap class="container">
         @if(!empty($title))
-            <div data-anim-child="slide-up delay-1" class="row justify-center text-center pb-40">
+            <div data-anim-child="slide-up delay-1" class="row pb-40">
                 <div class="col-auto">
                     <div class="sectionTitle -md">
                         <h2 class="sectionTitle__title">{{ $title ?? '' }}</h2>
@@ -11,7 +11,7 @@
             </div>
         @endif
         @if(!empty($list_item))
-            <div class="row y-gap-20 pt-40">
+            <div class="row y-gap-20 pt-30">
                 @foreach($list_item as $key=>$item)
                     <div data-anim-child="slide-up delay-{{$key+2}}" class="col-lg-4 col-sm-6">
                         <div class="ctaCard -type-1 rounded-4">
@@ -24,9 +24,19 @@
                                 @endif
                                 <h4 class="text-30 lg:text-24 text-white">{!! clean($item['title']) !!}</h4>
 
-                                <div class="d-inline-block mt-30">
-                                    <a href="{{$item['link_more']}}" class="button px-48 py-15 -blue-1 -min-180 bg-white text-dark-1">{{$item['link_title']}}</a>
-                                </div>
+                                <div class="d-inline-block mt-30" style="
+                                bottom: 0;
+                                display: flex !important;
+                                position: absolute;
+                                left: 50%;          /* Move it to the middle of the container */
+                                transform: translateX(-50%);  /* Adjust the alignment to truly center */
+                                margin-bottom: 20px;
+                            ">
+                                <a href="{{$item['link_more']}}" class="button px-48 py-15 -blue-1 -min-180 bg-white text-dark-1">
+                                    {{$item['link_title']}}
+                                </a>
+                            </div>
+                            
                             </div>
                         </div>
 

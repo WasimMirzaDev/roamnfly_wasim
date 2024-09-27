@@ -76,9 +76,13 @@ font-weight: 500;
             {{__("[Deleted]")}}
         @endif --}}
         <div class="header-bottom-row">
-        <strong class="d-">One way . </strong><Span>BookingID-NF7RR21JF6776 </Span>
-        <strong class="d-none">Two way . </strong>
-        <strong class="d-none">Multiway way . </strong>
+            @if ($booking->travel_type == "One Way")
+            <div><strong class="d-">One way . </strong><Span>BookingID-{{$booking->code}} </Span></div>
+            @elseif($booking->travel_type == "Round Trip")
+            <div><strong class="d-">Round Trip . </strong><Span>BookingID-{{$booking->code}} </Span></div>
+            @else
+            <div><strong class="d-">Multicity . </strong><Span>BookingID-{{$booking->code}} </Span></div>
+            @endif
         </div>
     </div>
     <div class="fw-500 a1">{{format_money($booking->total)}}</div>
@@ -114,6 +118,9 @@ font-weight: 500;
 
     </div>
 </div>
+<?php 
+$flightData = json_decode($booking->flightData, true);
+?>
 <div class="content-wrapper d-flex justify-content-between">
    <div class="from-wrapper">
    <div>
@@ -122,7 +129,14 @@ font-weight: 500;
          {{display_datetime($booking->start_date)}} <br>
     </div>
     <div class="from-country">
-Dubai
+        {{-- {{$booking->travel_type}} --}}
+        @if ($booking->travel_type == "One Way")
+        {{$flightData['airport_from'] ?? ''}}
+        @else
+        @foreach ($flightData as $item)
+        {{$flightData['airport_from'] ?? ''}}
+        @endforeach
+        @endif
     </div>
    </div>
    <div class="to-wrapper">
@@ -132,13 +146,19 @@ Dubai
          {{display_datetime($booking->end_date)}} <br>
     </div>
     <div class="to-country">
-        Muscat
+        @if ($booking->travel_type == "One Way")
+        {{$flightData['airport_to'] ?? ''}}
+        @else
+        @foreach ($flightData as $item)
+        {{$flightData['airport_to'] ?? ''}}
+        @endforeach
+        @endif
     </div>
    </div>
     <div>
         {{__("Duration")}} 
         <br>
-         {{__(':duration hrs',['duration'=>@$booking->service->duration])}}
+         {{__(':duration hrs',['duration'=> @$booking->service->duration])}}
     </div>
 
 <!-- 
@@ -183,9 +203,13 @@ Dubai
             {{__("[Deleted]")}}
         @endif --}}
         <div class="header-bottom-row">
-        <strong class="d-">One way . </strong><Span>BookingID-NF7RR21JF6776 </Span>
-        <strong class="d-none">Two way . </strong>
-        <strong class="d-none">Multiway way . </strong>
+            @if ($booking->travel_type == "One Way")
+            <div><strong class="d-">One way . </strong><Span>BookingID-{{$booking->code}} </Span></div>
+            @elseif($booking->travel_type == "Round Trip")
+            <div><strong class="d-">Round Trip . </strong><Span>BookingID-{{$booking->code}} </Span></div>
+            @else
+            <div><strong class="d-">Multicity . </strong><Span>BookingID-{{$booking->code}} </Span></div>
+            @endif
         </div>
     </div>
     <div class="btn-wrapper d-flex justify-content-between w-100">

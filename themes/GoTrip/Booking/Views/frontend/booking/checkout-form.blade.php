@@ -180,7 +180,7 @@
                                                 class="required" style="color: rgb(190, 0, 0);">*</span></label>
                                     </div>
                                 </div>
-<div class="col-md-12 field-Expire-line-1">
+<div class="col-md-6 field-Expire-line-1">
     <div class="form-group">
         <label>{{ __('Age') }} <span
             class="required" style="color: rgb(190, 0, 0);">*</span></label>
@@ -200,6 +200,20 @@
 
 <input type="text" class="form-control" value="{{ $user->pan ?? '' }}"
 name="adults[{{ $index }}][pan]" placeholder="i.e (AAAAA9999A)" hidden>
+
+
+<div class="col-md-6 field-Expire-line-1">
+    <div class="form-group">
+        <label>{{ __('Gender') }} <span class="required" style="color: rgb(190, 0, 0);">*</span></label>
+        <select class="form-control" name="adults[{{ $index }}][gender]">
+            <option value="">{{ __('-- Select --') }}</option>
+            <option value="male" selected>{{ __('Male') }}</option>
+            <option value="female">{{ __('Female') }}</option>
+            <option value="other">{{ __('Other') }}</option>
+        </select>
+    </div>
+</div>
+
 @else
 <div class="col-md-6">
     <div class="form-input ">
@@ -207,6 +221,17 @@ name="adults[{{ $index }}][pan]" placeholder="i.e (AAAAA9999A)" hidden>
             name="adults[{{ $index }}][pan]" placeholder="i.e (AAAAA9999A)">
         <label class="lh-1 text-16 text-light-1">{{ __('PAN ') }} <span
             class="required" style="color: rgb(190, 0, 0);">*</span></label>
+    </div>
+</div>
+<div class="col-md-6 field-Expire-line-1">
+    <div class="form-group">
+        <label>{{ __('Gender') }} <span class="required" style="color: rgb(190, 0, 0);">*</span></label>
+        <select class="form-control" name="adults[{{ $index }}][gender]">
+            <option value="">{{ __('-- Select --') }}</option>
+            <option value="male" selected>{{ __('Male') }}</option>
+            <option value="female">{{ __('Female') }}</option>
+            <option value="other">{{ __('Other') }}</option>
+        </select>
     </div>
 </div>
 {{-- <div class="col-md-6">
@@ -287,12 +312,34 @@ name="adults[{{ $index }}][pan]" placeholder="i.e (AAAAA9999A)" hidden>
                                             <input type="text" class="form-control"
                                             value="{{ $user->passport ?? '' }}"
                                             name="children[{{ $index }}][passport]" hidden>
+                                            <div class="col-md-6 field-Expire-line-1">
+                                                <div class="form-group">
+                                                    <label>{{ __('Gender') }} <span class="required" style="color: rgb(190, 0, 0);">*</span></label>
+                                                    <select class="form-control" name="children[{{ $index }}][gender]">
+                                                        <option value="">{{ __('-- Select --') }}</option>
+                                                        <option value="male" selected>{{ __('Male') }}</option>
+                                                        <option value="female">{{ __('Female') }}</option>
+                                                        <option value="other">{{ __('Other') }}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                 @else
                                 <div class="col-md-6">
                                     <div class="form-input ">
                                         <input type="text" class="form-control" value="{{ $user->pan ?? '' }}"
                                             name="children[{{ $index }}][pan]">
                                         <label class="lh-1 text-16 text-light-1">{{ __('PAN') }} </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 field-Expire-line-1">
+                                    <div class="form-group">
+                                        <label>{{ __('Gender') }} <span class="required" style="color: rgb(190, 0, 0);">*</span></label>
+                                        <select class="form-control" name="children[{{ $index }}][gender]">
+                                            <option value="">{{ __('-- Select --') }}</option>
+                                            <option value="male" selected>{{ __('Male') }}</option>
+                                            <option value="female">{{ __('Female') }}</option>
+                                            <option value="other">{{ __('Other') }}</option>
+                                        </select>
                                     </div>
                                 </div>
                                 {{-- <div class="col-md-6">
