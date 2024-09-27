@@ -75,7 +75,7 @@ left: 3px ;
             {{__("[Deleted]")}}
         @endif
         <div class="header-bottom-row">
-        <strong classz>BookingID - </strong><span>NF7RR21JF6776</span>
+        <strong>BookingID - </strong><span>{{$booking->code}}</span>
   
 
 
@@ -188,7 +188,7 @@ left: 3px ;
             {{__("[Deleted]")}}
         @endif
         <div class="header-bottom-row">
-        <strong classz>BookingID - </strong><span>NF7RR21JF6776</span>
+        <strong class>BookingID - </strong><span>{{$booking->code}}</span>
   
 
 

@@ -332,12 +332,17 @@ class BookingController extends \App\Http\Controllers\Controller
             // Normal Checkout
             
             $adults = $request->input('adults');
-$children = $request->input('children');
-$infants = $request->input('infants');
+            $children = $request->input('children');
+            $infants = $request->input('infants');
 // return ($request->input);
 
             $booking->first_name = $adults[0]['first_name'];
             $booking->last_name = $adults[0]['last_name'];
+            $booking->Traveller_Details = json_encode([
+                'adults' => $adults,   // Include adults with proper keys
+                'children' => $children,
+                'infants' => $infants
+            ]);
             $booking->email = $request->input('email');
             $booking->phone = $request->input('phone');
             $booking->address = $request->input('address_line_1');

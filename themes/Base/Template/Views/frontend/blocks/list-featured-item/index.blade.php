@@ -7,7 +7,7 @@
 
 
 @if($list_item)
-    <div class="bravo-featured-item {{$style ?? ''}}" style="    margin-top: 100px;
+    <div class="bravo-featured-item {{$style ?? ''}}" style="    margin-top: 50px;
     margin-bottom: 66px;">
         <div class="container">
             <div class="row">
