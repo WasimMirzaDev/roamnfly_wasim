@@ -256,6 +256,7 @@
                                             continue;
                                         }
                                     @endphp
+                                    @if($service_type != "Boat")
                                     <div
                                         class="tabs__pane -tab-item-{{ $service_type }} @if ($number == 0) is-tab-el-active @endif">
                                         @include(ucfirst($service_type) . '::frontend.layouts.search.form-search',
@@ -263,6 +264,7 @@
                                         )
                                     </div>
                                     @php $number++; @endphp
+                                    @endif
                                 @endforeach
                             @endif
                         </div>
