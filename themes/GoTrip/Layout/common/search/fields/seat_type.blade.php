@@ -83,7 +83,7 @@
             </div>
 
             <!-- Seat Type -->
-            <div class="row y-gap-10">
+            <div class="row" style="gap: 0px !important">
                 @foreach($seatType as $type)
                     @php
                         $inputName = 'seat_type_'.$type->code;
@@ -93,7 +93,7 @@
                     <div class="col-1">
                         <input style="width:auto;" data-name="{{ __($type->name) }}" class="form-check-input countTravellers class" type="radio" name="seat_type[class]" value="{{$type->code}}" id="seatType{{$type->code}}" {{ $seatClass == $type->name || $seatClass == $type->code ? 'checked' : '' }}>
                     </div>
-<div class="{{ Request::url() == 'http://localhost:8000/flight' ? 'col-4' : 'col-5' }}">
+<div class="{{ Request::url() == 'http://localhost:8000/flight' ? 'col-5' : 'col-5' }}">
     <label class="form-check-label" for="seatType{{$type->code}}">
         {{ __($type->name) }}
     </label>

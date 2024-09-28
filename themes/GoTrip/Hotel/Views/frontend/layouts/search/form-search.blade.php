@@ -148,7 +148,7 @@ position: relative;
 
 
 
-<h3 class="hotel-heading d-block" style="margin-bottom: 4PX" >Book Hotels & Homestays In India</h3>
+<h3 class="hotel-heading d-block" style="margin-bottom: 4px;" >Book Hotels & Homestays In India</h3>
     <div class="field-items">
         <div class="row w-100 m-0"  style="margin-top:10px; color: var(--color-dark-1); border: 1px solid rgb(196, 196, 196); border-radius: 10px;">
             @if(!empty($hotel_search_fields))
@@ -158,7 +158,9 @@ position: relative;
                         @switch($field['field'])
                             @case ('service_name') @include('Layout::common.search.fields.service_name') @break
                             @case ('location') @include('Layout::common.search.fields.location') @break
-                            @case ('date') @include('Layout::common.search.fields.date') @break
+                            @case ('date')@include('Layout::common.search.fields.date' ,[
+                                'index' => 0
+                            ]) @break
                             @case ('attr') @include('Layout::common.search.fields.attr') @break
                             @case ('guests') @include('Layout::common.search.fields.guests') @break
                         @endswitch

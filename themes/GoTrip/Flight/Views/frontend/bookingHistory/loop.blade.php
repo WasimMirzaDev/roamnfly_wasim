@@ -123,43 +123,96 @@ $flightData = json_decode($booking->flightData, true);
 ?>
 <div class="content-wrapper d-flex justify-content-between">
    <div class="from-wrapper">
+    @if ($booking->travel_type == "One Way")
    <div>
         {{__("From")}} 
         <br>
-         {{display_datetime($booking->start_date)}} <br>
+        {{$flightData['departure_date_html'] ?? ''}} {{$flightData['departure_time_html'] ?? ''}}<br>
     </div>
+    @endif
     <div class="from-country">
         {{-- {{$booking->travel_type}} --}}
         @if ($booking->travel_type == "One Way")
-        {{$flightData['airport_from'] ?? ''}}
+        {{$flightData['airport_from'] ?? ''}}<br>
+        {{-- From : {{$flightData['departure_date_html'] ?? ''}} {{$flightData['departure_time_html'] ?? ''}}<br> --}}
+        @elseif($booking->travel_type == "Round Trip")
+        @foreach ($flightData as $index => $item)
+        @if($index == 0)
+        Depart : <br>
         @else
-        @foreach ($flightData as $item)
-        {{$flightData['airport_from'] ?? ''}}
+        Return : <br>
+        @endif
+        {{$item['airport_from'] ?? ''}} <br>
+        From : {{$item['departure_date_html'] ?? ''}} {{$item['departure_time_html'] ?? ''}}<br>
+        @endforeach
+        @else
+        @foreach ($flightData as $index => $item)
+        Flight {{$index + 1}} : <br>
+        {{$item['airport_from'] ?? ''}} <br>
+        From : {{$item['departure_date_html'] ?? ''}} {{$item['departure_time_html'] ?? ''}}<br>
         @endforeach
         @endif
     </div>
    </div>
    <div class="to-wrapper">
+    @if ($booking->travel_type == "One Way")
    <div>
         {{__("To ")}} 
         <br>
-         {{display_datetime($booking->end_date)}} <br>
+        {{$flightData['arrival_date_html'] ?? ''}} {{$flightData['arrival_time_html'] ?? ''}}<br>
     </div>
+    @endif
     <div class="to-country">
         @if ($booking->travel_type == "One Way")
-        {{$flightData['airport_to'] ?? ''}}
+        {{$flightData['airport_to'] ?? ''}}<br>
+        
+        @elseif($booking->travel_type == "Round Trip")
+        @foreach ($flightData as $index => $item)
+        <br>
+        {{$item['airport_to'] ?? ''}} <br>
+        To : {{$item['arrival_date_html'] ?? ''}} {{$item['arrival_time_html'] ?? ''}}<br>
+        @endforeach
         @else
-        @foreach ($flightData as $item)
-        {{$flightData['airport_to'] ?? ''}}
+        @foreach ($flightData as $index => $item)
+        <br>
+        {{$item['airport_from'] ?? ''}} <br>
+        To : {{$item['arrival_date_html'] ?? ''}} {{$item['arrival_time_html'] ?? ''}}<br>
         @endforeach
         @endif
     </div>
    </div>
-    <div>
-        {{__("Duration")}} 
-        <br>
-         {{__(':duration hrs',['duration'=> @$booking->service->duration])}}
-    </div>
+   <div>
+    Duration
+    @php
+
+        $start = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $booking->start_date);
+        $end = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $booking->end_date);
+
+        // Calculate the difference in hours and minutes
+        $diffInHours = $start->diffInHours($end);
+        $diffInMinutes = $start->diffInMinutes($end) % 60; // Get remaining minutes
+    @endphp
+
+    {{-- Display the calculated duration --}}
+    @if ($booking->travel_type == "One Way")
+    <br>
+    {{ $diffInHours }} h : {{ $diffInMinutes }} m
+    @elseif($booking->travel_type == "Round Trip")
+    @foreach ($flightData as $index => $item)
+    <br>
+    <br>
+    {{$item['duration'] ?? ''}} h <br>
+    @endforeach
+    @else
+    @foreach ($flightData as $index => $item)
+    <br>
+    <br>
+    {{$item['duration'] ?? ''}} h <br>
+    @endforeach
+    @endif
+</div>
+
+
 
 <!-- 
     <div class="a">
@@ -251,33 +304,66 @@ $flightData = json_decode($booking->flightData, true);
 <div class="content-wrapper d-flex justify-content-between">
     <div class="content-small-wrapper d-flex justify-content-between">
     <div class="from-wrapper">
-   <div>
-        {{__("From")}} 
-        <br>
-         {{display_datetime($booking->start_date)}} <br>
-    </div>
+        @if ($booking->travel_type == "One Way")
+        <div>
+             {{__("From")}} 
+             <br>
+              {{display_datetime($booking->start_date)}} <br>
+         </div>
+         @endif
     <div class="from-country">
-Dubai
+        {{-- {{$booking->travel_type}} --}}
+        @if ($booking->travel_type == "One Way")
+        {{$flightData['airport_from'] ?? ''}}
+        @elseif($booking->travel_type == "Round Trip")
+        @foreach ($flightData as $index => $item)
+        @if($index == 0)
+        Depart : <br>
+        @else
+        Return : <br>
+        @endif
+        {{$item['airport_from'] ?? ''}} <br>
+        From : {{$item['departure_date_html'] ?? ''}} {{$item['departure_time_html'] ?? ''}}<br>
+        @endforeach
+        @else
+        @foreach ($flightData as $index => $item)
+        Flight {{$index + 1}} : <br>
+        {{$item['airport_from'] ?? ''}} <br>
+        From : {{$item['departure_date_html'] ?? ''}} {{$item['departure_time_html'] ?? ''}}<br>
+        @endforeach
+        @endif
     </div>
    </div>
    <div class="to-wrapper">
-   <div>
-        {{__("To ")}} 
+    @if ($booking->travel_type == "One Way")
+    <div>
+         {{__("To ")}} 
+         <br>
+          {{display_datetime($booking->end_date)}} <br>
+     </div>
+     @endif
+     <div class="to-country">
+        @if ($booking->travel_type == "One Way")
+        {{$flightData['airport_to'] ?? ''}}
+        @elseif($booking->travel_type == "Round Trip")
+        @foreach ($flightData as $index => $item)
         <br>
-         {{display_datetime($booking->end_date)}} <br>
-    </div>
-    <div class="to-country">
-        Muscat
+        {{$item['airport_to'] ?? ''}} <br>
+        To : {{$item['arrival_date_html'] ?? ''}} {{$item['arrival_time_html'] ?? ''}}<br>
+        @endforeach
+        @else
+        @foreach ($flightData as $index => $item)
+        <br>
+        {{$item['airport_from'] ?? ''}} <br>
+        To : {{$item['arrival_date_html'] ?? ''}} {{$item['arrival_time_html'] ?? ''}}<br>
+        @endforeach
+        @endif
     </div>
    </div>
     </div>
  
     <div class="content-small-wrapper d-flex justify-content-between">
-    <div>
-        {{__("Duration")}} 
-        <br>
-         {{__(':duration hrs',['duration'=>@$booking->service->duration])}}
-    </div>
+
 
 <!-- 
     <div class="a">
@@ -295,15 +381,16 @@ Dubai
 
     {{display_date($booking->created_at)}}
     </div>
+    <div class="status-div">
+        <span>Staus</span>
+        
+        <div class="{{$booking->status}} ab2">
+                <span class="rounded-100 py-4 px-10 text-center text-14 fw-500">{{$booking->statusName}}</span>
+            </div>
+           </div>
     </div>
    
-   <div class="status-div">
-<span>Staus</span>
 
-<div class="{{$booking->status}} ab2">
-        <span class="rounded-100 py-4 px-10 text-center text-14 fw-500">{{$booking->statusName}}</span>
-    </div>
-   </div>
 
  
 </div>

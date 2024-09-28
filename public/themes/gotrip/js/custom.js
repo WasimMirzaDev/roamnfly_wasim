@@ -10,11 +10,15 @@ var validation = Array.prototype.filter.call(forms, function(form) {
         form.classList.add('was-validated');
     }, false);
 });
-//Login
+
+
 $('.bravo-theme-gotrip-login-form [type=submit]').on("click", function (e) {
     e.preventDefault();
     let form = $(this).closest('.bravo-theme-gotrip-login-form');
     var redirect = form.find('input[name=redirect]').val();
+
+    // Get CSRF token from meta tag
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
     $.ajax({
         url: bookingCore.url + '/login',
@@ -23,7 +27,10 @@ $('.bravo-theme-gotrip-login-form [type=submit]').on("click", function (e) {
             'password': form.find('input[name=password]').val(),
             'remember': form.find('input[name=remember]').is(":checked") ? 1 : '',
             'g-recaptcha-response': form.find('[name=g-recaptcha-response]').val(),
-            'redirect':form.find('input[name=redirect]').val()
+            'redirect': form.find('input[name=redirect]').val(),
+        },
+        headers: {
+            'X-CSRF-TOKEN': csrfToken // Include CSRF token in headers
         },
         method: 'POST',
         beforeSend: function () {
@@ -31,54 +38,52 @@ $('.bravo-theme-gotrip-login-form [type=submit]').on("click", function (e) {
             form.find('.icon-arrow-top-right').hide();
             form.find('.icon-loading').removeClass('d-none');
         },
-        dataType:'json',
+        dataType: 'json',
         success: function (data) {
-            if(data.two_factor){
+            if (data.two_factor) {
                 return window.location.href = bookingCore.url + '/two-factor-challenge';
             }
             form.find('.icon-arrow-top-right').show();
             form.find('.icon-loading').addClass('d-none');
             if (data.error === true) {
                 if (data.messages !== undefined) {
-                    for(var item in data.messages) {
+                    for (var item in data.messages) {
                         var msg = data.messages[item];
-                        form.find('.error-'+item).show().text(msg[0]);
+                        form.find('.error-' + item).show().text(msg[0]);
                     }
                 }
                 if (data.messages.message_error !== undefined) {
                     form.find('.message-error').show().html('<div class="alert alert-danger">' + data.messages.message_error[0] + '</div>');
                 }
             }
-            if(data.message){
+            if (data.message) {
                 form.find('.message-error').show().html('<div class="alert alert-danger">' + data.message + '</div>');
             }
             if (typeof BravoReCaptcha !== 'undefined') {
                 BravoReCaptcha.reset('login');
                 BravoReCaptcha.reset('login_normal');
-
             }
-            if(redirect.trim('/')){
+            if (redirect.trim('/')) {
                 window.location.href = bookingCore.url_root + form.find('input[name=redirect]').val();
-            }else{
+            } else {
                 window.location.reload();
             }
-
         },
-        error:function (e){
+        error: function (e) {
             form.find('.icon-arrow-top-right').show();
             form.find('.icon-loading').addClass('d-none');
             var html = ajax_error_to_string(e);
             if (typeof BravoReCaptcha !== 'undefined') {
                 BravoReCaptcha.reset('login');
                 BravoReCaptcha.reset('login_normal');
-
             }
-            if(html){
+            if (html) {
                 form.find('.message-error').show().html('<div class="alert alert-danger">' + html + '</div>');
             }
         }
     });
-})
+});
+
 $("input[value!='']").addClass('has-value');
 
 $(".mobile-footer .menu-item-has-children > a").on("click", function (e) {
