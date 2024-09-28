@@ -110,6 +110,12 @@
     color: orange;
  }
 
+ .menu-link.active i,
+.menu-link.active span {
+    color: orange !important; /* Using !important for testing if the rule is being applied */
+}
+
+
 </style>
 @php
     if($headerStyle == "normal_white"){
@@ -157,7 +163,7 @@
                   </a>
                     </div>
                     <div class="icon-text-wrapper ">
-                  <a href="#HolidayTrip" class="menu-link d-flex justify-content-start align-items-center {{ request()->is('holiday_trip') ? 'active' : '' }}"> 
+                  <a href="#HolidayTrip" class="menu-link d-flex justify-content-start align-items-center"> 
                     <i class="fa-solid fa-suitcase-rolling me-2 fa-xl "></i>
                   <span>Holidays</span>
                 </a>
@@ -167,15 +173,11 @@
             <script>
                 document.querySelectorAll('.menu-link').forEach(link => {
     link.addEventListener('click', function(e) {
-        // Prevent default behavior if needed
-        // e.preventDefault();
 
-        // Remove 'active' class from all links
         document.querySelectorAll('.menu-link').forEach(item => {
             item.classList.remove('active');
         });
 
-        // Add 'active' class to the clicked link
         this.classList.add('active');
     });
 });
