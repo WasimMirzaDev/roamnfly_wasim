@@ -54,10 +54,10 @@
                 </div>
                 <div class="col-auto">
 <div class="anchor-wrapper ">
-                    <a href="{{url('/privacypolicy')}}" class="text-white its-anchor">Privacy Policy |</a>
-                    <a href="{{url('/termsandconditions')}}" class="text-white its-anchor">Term & Conditions |</a>
-                    <a href="{{url('/cancellationandpaymentpolicy')}}" class="text-white its-anchor">Cancellations & Payment Policy |</a>
-                    <a href="{{url('/disclaimer')}}" class="text-white its-anchor">Disclaimer</a>
+                    <a href="{{url('/privacypolicy')}}" class="text-white its-anchor" target="_blank">Privacy Policy |</a>
+                    <a href="{{url('/termsandconditions')}}" class="text-white its-anchor" target="_blank">Term & Conditions |</a>
+                    <a href="{{url('/cancellationandpaymentpolicy')}}" class="text-white its-anchor" target="_blank">Cancellations & Payment Policy |</a>
+                    <a href="{{url('/disclaimer')}}" class="text-white its-anchor" target="_blank">Disclaimer</a>
 </div>
                 </div>
                 <!-- <div class="col-auto">
