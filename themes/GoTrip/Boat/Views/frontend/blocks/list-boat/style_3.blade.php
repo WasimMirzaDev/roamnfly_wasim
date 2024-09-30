@@ -26,6 +26,8 @@
     .slick-track {
         margin-left: 0 !important;
         margin-right: 0 !important;
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
     }
     .uhhh.slider-container {
     padding: 0; /* Ensure no extra padding on the container */
@@ -33,7 +35,9 @@
     width: 100%; /* Ensure it spans the full width */
 }
 
-
+#HolidayTrip{
+    padding-top: 7rem !important;
+}
 </style>
 @endpush
 <section class="layout-pt-md layout-pb-lg" id="HolidayTrip">

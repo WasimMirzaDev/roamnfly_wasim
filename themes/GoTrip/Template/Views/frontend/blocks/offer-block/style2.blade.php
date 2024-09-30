@@ -44,15 +44,16 @@
  overflow-x: hidden !important; */
 }
 .bravo-offer{
-    height: 400px !important;
+    /* height: 400px !important; */
     
 }
 .sldie-cloned{
-    height: 335px !important;
+    /* height: 335px !important; */
 
 }
 .slick-track{
-    height: 335px !important;
+    /* height: 335px !important; */
+
 }
 .slick-slide{
     padding: 8px !important; 
@@ -67,22 +68,41 @@
 .heading-text{
     font-size: 21px;
 }
-@media (max-width:769px) {
-    .ctaCard__content{
-        padding: 10px !important;
-    }
+.ctaCard__content{
+    height: 150px;
+}
+.btn-book-now{
+    left: 3.5rem;
+}
+@media (max-width: 1200px) {
     .parah-text{
     font-size: 13px;
 }
 .heading-text{
     font-size: 18px;
 }
+/* .btn-book-now{
+    margin-top: 20px !important;
+} */
+.ctaCard__content{
+    height: 130px !important;
+}
+}
+@media (max-width:991px) {
+    .btn-book-now{
+    left: 4rem !important;
+}  
+}
+@media (max-width:769px) {
+    .ctaCard__content{
+        padding: 10px !important;
+    }
 }
 </style>
 <div class="bravo-offer ">
     <div data-anim-wrap class="container">
         @if(!empty($title))
-            <div data-anim-child="slide-up delay-1" class="row pb-40">
+            <div data-anim-child="slide-up delay-1" class="row ">
                 <div class="col-auto">
                     <div class="sectionTitle -md">
                         <h2 class="sectionTitle__title">{{ $title ?? '' }}</h2>
@@ -101,7 +121,7 @@
                                 <img class="img-ratio js-lazy" src="#" data-src="{{ get_file_url($item['background_image'],'full') ?? "" }}" alt="image">
                             </div>
                         </div>
-                        <div class="ctaCard__content py-10  lg:py-10 lg:px-30" style="height: 150px;">
+                        <div class="ctaCard__content py-10  lg:py-10 lg:px-10" >
                             <h4 class="heading-text">{!! clean($item['title']) !!}</h4>
                             @if(!empty($item['featured_text']))
                                 <p class=" parah-text">{{ $item['featured_text'] }}</p>
@@ -110,9 +130,8 @@
                                 /* bottom: -10px; */
                                 display: flex !important;
                                 position: absolute;
-                                left: 3.5rem;
                                 transform: translateX(-50%);
-                                margin-bottom: 20px;
+                                margin: 0 !important;
                             ">
                                 <a href="{{$item['link_more']}}" class="button px-48 py-10 -blue-1 -min-180 bg-white text-dark-1">
                                     {{$item['link_title']}}
@@ -137,7 +156,7 @@ $(document).ready(function(){
         slidesToShow: 4,  // Show 4 items at a time on larger screens
         slidesToScroll: 1,
         autoplay: true,   
-        autoplaySpeed: 3000,  
+        autoplaySpeed: 9000,  
         arrows: false,     
         dots: false,       
         infinite: true,   
