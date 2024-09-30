@@ -93,7 +93,7 @@
                 <p>{{__('You can check all payout request here:')}} <a class="btn btn-primary" target="_blank" href="{{route('vendor.admin.payout.index')}}">{{__('Manage payouts')}}</a></p>
                 <br>
             @endif
-            <p>{{__('Regards')}},<br>{{setting_item('site_title')}}</p>
+            <p>{{__('Regards')}},<br>GoFlyHabibi</p>
         </div>
     </div>
 @endsection

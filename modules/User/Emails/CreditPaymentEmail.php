@@ -84,7 +84,7 @@
             <p>Amount: [amount]</p>
             <p>Credit: [credit]</p>
             <p>Gateway: [payment_gateway]</p>
-            <p>Regards,<br>'.setting_item('site_title').'</p>';
+            <p>Regards,<br>GoFlyHabibi</p>';
             return $body;
         }
         public static function defaultUpdateBody()
@@ -97,7 +97,7 @@
             <p>Amount: [amount]</p>
             <p>Credit: [credit]</p>
             <p>Gateway: [payment_gateway]</p>
-            <p>Regards,<br>'.setting_item('site_title').'</p>';
+            <p>Regards,<br>GoFlyHabibi</p>';
             return $body;
         }
     }

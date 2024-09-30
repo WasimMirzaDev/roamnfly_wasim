@@ -8,7 +8,7 @@
             <p>{{__('You can check your dashboard here:')}} <a href="{{url('user/dashboard')}}">{{__('View dashboard')}}</a></p>
 
             <br>
-            <p>{{__('Regards')}},<br>{{setting_item('site_title')}}</p>
+            <p>{{__('Regards')}},<br>GoFlyHabibi</p>
         </div>
     </div>
 @endsection

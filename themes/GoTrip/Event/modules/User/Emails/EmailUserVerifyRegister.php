@@ -87,7 +87,7 @@
             <p>Please click the button to verify your email address!</p>
             <p style="text-align: center">' . $this->buttonVerify() . '</p>
             <p>If you did not create account, no further action is required.</p>
-            <p>Regards,<br>' . setting_item('site_title') . '</p>';
+            <p>Regards,<br>GoFlyHabibi </p>';
 			return $body;
 		}
 
