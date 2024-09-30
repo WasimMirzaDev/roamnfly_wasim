@@ -1,5 +1,5 @@
 @if($list_item)
-<section class="layout-pt-lg layout-pb-lg bg-dark-3">
+<section class="layout-pt-lg layout-pb-lg bg-dark-3 ">
     <div class="container">
         <div class="row y-gap-60">
             <div class="col-xl-5 col-lg-6">

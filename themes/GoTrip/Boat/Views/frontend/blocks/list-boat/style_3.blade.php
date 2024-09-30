@@ -35,12 +35,12 @@
     width: 100%; /* Ensure it spans the full width */
 }
 
-#HolidayTrip{
+/* #HolidayTrip{
     padding-top: 7rem !important;
-}
+} */
 </style>
 @endpush
-<section class="layout-pt-md layout-pb-lg" id="HolidayTrip">
+<section class=" layout-pb-lg" id="HolidayTrip">
     <div data-anim-wrap class="container">
         @if(!empty($title) || !empty($desc))
             <div data-anim-child="slide-up delay-1" class="row y-gap-20 justify-between items-end">

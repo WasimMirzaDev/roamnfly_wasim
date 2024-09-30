@@ -1,6 +1,7 @@
+
 @if($list_item)
-<section class="layout-pt-lg layout-pb-lg bg-dark-3">
-    <div class="container">
+<section class="layout-pt-lg bg-dark-3 ">
+    <div class="container ">
         <div class="row y-gap-60">
             <div class="col-xl-5 col-lg-6">
                 <h2 class="text-30 text-white">{!! clean($title) !!}</h2>
@@ -84,20 +85,7 @@
             </div>
         </div>
 
-        <div class="px-40 md:px-0">
-            <div class="row y-gap-30 justify-between items-center pt-60 lg:pt-40">
-                @if(!empty($list_trusted))
-                    @foreach($list_trusted as $item)
-                        <?php $avatar_url = get_file_url($item['avatar'], 'full') ?>
-                        <div class="col-md-auto col-sm-6">
-                            <div class="d-flex justify-center">
-                                <img src="#" data-src="{{ $avatar_url }}" class="js-lazy">
-                            </div>
-                        </div>
-                    @endforeach
-                @endif
-            </div>
-        </div>
+<!-- class="px-40 md:px-0"     code is remove from here -->
     </div>
 </section>
 @endif
