@@ -36,7 +36,7 @@ class VendorTeamRequestCreatedEmail extends Mailable
             <h1>Hello! ' . $this->member->display_name . '</h1>
             <p>You are invited to join the team :<a href="#" target="_blank">' . $this->vendor->display_name . '</a></p>
             <p style="text-align: center">' . $this->button() . '</p>
-            <p>Regards,<br>' . setting_item('site_title') . '</p>';
+            <p>Regards,<br>GoFlyHabibi</p>';
         return $body;
     }
 

@@ -61,7 +61,7 @@
             <p>This password reset link expire in 60 minutes.</p>
             <p>If you did not request a password reset, no further action is required.
             </p>
-            <p>Regards,<br>'.setting_item('site_title').'</p>';
+            <p>Regards,<br>GoFlyHabibi</p>';
             return $body;
         }
 

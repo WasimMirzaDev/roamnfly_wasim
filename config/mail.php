@@ -71,7 +71,7 @@ return [
     */
 
 'from' => [
-    'address' => 'no-reply@roamnfly.com',
+    'address' => 'no-reply@Goflyhabibi.com',
     'name' => env('MAIL_FROM_NAME', 'GoFlyHabibi'),
 ],
 

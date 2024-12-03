@@ -125,10 +125,10 @@
 <div class="d-flex items-center gotrip-header-{{$headerStyle}}">
     <a href="{{url(app_get_locale(false,'/'))}}" class="text-white @if($headerStyle == 'transparent_v3') d-none xl:d-flex @endif header-logo mr-10" data-x="header-logo" data-x-toggle="is-logo-dark">
         {{-- @if($logo)
-        RoamNfly    
+        Goflyhabibi    
         @endif
         @if($logoDark)
-        RoamNfly    
+        Goflyhabibi    
         @endif --}}
         Goflyhabibi
         

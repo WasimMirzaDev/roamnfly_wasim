@@ -10,7 +10,7 @@
             <p>{{__('You can approved the request here:')}} <a href="{{route('user.admin.verification.detail',['id'=>$user->id])}}">{{__('View request')}}</a></p>
 
             <br>
-            <p>{{__('Regards')}},<br>{{setting_item('site_title')}}</p>
+            <p>{{__('Regards')}},<br>GoFlyHabibi</p>
         </div>
     </div>
 @endsection
