@@ -32,9 +32,10 @@
     }
     .its-anchor{
         &:hover{
-            color: orange;
+            color: orange !important;
         }
     }
+   
 </style>
 <div class="footer {{ $footer_classes }} {{$footerStyle}}" style="background-color: #545454;">
     <div class="container">
@@ -53,12 +54,12 @@
                    
                 </div>
                 <div class="col-auto">
-<div class="anchor-wrapper ">
+                    <div class="anchor-wrapper ">
                     <a href="{{url('/privacypolicy')}}" class="text-white its-anchor" target="_blank">Privacy Policy |</a>
                     <a href="{{url('/termsandconditions')}}" class="text-white its-anchor" target="_blank">Term & Conditions |</a>
                     <a href="{{url('/cancellationandpaymentpolicy')}}" class="text-white its-anchor" target="_blank">Cancellations & Payment Policy |</a>
                     <a href="{{url('/disclaimer')}}" class="text-white its-anchor" target="_blank">Disclaimer</a>
-</div>
+                </div>
                 </div>
                 <!-- <div class="col-auto">
                     <div class="row y-gap-10 items-center">
