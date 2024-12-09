@@ -7,9 +7,23 @@
                 content: '',
                 type: false
             },
-            razorpayLoaded: false
+            razorpayLoaded: false,
+            easebuzzLoaded: false
         },
         methods: {
+            loadEasebuzzScript(callback) {
+                if (!this.easebuzzLoaded) {
+                    let script = document.createElement('script');
+                    script.src = "https://ebz-static.s3.ap-south-1.amazonaws.com/easecheckout/v2.0.0/easebuzz-checkout-v2.min.js"; // Corrected URL
+                    script.onload = () => {
+                        this.easebuzzLoaded = true;
+                        callback();
+                    };
+                    document.head.appendChild(script);
+                } else {
+                    callback();
+                }
+            },
             loadRazorpayScript(callback) {
                 if (!this.razorpayLoaded) {
                     let script = document.createElement('script');
@@ -32,8 +46,18 @@
                 // if (!this.validate()) return false;
     
                 this.onSubmit = true;
-                console.log('Request to be sent');
+                // Serialized form data
+                const serializedData = $('.booking-form').find('input,textarea,select').serialize();
                 
+                // Use URLSearchParams to parse the serialized string
+                const params = new URLSearchParams(serializedData);
+                
+                // Access the 'payment_gateway' value
+                const paymentGateway = params.get('payment_gateway');
+                console.log("Payment Gateway:", paymentGateway);
+
+            if(paymentGateway == "razor_pay"){
+                    
                 $.ajax({
                     url: bookingCore.routes.checkout,
                     data: $('.booking-form').find('input,textarea,select').serialize(),
@@ -48,7 +72,7 @@
                         if (res.order_id && res.key) {
                             // Load Razorpay script and then proceed to payment
                             me.loadRazorpayScript(() => {
-                                me.proceedToPayment(res.order_id, res.key, res.amount , res.booking_code , res.UserData);
+                                me.proceedToPaymentRazerPay(res.order_id, res.key, res.amount , res.booking_code , res.UserData);
                             });
                         }
     
@@ -95,8 +119,55 @@
                         }
                     }
                 });
+            }else{
+                $.ajax({
+                    url: bookingCore.routes.checkout,
+                    data: $('.booking-form').find('input,textarea,select').serialize(),
+                    method: "post",
+                    success: function (res) {
+                        // Check if response contains payment data
+                        if (res.payment_data) {
+                            me.loadEasebuzzScript(() => {
+                                me.proceedToPaymentEasebuzz(res.payment_data); // Pass payment data to proceed with payment
+                            });
+                        } else {
+                            me.onSubmit = false;
+                        }
+                    },
+                    error: function (e) {
+                        me.onSubmit = false;
+                    }
+                });
+            }
             },
-            proceedToPayment(orderId, key, amount,booking_code,UserData) {
+            proceedToPaymentEasebuzz(transactionData) {
+                console.log(transactionData.response.data);
+                const options = {
+                    key:transactionData.key,
+                    access_key: transactionData.response.data, // Easebuzz Key
+                    onResponse: (response) => {
+                        console.log(response);
+                        this.verifyPaymentEasebuzz(response,transactionData.booking_code);
+                    },
+                    theme: "#123456", // color hex,
+                };
+                const easebuzz = new EasebuzzCheckout(options.key,'test'); // Use window.Easebuzz
+                easebuzz.initiatePayment(options);
+            
+           
+
+            // easebuzz.open();
+            
+            // Initialize Easebuzz payment gateway
+            //   if (typeof Easebuzz !== 'undefined') {
+            //     const easebuzz = new window.Easebuzz(options); // Use window.Easebuzz
+            //     easebuzz.open();
+            //   } else {
+            //     // Handle the case where Easebuzz is not loaded
+            //     console.error("Easebuzz library is not loaded!");
+            //   }
+        },
+            proceedToPaymentRazerPay(orderId, key, amount,booking_code,UserData) {
                 
                 var me = this;
                 var convertedAmount = amount * 100; // Convert amount to the smallest currency unit
@@ -130,8 +201,14 @@
                 
                 // Redirect the user to the constructed URL to verify the payment
                 window.location.href = verificationUrl;
+            },
+            verifyPaymentEasebuzz(response, booking_code) {
+                // Construct the URL with query parameters for verification
+                const verificationUrl = `${bookingCore.url}/booking/confirm/ease_buzz?c=${booking_code}&txnid=${response.txnid}&status=${response.status}&hash=${response.hash}&firstname=${response.firstname}&email=${response.email}`;
+                
+                // Redirect the user to the constructed URL to verify the payment
+                window.location.href = verificationUrl;
             }
-            
         }
     });
 })(jQuery);
