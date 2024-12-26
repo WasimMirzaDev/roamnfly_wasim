@@ -740,6 +740,7 @@ class BookingController extends \App\Http\Controllers\Controller
         if($booking->object_model == 'hotel'){
             $service = $this->hotelService->searchHotelDetail([['id' => $booking->api_id]], true)[0];
         }else if ($booking->object_model == 'flight'){
+            dd("bookingDetails");
             $service = $this->flightService->bookingDetail($booking->api_id)['itemInfos']['AIR']['tripInfos'][0];
         }else{
             $service = $booking->service;

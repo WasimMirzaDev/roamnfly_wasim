@@ -474,10 +474,11 @@ class FlightService extends BaseService
                     $total = json_decode($bookingDetail->each_flight_price, true);
                     
                     $params = $this->multiBookparams($request, $flightDetail, $bookingDetail, $id, $total[$index]);
+                    // dd($params);
                     $response = Http::withHeaders(['apikey' => $this->apiToken])->post($this->getEndpoint('air/book', 'oms'), $params);
                     $bookingData = $response->json();
+                    // dd($request->all(), $response->json());
                     if ($response->successful()) {
-
                     } else {
                         $this->generateEmailLog('flight-book', $this->apiType, $response->status(), $response->body());
                         return [
@@ -495,8 +496,10 @@ class FlightService extends BaseService
             } else {
                 $id = null;
                 $params = $this->setBookParams($request, $flightDetail, $bookingDetail);
+                // dd($params);
                 $response = Http::withHeaders(['apikey' => $this->apiToken])->post($this->getEndpoint('air/book', 'oms'), $params);
                 $bookingData = $response->json();
+                // dd($request->all(), $response->json());
                 if ($response->successful()) {
                     if ($bookingData['status']['httpStatus'] == 200) {
                         return [
@@ -558,7 +561,7 @@ class FlightService extends BaseService
                     'lN' => $child['last_name'],
                     'pan' => $child['pan'],
                     'pNum' => $child['passport'],
-                    "dob" => Carbon::now()->subYears($child['dob']),
+                    "dob" => Carbon::now()->subYears($child['dob'])->format('Y-m-d'),
                     'ti' => 'Master',
                     "pNat" => "IN",
                     'pt' => 'CHILD',
@@ -574,7 +577,7 @@ class FlightService extends BaseService
                 $travellerInfo[] = [
                     'fN' => $infant['first_name'],
                     'lN' => $infant['last_name'],
-                    "dob" => Carbon::now()->subYears($infant['dob']),
+                    "dob" => Carbon::now()->subYears($infant['dob'])->format('Y-m-d'),
                     'ti' => 'Master',
                     "pNat" => "IN",
                     'pt' => 'INFANT'
@@ -708,6 +711,7 @@ class FlightService extends BaseService
     {
         try {
             $response = Http::withHeaders(['apikey' => $this->apiToken])->post($this->getEndpoint('booking-details', 'oms'), ['bookingId' => $id]);
+            // dd($response);
             if ($response->successful()) {
                 return $response->json();
             } else {

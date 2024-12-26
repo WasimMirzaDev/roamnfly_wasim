@@ -174,7 +174,8 @@ class FlightController extends Controller
             $list    = $this->flightService->paginate($request, $list ?? [], $limit);
             $view    ='Flight::frontend.returnSearch';
 
-        }elseif($request->travel_type == 'Multicity'){
+        }
+        else if($request->travel_type == 'Multicity'){
         if(isset($query[0]['ONWARD'])){
             $list   = $query;
         }
@@ -207,6 +208,7 @@ class FlightController extends Controller
             'rows' => $list,
             'layout'=>$layout
         ];
+        // dd($data);
         if ($is_ajax) {
             return $this->sendSuccess([
                 "markers" => $markers,
