@@ -209,7 +209,7 @@
                     </div>
                     <div class="accordion__button" style="margin-left: 20px !important;">
                         {{-- @if($row->can_book) --}}
-                            <a data-id="{{ $publishedPriceId ?? 'awojdioawjdi' }}" data-index="{{ $index ?? '1'}}" href="" onclick="event.preventDefault()" class="button -dark-1 px-30 h-50 bg-blue-1 text-white btn-Select-flight btn-flight-link"  style=" background: transparent !important;
+                            <a id="{{ $publishedPriceId ?? 'awojdioawjdi' }}" data-id="{{ $publishedPriceId ?? 'awojdioawjdi' }}" data-index="{{ $index ?? '1'}}" href="" onclick="event.preventDefault()" class="button -dark-1 px-30 h-50 bg-blue-1 text-white btn-Select-flight btn-flight-link"  style=" background: transparent !important;
     color: #ff624d;
     border: 1px solid #ff624d;
     border-radius: 25px;"  onmouseover="this.style.backgroundColor='blue';">{{ __("Select") }} </a>

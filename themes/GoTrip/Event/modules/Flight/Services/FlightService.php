@@ -451,6 +451,7 @@ class FlightService extends BaseService
                     $total = json_decode($bookingDetail->each_flight_price, true);
                     
                     $params = $this->multiBookparams($request, $flightDetail, $bookingDetail, $id, $total[$index]);
+                    dd(json_encode($params, JSON_PRETTY_PRINT));
                     $response = Http::withHeaders(['apikey' => $this->apiToken])->post($this->getEndpoint('air/book', 'oms'), $params);
                     $bookingData = $response->json();
                     if ($response->successful()) {

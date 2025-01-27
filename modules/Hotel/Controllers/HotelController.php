@@ -101,6 +101,8 @@ class HotelController extends Controller
         },'translation'])->get();
         $data['layout'] = $layout;
 
+        // dd($data);
+
         if ($layout == "map") {
             $data['body_class'] = 'has-search-map';
             $data['html_class'] = 'full-page';
@@ -111,6 +113,7 @@ class HotelController extends Controller
 
     public function detail(Request $request, $id)
     {
+        // dd("hello");
         $row = $this->hotelService->getHotelDetailFromCache($id);
         if ( empty($row)) {
             return redirect('/');
@@ -149,6 +152,7 @@ class HotelController extends Controller
     }
 
     public function checkAvailability(){
+        
         $hotel_id = \request('hotel_id');
         $rooms_id = \request('rooms_id');
         if(\request()->input('firstLoad') == "false") {
@@ -206,8 +210,8 @@ class HotelController extends Controller
     public function getHotelRoomsId(Request $request)
 {
     $hotelId = $request->get('hotel_id');
+    
     $cachedData = Cache::get('hotel_' . $hotelId);
-
     if ($cachedData && isset($cachedData['ops'])) {
         return response()->json(['ops' => $cachedData['ops']]);
     } else {

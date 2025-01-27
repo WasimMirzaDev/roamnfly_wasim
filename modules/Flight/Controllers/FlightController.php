@@ -144,11 +144,11 @@ class FlightController extends Controller
         // dd($request->input());
         if($request->travel_type == 'Multicity'){
             $query = $this->flightService->searchMultiFlights($request->input());
+            // dd($query);
         }
         else{
             $query = $this->flightService->searchFlight($request->input());
         }
-        // dd($query);
 
         $view  ='Flight::frontend.search';
 
@@ -176,9 +176,11 @@ class FlightController extends Controller
 
         }
         else if($request->travel_type == 'Multicity'){
-        if(isset($query[0]['ONWARD'])){
+            // dd($query);
+        // if(isset($query[0]['ONWARD'])){
             $list   = $query;
-        }
+        // }
+        
         $list    = $this->flightService->paginate($request, $list ?? [], $limit);
         $view    ='Flight::frontend.returnMultiSearch';
         }
@@ -243,6 +245,7 @@ class FlightController extends Controller
 
     public function getData(Request $request,$id){
         $row = $this->flightService->reviewSelectedFlight($id);
+        // dd($row);
 
         if ( empty($row)) {
             return $this->sendError(__("Please try other flight."));
@@ -255,7 +258,6 @@ class FlightController extends Controller
 
     public function getMultiData(Request $request,$id){
         $row = $this->flightService->reviewSelectedMultiFlight($id);
-        // dd($row);
         if ( empty($row)) {
             return $this->sendError(__("Please try other flight."));
         }else{

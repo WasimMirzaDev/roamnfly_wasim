@@ -290,6 +290,7 @@ class BookingController extends \App\Http\Controllers\Controller
             }
             $isBooked = true;
         }
+        // dd("from modules");
         if($service == 'flight'){
             $passengers = BookingPassengers::where('booking_id',$booking->id)->get();
             // foreach($passengers as $passenger){
@@ -745,7 +746,6 @@ class BookingController extends \App\Http\Controllers\Controller
         }else{
             $service = $booking->service;
         }
-        
         return view('Booking::frontend.detail.modal', ['booking' => $booking, 'service' => $service]);
     }
 }

@@ -1025,6 +1025,7 @@
             infants: 0,
             from_where:0,
             to_where:0,
+            total_trips:0,
             flights: [],
             flight: {
                 airline: {},
@@ -1194,25 +1195,140 @@
         },
         methods: {
             openSelectModalBook(flightId, index) {
-                this.onSubmit = true;
+                // this.onSubmit = true;
                 console.log("Opening modal for flight ID:", flightId);
                 console.log(index);
 
+                if (!Array.isArray(this.id)) {
+                    this.id = [];
+                }
+                const tripCounterDiv = document.getElementById('tripCounter');
+            
+                const tripCounter = tripCounterDiv.dataset.tripcounter;
+                const numericTripCounter = parseInt(tripCounter, 10); // Convert to an integer
+                // If the index already exists, update it; otherwise, create a new entry
+                if (this.id[index]) {
+                    
+                    let element = document.querySelector(`a[id="${this.id[index]}"]`);
+                    if (element) {
+                        element.style.backgroundColor = 'white';
+                        element.style.color = 'var(--color-dark-1) !important';
+                        element.innerText = 'Select';
+                    }
+                    element = document.querySelector(`a[id="${flightId}"]`);
+                    if (element) {
+                        element.style.backgroundColor = 'var(--color-dark-1) !important';
+                        element.style.color = 'white';
+                        element.innerText = 'Selected';
+                    }
+                    
+
+                    this.id[index] = flightId;
+                    if(numericTripCounter){
+                        let total_trips_are_selected = true;
+                        for(let i = 0; i<numericTripCounter; i++){
+                            if(!this.id[i]){
+                                total_trips_are_selected = false;
+                            }
+                        }
+                        if(total_trips_are_selected){
+                            this.onSubmit = true;
+                            this.ShowTheSelectedFlights();
+                        }else{
+                            this.onSubmit = false;
+                        }
+                    }
+                } else {
+                    this.id[index] = flightId;
+                    element = document.querySelector(`a[id="${flightId}"]`);
+                    element.innerText = 'Selected';
+                    if (element) {
+                        element.style.backgroundColor = 'var(--color-dark-1) !important';
+                        element.style.color = 'white';
+                        element.innerText = 'Selected';
+                    }
+                    if(numericTripCounter){
+                        let total_trips_are_selected = true;
+                        for(let i = 0; i<numericTripCounter; i++){
+                            if(!this.id[i]){
+                                total_trips_are_selected = false;
+                            }
+                        }
+                        if(total_trips_are_selected){
+                            this.onSubmit = true;
+                            this.ShowTheSelectedFlights();
+                        }else{
+                            this.onSubmit = false;
+                        }
+                    }
+                }
+                // this.onSubmit = false;
+                // $.ajax({
+                //     url: bookingCore.module.flight + '/getData/' + flightId,
+                //     data: this.form,
+                //     dataType: 'json',
+                //     method: 'post',
+                //     success: (json) => {
+                //         console.log('API Response:', json.data);
+                //         if (json.status) {
+                //             console.log('Success');
+                            
+                //             if (this.flights[index]) {
+                //                 this.flights[index] = json.data[0];
+                //             } else {
+                //                 this.$set(this.flights, index, json.data[0]); // Use $set to ensure reactivity
+                //             }
+
+                //             this.$forceUpdate();
+
+
+                //             if (!Array.isArray(this.id)) {
+                //                 this.id = [];
+                //             }
+            
+                //             // If the index already exists, update it; otherwise, create a new entry
+                //             if (this.id[index]) {
+                //                 this.id[index] = flightId;
+                //             } else {
+                //                 this.id[index] = flightId;
+                //             }
+            
+                //             console.log("Updated flights:", this.flights);
+                //             this.onSubmit = false;
+                //             this.$nextTick(() => {
+                //                 this.$forceUpdate();  // Ensure Vue re-renders the component
+                //             });
+                //         }
+                //     },
+                //     error: (e) => {
+                //         this.onSubmit = false;
+                //         console.error('API Error:', e); // Debugging
+                //     }
+                // });
+            },
+            ShowTheSelectedFlights(){
+                this.onSubmit = true;
                 $.ajax({
-                    url: bookingCore.module.flight + '/getData/' + flightId,
+                    url: bookingCore.module.flight + '/getData/' + this.id,
                     data: this.form,
                     dataType: 'json',
                     method: 'post',
                     success: (json) => {
+
                         console.log('API Response:', json.data);
                         if (json.status) {
-                            console.log('Success');
                             
-                            if (this.flights[index]) {
-                                this.flights[index] = json.data[0];
-                            } else {
-                                this.$set(this.flights, index, json.data[0]); // Use $set to ensure reactivity
-                            }
+                            console.log('Success');
+                            this.flights = [];
+                            json.data.forEach(element => {
+                                this.flights.push(element);
+                            });
+                            
+                            // if (this.flights[index]) {
+                            //     this.flights[index] = json.data[0];
+                            // } else {
+                            //     this.$set(this.flights, index, json.data[0]); // Use $set to ensure reactivity
+                            // }
 
                             this.$forceUpdate();
 
@@ -1222,11 +1338,11 @@
                             }
             
                             // If the index already exists, update it; otherwise, create a new entry
-                            if (this.id[index]) {
-                                this.id[index] = flightId;
-                            } else {
-                                this.id[index] = flightId;
-                            }
+                            // if (this.id[index]) {
+                            //     this.id[index] = flightId;
+                            // } else {
+                            //     this.id[index] = flightId;
+                            // }
             
                             console.log("Updated flights:", this.flights);
                             this.onSubmit = false;
@@ -1468,6 +1584,13 @@
             this.infants = window.initialData.infants || 0;
             this.from_where = window.initialData.from_where.split('|').pop().trim() || 0;
             this.to_where = window.initialData.to_where.split('|').pop().trim() || 0;
+            const tripCounterDiv = document.getElementById('tripCounter');
+            
+            // Get the data-tripcounter value
+            const tripCounter = tripCounterDiv.dataset.tripcounter;
+            const numericTripCounter = parseInt(tripCounter, 10); // Convert to an integer
+            console.log(numericTripCounter);
+            this.total_trips = numericTripCounter;
         }
     });
 
@@ -1504,6 +1627,7 @@
             });
             $(document).on('click', '.btn-Select-flight', function() {
                 var id = $(this).data('id');
+
                 var index = $(this).data('index');
                 me.openSelectModalBook(id, index);
             });

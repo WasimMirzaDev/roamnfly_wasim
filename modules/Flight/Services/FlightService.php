@@ -61,16 +61,19 @@ class FlightService extends BaseService
     {
         try {
             // return $param;
+            // dd(json_encode($this->setSearchParamsMulti($param), JSON_PRETTY_PRINT));
+            // dd($this->setSearchParamsMulti($param));
             $responses = []; // Array to store all responses
             if ($param['travel_type'] == 'Multicity') {
-                foreach ($param['from_where'] as $index => $orignCity) {
+                // foreach ($param['from_where'] as $index => $orignCity) {
                     $response = Http::withHeaders(['apikey' => $this->apiToken])
-                        ->post($this->getEndpoint('air-search-all', 'fms'), $this->setSearchParams($param, $index));
+                        ->post($this->getEndpoint('air-search-all', 'fms'), $this->setSearchParamsMulti($param));
 
+                        // dd(json_encode($response->json(), JSON_PRETTY_PRINT));
                     if ($response->successful()) {
                         $responses[] = $response->json()['searchResult']['tripInfos'];
                     }
-                }
+                // }
             }
             return $responses;
         } catch (\Exception $e) {
@@ -84,11 +87,13 @@ class FlightService extends BaseService
     {
         try {
             // return $param;
+            // dd($param);
             // return $this->setSearchParams($param);
             $index = 0;
             try {
                 $requestUrl = $this->getEndpoint('air-search-all', 'fms');
                 $requestBody = $this->setSearchParams($param, $index);
+                // dd(json_encode($requestBody, JSON_PRETTY_PRINT));
             
                 // Log the request details
                 \Log::info('Making request to URL: ' . $requestUrl, [
@@ -98,9 +103,8 @@ class FlightService extends BaseService
             
                 $response = Http::withHeaders(['apikey' => $this->apiToken])
                     ->post($requestUrl, $requestBody);
-            
-                // Log the response details
-                \Log::info('Received response', [
+                    // Log the response details
+                    \Log::info('Received response', [
                     'status' => $response->status(),
                     'body' => $response->body(),
                     'json' => $response->json(),
@@ -111,9 +115,10 @@ class FlightService extends BaseService
                 \Log::error('Error occurred during HTTP request', ['message' => $e->getMessage()]);
             }
             
-
+            
             if ($response->successful()) {
-
+                
+                // dd(json_encode($response->json(), JSON_PRETTY_PRINT));
                 // $flightData = $response->json()['searchResult']['tripInfos'];
                 // return $flightData;
                 // dd($response->json()['searchResult']['tripInfos']);
@@ -237,9 +242,14 @@ class FlightService extends BaseService
             $id = [$id];
         }
         try {
+            // dd(json_encode($id, JSON_PRETTY_PRINT));
             $response = Http::withHeaders(['apikey' => $this->apiToken])->post($this->getEndpoint('review', 'fms'), ['priceIds' => $id]);
-
+            $requestUrl = $this->getEndpoint('review', 'fms') . '?' . http_build_query(['priceIds' => $id]);
+            \Log::info('Making request to URL review: ' . $requestUrl, [
+                'headers' => ['apikey' => $this->apiToken],
+            ]);
             if ($response->successful()) {
+                // dd(json_encode($response->json(), JSON_PRETTY_PRINT));
                 $flightData = $response->json()['tripInfos'];
                 Cache::put('flights', $flightData);
                 // dd($response->json());
@@ -316,18 +326,54 @@ class FlightService extends BaseService
         ];
     }
 
-    private function getRouteInfo($searchParams, $index)
+    private function setSearchParamsMulti($searchParams)
     {
 
-        if ($searchParams['travel_type'] == 'One Way') {
-            $routeInfos[] = [
+        // return $searchParams;
+        // return $searchParams['seat_type']['class'];
+        if (empty($searchParams['seat_type']['class'])) {
+            $searchParams['seat_type']['class'] = "";
+        }
+
+        // $paramsJson = json_encode($info);
+
+        // // Delete the old cookie
+        // Cookie::queue(Cookie::forget('flight_search_params'));
+
+        // // Store the new parameters in a cookie
+        // Cookie::queue(Cookie::make('flight_search_params', $paramsJson, 60, '/', null, false, true, 'None'));
+        return [
+            'searchQuery' => [
+                'cabinClass' => $this->cabinClass($searchParams['seat_type']['class']),
+                'paxInfo' => [
+                    'ADULT' => $searchParams['seat_type']['adults'],
+                    'CHILD' => $searchParams['seat_type']['children'],
+                    'INFANT' => $searchParams['seat_type']['infants']
+                ]
+                ,
+                'routeInfos' =>
+                array_map(function ($index) use ($searchParams) {
+                    return $this->getRouteInfo($searchParams, $index);
+                }, array_keys($searchParams['from_where'])),
+                'searchModifiers' => [
+                    'isDirectFlight' => true,
+                    'isConnectingFlight' => false
+                ]
+            ]
+        ];
+    }
+
+    private function getRouteInfo($searchParams, $index)
+    {
+        if ($searchParams['travel_type'] == 'Multicity') {
+            return [
                 'fromCityOrAirport' => [
-                    'code' => $searchParams['from_where'][0]
+                    'code' => $searchParams['from_where'][$index]
                 ],
                 'toCityOrAirport' => [
-                    'code' => $searchParams['to_where'][0]
+                    'code' => $searchParams['to_where'][$index]
                 ],
-                'travelDate' => Carbon::parse($searchParams['start'][0])->format('Y-m-d')
+                'travelDate' => Carbon::parse($searchParams['start'][$index])->format('Y-m-d')
             ];
         } elseif ($searchParams['travel_type'] == 'Round Trip') {
             $routeInfos[] = [
@@ -348,24 +394,22 @@ class FlightService extends BaseService
                 ],
                 'travelDate' => Carbon::parse($searchParams['end'][0])->format('Y-m-d')
             ];
-        } elseif ($searchParams['travel_type'] == 'Multicity') {
-            $routeInfos = [];
-            $routeInfos[] = [
+            return $routeInfos;
+        } else { // One Way
+            return [
                 'fromCityOrAirport' => [
-                    'code' => $searchParams['from_where'][$index]
+                    'code' => $searchParams['from_where'][0]
                 ],
                 'toCityOrAirport' => [
-                    'code' => $searchParams['to_where'][$index]
+                    'code' => $searchParams['to_where'][0]
                 ],
-                'travelDate' => Carbon::parse($searchParams['start'][$index])->format('Y-m-d')
+                'travelDate' => Carbon::parse($searchParams['start'][0])->format('Y-m-d')
             ];
         }
-        return $routeInfos;
     }
 
     public function cabinClass($type)
     {
-
         switch ($type) {
             case 'eco':
                 return 'ECONOMY';
@@ -396,8 +440,7 @@ class FlightService extends BaseService
                 $row = collect([
                     'title' => $info['sI'][0]['fD']['aI']['name'] ?? '',
                     'code' => $info['sI'][0]['fD']['aI']['code'] ?? '',
-                    'logo
-                    ' => $this->getAirLineLogo($info['sI'][0]['fD']['aI']['code'] ?? '', true),
+                    'logo' => $this->getAirLineLogo($info['sI'][0]['fD']['aI']['code'] ?? '', true),
                     'departure_time_html' => isset($info['sI'][0]['dt']) ? Carbon::parse($info['sI'][0]['dt'])->format('H:i') : '',
                     'duration' => isset($info['sI'][0]['duration']) ? number_format(($info['sI'][0]['duration'] / 60), 2) : '',
                     'departure_date_html' => isset($info['sI'][0]['dt']) ? Carbon::parse($info['sI'][0]['dt'])->format('D, d M y') : '',
@@ -474,8 +517,14 @@ class FlightService extends BaseService
                     $total = json_decode($bookingDetail->each_flight_price, true);
                     
                     $params = $this->multiBookparams($request, $flightDetail, $bookingDetail, $id, $total[$index]);
-                    // dd($params);
+                    // dd(json_encode($params, JSON_PRETTY_PRINT));
                     $response = Http::withHeaders(['apikey' => $this->apiToken])->post($this->getEndpoint('air/book', 'oms'), $params);
+                    $requestUrl = $this->getEndpoint('air/book', 'oms') . '?' . http_build_query(['apikey' => $this->apiToken]);
+                    $requestBody = json_encode($params);
+                    \Log::info('Making booking to URL: ' . $requestUrl, [
+                        'headers' => ['apikey' => $this->apiToken],
+                        'body' => $requestBody,
+                    ]);
                     $bookingData = $response->json();
                     // dd($request->all(), $response->json());
                     if ($response->successful()) {
@@ -497,10 +546,18 @@ class FlightService extends BaseService
                 $id = null;
                 $params = $this->setBookParams($request, $flightDetail, $bookingDetail);
                 // dd($params);
+                // dd(json_encode($params, JSON_PRETTY_PRINT));
                 $response = Http::withHeaders(['apikey' => $this->apiToken])->post($this->getEndpoint('air/book', 'oms'), $params);
                 $bookingData = $response->json();
+                $requestUrl = $this->getEndpoint('air/book', 'oms') . '?' . http_build_query(['apikey' => $this->apiToken]);
+                $requestBody = json_encode($params);
+                \Log::info('Making booking to URL: ' . $requestUrl, [
+                    'headers' => ['apikey' => $this->apiToken],
+                    'body' => $requestBody,
+                ]);
                 // dd($request->all(), $response->json());
                 if ($response->successful()) {
+                    // dd(json_encode($response->json(), JSON_PRETTY_PRINT));
                     if ($bookingData['status']['httpStatus'] == 200) {
                         return [
                             'status' => true,
@@ -711,8 +768,8 @@ class FlightService extends BaseService
     {
         try {
             $response = Http::withHeaders(['apikey' => $this->apiToken])->post($this->getEndpoint('booking-details', 'oms'), ['bookingId' => $id]);
-            // dd($response);
             if ($response->successful()) {
+                // dd(json_encode($response->json(), JSON_PRETTY_PRINT));
                 return $response->json();
             } else {
                 // Log error and return empty array
@@ -1016,7 +1073,7 @@ $booking->end_date = $arrivalDateTime;
         $this->clearFlightCache();
         Cache::put('flights', $request->flight);
 
-        $api_ids = [];
+        $api_ids = "";
         $is_gsts = [];
         $titles = [];
         $return_end_dates = [];
@@ -1028,7 +1085,7 @@ $end_date = null;
         foreach ($request->flight as $index => $flight) {
 
 
-            $api_ids[] = $flight['booking_id'];
+            $api_ids = $flight['booking_id'];
             $is_gsts[] = $flight['is_gst'];
             $titles[] = $flight['title'];
             
@@ -1062,7 +1119,7 @@ $end_date = null;
         }
 
         // Store arrays in booking columns
-        $booking->api_id = json_encode($api_ids);
+        $booking->api_id = $api_ids;
         $booking->is_gst = json_encode($is_gsts);
         $booking->title = json_encode($titles);
         $booking->start_date = $start_date;
@@ -1127,6 +1184,7 @@ $end_date = null;
         $booking->is_gst = $request->flight[0]['is_gst'];
         $booking->title = $request->flight[0]['title'] . ' - ' . $request->flight[1]['title'];
         $booking->total_guests = $total_guests;
+
        $departureDate = Carbon::parse($request->flight[0]['departure_date_html']); 
 $departureTime = Carbon::parse($request->flight[0]['departure_time_html']);
 $departureDateTime = $departureDate->setTimeFromTimeString($departureTime->format('H:i:s')); 

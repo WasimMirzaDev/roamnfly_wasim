@@ -290,6 +290,7 @@ class BookingController extends \App\Http\Controllers\Controller
             }
             $isBooked = true;
         }
+        dd("from themes");
         if($service == 'flight'){
             $passengers = BookingPassengers::where('booking_id',$booking->id)->get();
             // foreach($passengers as $passenger){
